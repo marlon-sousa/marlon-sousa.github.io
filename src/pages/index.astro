@@ -6,74 +6,103 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 <BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
 	<h1>About Me</h1>
 	<p>
-		Hello! I'm <strong>Marlon Brandão de Sousa</strong>, an IT specialist, software developer,
-		conference speaker, and digital accessibility advocate with over two decades of professional
-		experience in technology (since 2003).
+		Hello! I'm <strong>Marlon Brandão de Sousa</strong>, a software engineer based in Curitiba,
+		Brazil. I have worked in technology since 2003, and for much of that time on the systems that
+		move people's money: internet banking, international remittances, and cross-border payments.
 	</p>
 	<p>
-		As a blind developer, my life's passion is bridging the gap between complex software engineering
-		and total digital accessibility—ensuring visually impaired developers and users have seamless,
-		empowering tools.
+		I am also a blind developer, a conference speaker, and a digital accessibility advocate. Those
+		two halves are not separate careers. Building financial software that people trust — and that
+		everyone can actually use — is the same problem approached from two directions, and it is the
+		work I care most about.
 	</p>
 
 	<h2>Professional Experience</h2>
 	<ul>
+		<!-- Dates omitted below: LinkedIn masks them for logged-out visitors.
+		     Add them from the Positions export when convenient. -->
 		<li>
-			<strong>Software Engineering &amp; Quality Assurance (2003 – Present):</strong> Extensive
-			background working with enterprise software, Internet Banking frameworks, system analysis, and
-			QA engineering across large-scale corporations.
+			<strong>EBANX — Software Engineering:</strong> Engineering at one of Latin America's largest
+			fintechs, building the cross-border payments infrastructure that global merchants use to sell
+			into the region. I also help run the
+			<strong>EBANX Software Engineering Showcase</strong>, our public technical meetup in Curitiba,
+			where we talk openly about how we build software that has to be both fast and trustworthy.
 		</li>
 		<li>
-			<strong>Founder &amp; Editor-in-Chief — BlindTec:</strong> Created and lead
+			<strong>Remessa Online — Software Engineer Specialist:</strong> International money transfers.
+			Engineering on the platform that moves funds across borders for individuals and businesses.
+		</li>
+		<li>
+			<strong>Itaú Unibanco — Internet Banking Platform:</strong> Development and evolution of the
+			framework behind the internet banking of Brazil's largest private bank, along with maintenance
+			of the internet banking core system and the design of interoperability layers between systems.
+			I also advised mobile and internet banking front-end teams on accessibility.
+		</li>
+		<li>
+			<strong>Earlier — Communications &amp; Consulting:</strong> Roles across software development,
+			quality assurance, process control, and systems analysis at large Brazilian companies, starting
+			in 2003.
+		</li>
+	</ul>
+
+	<h2>Speaking &amp; Community</h2>
+	<ul>
+		<li>
+			<strong>Founder &amp; Editor-in-Chief — BlindTec:</strong> I created and lead
 			<a href="https://www.blindtec.com.br" target="_blank" rel="noopener noreferrer">BlindTec</a>,
-			Brazil's premier portal for assistive technology, publishing technical articles, tutorials, and
-			podcasts focused on software accessibility, screen readers, and tech workflows.
+			Brazil's leading portal and podcast for assistive technology, publishing technical articles,
+			tutorials, and interviews on screen readers, software accessibility, and tech careers.
 		</li>
 		<li>
-			<strong>Track Coordinator &amp; Speaker — The Developer's Conference (TDC):</strong> Regular
-			speaker and track coordinator for the Accessibility tracks at TDC, advocating for inclusive
-			workplace practices, developer career growth, and accessible coding standards.
+			<strong>Track Coordinator &amp; Speaker — The Developer's Conference (TDC):</strong> Coordinator
+			of the Accessibility track at TDC São Paulo, and a speaker at TDC Porto Alegre and DevDay Belo
+			Horizonte on accessibility, entrepreneurship, and the craft of programming.
 		</li>
 		<li>
-			<strong>NVDA Add-on Author &amp; Contributor:</strong> Developing official, open-source add-ons
-			for the NVDA screen reader that improve find dialogs, dictionary profile handling, and
-			productivity tools.
+			<strong>Writing &amp; Podcasts:</strong> Most recently on AI agents delivering real business
+			value in production at EBANX, past the hype. Previously interviewed on
+			<em>podProgramar</em>, one of Brazil's best-known programming podcasts.
+		</li>
+		<li>
+			<strong>EasyWay — second place, FIAP StartupOne:</strong> With a designer and two other
+			engineers, I built the prototype of an indoor location system to help people find their way
+			through complex venues such as expo centres, shopping malls, and stadiums.
 		</li>
 	</ul>
 
 	<h2>Areas of Interest</h2>
 	<ul>
 		<li>
-			<strong>Assistive Technology &amp; Screen Readers:</strong> Extending NVDA, screen-reader
-			ergonomics, and cross-platform accessibility (Windows, Linux, Mobile).
+			<strong>Payments &amp; Financial Systems:</strong> Correctness, reliability, and trust in
+			systems where being wrong costs somebody real money.
 		</li>
 		<li>
-			<strong>AI-Driven Agent Automation:</strong> Developing Model Context Protocol (MCP) servers
-			(<code>screen-readers-mcp</code>) to enable AI agents to drive screen readers for automated
-			functional testing.
+			<strong>Assistive Technology &amp; Screen Readers:</strong> Extending NVDA, screen reader
+			ergonomics, and cross-platform accessibility across Windows, Linux, and mobile.
 		</li>
 		<li>
-			<strong>Podcasting &amp; Tech Education:</strong> Producing accessible educational content,
-			podcasts, and articles to help visually impaired individuals excel in tech careers.
+			<strong>AI-Driven Agent Automation:</strong> Model Context Protocol servers such as
+			<code>screen-readers-mcp</code>, which let AI agents drive screen readers to run automated
+			functional tests — bringing real test coverage to software that has historically been checked
+			by hand, if at all.
 		</li>
 		<li>
-			<strong>Software Quality Assurance &amp; Testing:</strong> Building robust, testable software
-			architectures with accessibility built in from day one.
+			<strong>Quality Engineering:</strong> Building testable architectures with accessibility
+			designed in from day one rather than retrofitted before an audit.
 		</li>
 	</ul>
 
-	<h2>Education &amp; Credentials</h2>
+	<h2>Education</h2>
 	<ul>
-		<li><strong>B.S. in IT Management:</strong> Unisul</li>
 		<li><strong>Postgraduate MBA in Mobile &amp; Game Development:</strong> FIAP</li>
+		<li><strong>B.S. in IT Management:</strong> Unisul</li>
 		<li><strong>Technical Diploma in Data Processing:</strong> Etec Lauro Gomes</li>
 	</ul>
 
 	<h2>Explore the Site</h2>
-	<p>Navigate through the different sections:</p>
 	<ul>
 		<li>Read my articles on the <a href="/blog">Blog</a>.</li>
-		<li>Discover my primary repositories on the <a href="/projects">Projects</a> page.</li>
+		<li>Discover my open-source projects on the <a href="/projects">Projects</a> page.</li>
 		<li>Download the latest add-on builds on the <a href="/releases">Releases</a> page.</li>
 		<li>Search all content using the <a href="/search">Search</a> page.</li>
 	</ul>
