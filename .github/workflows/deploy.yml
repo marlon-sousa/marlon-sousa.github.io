@@ -24,6 +24,11 @@ jobs:
 
       - name: Install, build, and upload site
         uses: withastro/action@v3
+        env:
+          # The Releases page queries the GitHub API at build time. Without a
+          # token, runners share an IP against a 60 requests/hour limit and the
+          # page quietly falls back to the versions in src/data/projects.ts.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   deploy:
     needs: build
