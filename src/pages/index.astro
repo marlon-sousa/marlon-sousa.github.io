@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+
+<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+	<h1>About Me</h1>
+	<p>
+		Hello! I'm <strong>Marlon Brandão de Sousa</strong>, an IT specialist, software developer,
+		conference speaker, and digital accessibility advocate with over two decades of professional
+		experience in technology (since 2003).
+	</p>
+	<p>
+		As a blind developer, my life's passion is bridging the gap between complex software engineering
+		and total digital accessibility—ensuring visually impaired developers and users have seamless,
+		empowering tools.
+	</p>
+
+	<h2>Professional Experience</h2>
+	<ul>
+		<li>
+			<strong>Software Engineering &amp; Quality Assurance (2003 – Present):</strong> Extensive
+			background working with enterprise software, Internet Banking frameworks, system analysis, and
+			QA engineering across large-scale corporations.
+		</li>
+		<li>
+			<strong>Founder &amp; Editor-in-Chief — BlindTec:</strong> Created and lead
+			<a href="https://www.blindtec.com.br" target="_blank" rel="noopener noreferrer">BlindTec</a>,
+			Brazil's premier portal for assistive technology, publishing technical articles, tutorials, and
+			podcasts focused on software accessibility, screen readers, and tech workflows.
+		</li>
+		<li>
+			<strong>Track Coordinator &amp; Speaker — The Developer's Conference (TDC):</strong> Regular
+			speaker and track coordinator for the Accessibility tracks at TDC, advocating for inclusive
+			workplace practices, developer career growth, and accessible coding standards.
+		</li>
+		<li>
+			<strong>NVDA Add-on Author &amp; Contributor:</strong> Developing official, open-source add-ons
+			for the NVDA screen reader that improve find dialogs, dictionary profile handling, and
+			productivity tools.
+		</li>
+	</ul>
+
+	<h2>Areas of Interest</h2>
+	<ul>
+		<li>
+			<strong>Assistive Technology &amp; Screen Readers:</strong> Extending NVDA, screen-reader
+			ergonomics, and cross-platform accessibility (Windows, Linux, Mobile).
+		</li>
+		<li>
+			<strong>AI-Driven Agent Automation:</strong> Developing Model Context Protocol (MCP) servers
+			(<code>screen-readers-mcp</code>) to enable AI agents to drive screen readers for automated
+			functional testing.
+		</li>
+		<li>
+			<strong>Podcasting &amp; Tech Education:</strong> Producing accessible educational content,
+			podcasts, and articles to help visually impaired individuals excel in tech careers.
+		</li>
+		<li>
+			<strong>Software Quality Assurance &amp; Testing:</strong> Building robust, testable software
+			architectures with accessibility built in from day one.
+		</li>
+	</ul>
+
+	<h2>Education &amp; Credentials</h2>
+	<ul>
+		<li><strong>B.S. in IT Management:</strong> Unisul</li>
+		<li><strong>Postgraduate MBA in Mobile &amp; Game Development:</strong> FIAP</li>
+		<li><strong>Technical Diploma in Data Processing:</strong> Etec Lauro Gomes</li>
+	</ul>
+
+	<h2>Explore the Site</h2>
+	<p>Navigate through the different sections:</p>
+	<ul>
+		<li>Read my articles on the <a href="/blog">Blog</a>.</li>
+		<li>Discover my primary repositories on the <a href="/projects">Projects</a> page.</li>
+		<li>Download the latest add-on builds on the <a href="/releases">Releases</a> page.</li>
+		<li>Search all content using the <a href="/search">Search</a> page.</li>
+	</ul>
+</BaseLayout>

@@ -1,0 +1,50 @@
+---
+// Comments powered by Giscus (GitHub Discussions).
+//
+// To activate: enable Discussions on the repository, create a "Comments"
+// category, then visit https://giscus.app to generate the real repo/category
+// IDs and paste them below. Until `repoId` and `categoryId` are filled in, the
+// component renders nothing rather than loading a script that would fail.
+const GISCUS = {
+	repo: 'marlon-sousa/marlon-sousa.github.io',
+	repoId: '',
+	category: 'Comments',
+	categoryId: '',
+};
+
+const isConfigured = Boolean(GISCUS.repoId && GISCUS.categoryId);
+---
+
+{
+	isConfigured && (
+		<section class="giscus-wrapper" aria-label="Comments">
+			<h2>Comments</h2>
+			<div class="giscus" />
+			<script
+				src="https://giscus.app/client.js"
+				data-repo={GISCUS.repo}
+				data-repo-id={GISCUS.repoId}
+				data-category={GISCUS.category}
+				data-category-id={GISCUS.categoryId}
+				data-mapping="pathname"
+				data-strict="0"
+				data-reactions-enabled="1"
+				data-emit-metadata="0"
+				data-input-position="bottom"
+				data-theme="preferred_color_scheme"
+				data-lang="en"
+				crossorigin="anonymous"
+				is:inline
+				async
+			/>
+		</section>
+	)
+}
+
+<style>
+	.giscus-wrapper {
+		margin-top: 3em;
+		padding-top: 2em;
+		border-top: 1px solid rgb(var(--gray-light));
+	}
+</style>

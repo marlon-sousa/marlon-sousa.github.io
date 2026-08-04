@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_TITLE } from '../consts';
+import { projects, repoUrl } from '../data/projects';
+---
+
+<BaseLayout
+	title={`Projects - ${SITE_TITLE}`}
+	description="NVDA add-ons and accessibility tools developed by Marlon Sousa"
+	width="wide"
+>
+	<h1>Projects &amp; NVDA Add-ons</h1>
+	<p>
+		Here are the primary NVDA add-ons and accessibility tools I have developed to enhance screen
+		reader workflows and efficiency.
+	</p>
+
+	{
+		projects.map((project) => (
+			<article class="project-card">
+				<h2>{project.name}</h2>
+				<p>{project.description}</p>
+				<p>
+					<a href={repoUrl(project)} target="_blank" rel="noopener noreferrer">
+						View {project.repo} on GitHub
+					</a>
+				</p>
+			</article>
+		))
+	}
+</BaseLayout>
+
+<style>
+	.project-card {
+		background-color: rgba(var(--gray-light), 30%);
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 8px;
+		padding: 1.5em;
+		margin-bottom: 1.5em;
+	}
+	.project-card h2 {
+		margin-top: 0;
+		font-size: 1.563em;
+	}
+</style>

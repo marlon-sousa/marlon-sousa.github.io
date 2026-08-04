@@ -1,0 +1,44 @@
+---
+import { SITE_AUTHOR } from '../consts';
+
+const today = new Date();
+---
+
+<footer>
+	<p>&copy; {today.getFullYear()} {SITE_AUTHOR}. All rights reserved.</p>
+	<nav aria-label="Elsewhere">
+		<ul>
+			<li>
+				<a href="https://github.com/marlon-sousa" target="_blank" rel="noopener noreferrer">
+					GitHub
+				</a>
+			</li>
+			<li>
+				<a href="https://www.blindtec.com.br" target="_blank" rel="noopener noreferrer">
+					BlindTec
+				</a>
+			</li>
+			<li><a href="/rss.xml">RSS feed</a></li>
+		</ul>
+	</nav>
+</footer>
+<style>
+	footer {
+		padding: 2em 1em 6em 1em;
+		background: linear-gradient(var(--gray-gradient)) no-repeat;
+		color: rgb(var(--gray));
+		text-align: center;
+	}
+	footer p {
+		margin: 0;
+	}
+	footer ul {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 1.5em;
+		list-style: none;
+		margin: 1em 0 0 0;
+		padding: 0;
+	}
+</style>

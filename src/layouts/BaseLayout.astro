@@ -1,0 +1,37 @@
+---
+import type { ImageMetadata } from 'astro';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+	title: string;
+	description: string;
+	image?: ImageMetadata;
+	/** Width of the content column. Articles read better narrow; listings need room. */
+	width?: 'prose' | 'wide';
+}
+
+const { title, description, image, width = 'prose' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} image={image} />
+	</head>
+	<body>
+		<a class="skip-link" href="#main-content">Skip to content</a>
+		<Header />
+		<main id="main-content" class:list={[width]}>
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main.wide {
+		width: 960px;
+	}
+</style>
