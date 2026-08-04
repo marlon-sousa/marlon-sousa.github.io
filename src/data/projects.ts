@@ -19,6 +19,12 @@ export const GITHUB_USER = 'marlon-sousa';
 
 export const projects: Project[] = [
 	{
+		name: 'Acter',
+		repo: 'acter',
+		description:
+			'An accessible terminal for screen reader users. Its default mode is conversational: you type a command in an edit field and the result lands in a reviewable buffer where each command is a heading, so you navigate your session history the way you navigate a web page. Short output is read automatically, longer output is announced, and a single keystroke switches to full terminal emulation for ncurses programs such as nano. Written in Rust with Tauri 2, Windows first. In active development.',
+	},
+	{
 		name: 'EnhancedFindDialog for NVDA',
 		repo: 'EnhancedFindDialog',
 		description:
