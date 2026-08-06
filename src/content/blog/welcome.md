@@ -1,7 +1,7 @@
 ---
 title: 'Welcome'
 description: 'Why this site exists, what I am going to write here, and what I will do if any of it breaks for you.'
-pubDate: 'Aug 06 2026'
+pubDate: 'Aug 06 2026 14:00'
 tags: ['accessibility', 'writing']
 ---
 

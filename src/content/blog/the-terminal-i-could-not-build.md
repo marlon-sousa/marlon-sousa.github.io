@@ -1,7 +1,7 @@
 ---
 title: 'The terminal I could not build'
 description: 'AI did not remove the roles around the code — it removed the other people who held them. The case this whole series rests on: a tool I wanted for years and could not afford to build, and the forty minutes of conversation that decided how it would be built.'
-pubDate: 'Aug 06 2026'
+pubDate: 'Aug 06 2026 20:30'
 series: 'engineering-with-ai'
 seriesPart: 1
 tags: ['ai', 'accessibility', 'nvda', 'rust', 'testing']
