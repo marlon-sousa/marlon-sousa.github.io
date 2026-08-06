@@ -28,10 +28,13 @@ const feed = await getBlogFeed();
 				{feed.map(({ post, nav }) => (
 					<li>
 						<article>
+							{/* Just the part number here. The total belongs where a reader
+							    has committed to the article — the badge above its title and
+							    the page title both say "part N of M" — but on a listing it
+							    is noise repeated down the page. */}
 							{nav && (
 								<p class="kind">
-									<a href={seriesUrl(nav.series.slug)}>{nav.series.title}</a> — part {nav.part} of{' '}
-									{nav.total}
+									<a href={seriesUrl(nav.series.slug)}>{nav.series.title}</a> — part {nav.part}
 								</p>
 							)}
 							<h2 class="title">
