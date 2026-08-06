@@ -4,24 +4,58 @@
   License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
  */
 
+/*
+  Colours are named for the job they do, not for what they look like, because
+  every one of them is redefined in dark mode below. --black, --gray and
+  --gray-light are kept as aliases so component styles written against the
+  original Bear Blog names keep working.
+*/
 :root {
+	color-scheme: light dark;
+
+	--ink: 15, 18, 25;
+	--ink-body: 34, 41, 57;
+	--ink-muted: 88, 105, 148;
+	--rule: 229, 233, 240;
+	--surface: 255, 255, 255;
 	--accent: #2337ff;
 	--accent-dark: #000d8a;
-	--black: 15, 18, 25;
-	--gray: 96, 115, 159;
-	--gray-light: 229, 233, 240;
-	--gray-dark: 34, 41, 57;
-	--gray-gradient: rgba(var(--gray-light), 50%), #fff;
+
+	--black: var(--ink);
+	--gray: var(--ink-muted);
+	--gray-light: var(--rule);
+	--gray-dark: var(--ink-body);
+	--gray-gradient: rgba(var(--rule), 50%), rgb(var(--surface));
 	--box-shadow:
 		0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
 		0 16px 32px rgba(var(--gray), 33%);
 }
+
+/*
+  Dark mode follows the reader's system setting. There is no toggle: a toggle is
+  another control to reach and another state to get wrong, and every platform
+  this site is read on already exposes the preference.
+*/
+@media (prefers-color-scheme: dark) {
+	:root {
+		--ink: 246, 247, 249;
+		--ink-body: 226, 231, 240;
+		--ink-muted: 156, 169, 199;
+		--rule: 44, 51, 68;
+		--surface: 15, 18, 25;
+		--accent: #97a4ff;
+		--accent-dark: #c3cbff;
+	}
+}
+
 body {
 	font-family: var(--font-atkinson);
 	margin: 0;
 	padding: 0;
 	text-align: left;
-	background: linear-gradient(var(--gray-gradient)) no-repeat;
+	background-color: rgb(var(--surface));
+	background-image: linear-gradient(var(--gray-gradient));
+	background-repeat: no-repeat;
 	background-size: 100% 600px;
 	word-wrap: break-word;
 	overflow-wrap: break-word;
@@ -44,6 +78,17 @@ h6 {
 	margin: 0 0 0.5rem 0;
 	color: rgb(var(--black));
 	line-height: 1.2;
+}
+/* Long pages need the eye to find section boundaries without a rule to lean on,
+   so headings carry the space rather than borders. */
+h2 {
+	margin-top: 2.5rem;
+}
+h3 {
+	margin-top: 2rem;
+}
+li + li {
+	margin-top: 0.5em;
 }
 h1 {
 	font-size: 3.052em;
@@ -130,7 +175,7 @@ hr {
 	left: 0.5em;
 	z-index: 100;
 	padding: 0.75em 1em;
-	background: #fff;
+	background: rgb(var(--surface));
 	color: var(--accent-dark);
 	border: 2px solid var(--accent-dark);
 	border-radius: 0 0 8px 8px;

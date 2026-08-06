@@ -1,0 +1,78 @@
+---
+// Previous / next at the foot of a series article.
+//
+// A neighbouring part that is not written yet is still named, as plain text
+// rather than a dead link: a disabled link still lands in a screen reader's list
+// of links and in the tab order, promising somewhere to go that does not exist.
+import { seriesUrl } from '../data/series';
+import { postUrl, type SeriesNav, type SeriesEntry } from '../lib/posts';
+
+interface Props {
+	nav: SeriesNav;
+}
+
+const { nav } = Astro.props;
+
+const label = (direction: string, entry: SeriesEntry) =>
+	`${direction} — part ${entry.number}: ${entry.title}`;
+---
+
+<nav class="series-pager" aria-label={`${nav.series.title} series`}>
+	<h2>More in this series</h2>
+	<ul>
+		{
+			nav.previous &&
+				(nav.previous.post ? (
+					<li>
+						<a rel="prev" href={postUrl(nav.previous.post)}>
+							{label('Previous', nav.previous)}
+						</a>
+					</li>
+				) : (
+					<li class="unpublished">
+						{label('Previous', nav.previous)} — not published yet
+					</li>
+				))
+		}
+		{
+			nav.next &&
+				(nav.next.post ? (
+					<li>
+						<a rel="next" href={postUrl(nav.next.post)}>
+							{label('Next', nav.next)}
+						</a>
+					</li>
+				) : (
+					<li class="unpublished">{label('Next', nav.next)} — not published yet</li>
+				))
+		}
+		<li>
+			<a href={seriesUrl(nav.series.slug)}>
+				All {nav.total} parts of {nav.series.title}
+			</a>
+		</li>
+	</ul>
+</nav>
+
+<style>
+	.series-pager {
+		margin-top: 3rem;
+		padding-top: 1rem;
+		border-top: 1px solid rgb(var(--gray-light));
+	}
+	.series-pager h2 {
+		font-size: 1.2em;
+		margin: 0 0 0.5rem 0;
+	}
+	.series-pager ul {
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+	}
+	.series-pager li {
+		margin-bottom: 0.4rem;
+	}
+	.unpublished {
+		color: rgb(var(--gray));
+	}
+</style>

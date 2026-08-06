@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { SITE_TITLE } from '../../consts';
+import { getSeries, seriesUrl } from '../../data/series';
+import { getTagListings, postUrl, type Post } from '../../lib/posts';
+
+export async function getStaticPaths() {
+	const tags = await getTagListings();
+	return tags.map(({ tag, slug, posts }) => ({
+		params: { tag: slug },
+		props: { tag, posts },
+	}));
+}
+
+interface Props {
+	tag: string;
+	posts: Post[];
+}
+
+const { tag, posts } = Astro.props;
+
+// Series parts are listed individually here, unlike on the blog index — someone
+// browsing a tag is looking for a specific piece, not deciding what to read next.
+// Naming the series keeps the part from arriving without its context.
+function seriesOf(post: Post) {
+	return post.data.series ? getSeries(post.data.series) : undefined;
+}
+---
+
+<BaseLayout
+	title={`${tag} - ${SITE_TITLE}`}
+	description={`Posts tagged ${tag}.`}
+	width="wide"
+	searchable={false}
+>
+	<h1>Tagged: {tag}</h1>
+	<p>
+		{posts.length}
+		{posts.length === 1 ? ' post' : ' posts'}. <a href="/tags">See all tags</a>.
+	</p>
+
+	<ul class="post-list">
+		{
+			posts.map((post) => {
+				const series = seriesOf(post);
+				return (
+					<li>
+						<article>
+							<h2 class="title">
+								<a href={postUrl(post)}>{post.data.title}</a>
+								{post.data.draft && <span class="draft"> (draft)</span>}
+							</h2>
+							<p class="date">
+								<FormattedDate date={post.data.pubDate} />
+								{series && (
+									<>
+										{' — part '}
+										{post.data.seriesPart} of{' '}
+										<a href={seriesUrl(series.slug)}>{series.title}</a>
+									</>
+								)}
+							</p>
+							<p>{post.data.description}</p>
+						</article>
+					</li>
+				);
+			})
+		}
+	</ul>
+</BaseLayout>
+
+<style>
+	.post-list {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+	.post-list > li {
+		margin-bottom: 2rem;
+	}
+	.title {
+		margin: 0;
+		font-size: 1.6em;
+	}
+	.title a {
+		text-decoration: none;
+	}
+	.title a:hover {
+		text-decoration: underline;
+	}
+	.date {
+		margin: 0 0 0.4em 0;
+		color: rgb(var(--gray));
+	}
+	.draft {
+		font-size: 0.7em;
+		font-weight: 400;
+		color: rgb(var(--gray));
+	}
+</style>

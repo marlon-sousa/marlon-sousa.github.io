@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 # playwright mcp scratch output
 .playwright-mcp/
+
+# private working artifacts, not for publication
+specs/

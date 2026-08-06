@@ -3,10 +3,24 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
+  # Lets the site be taken down or restored from the Actions tab, on any device,
+  # with no local checkout and nothing installed. See "Taking the site down" in
+  # README.md.
+  workflow_dispatch:
+    inputs:
+      availability:
+        description: 'Site availability'
+        type: choice
+        default: 'leave unchanged'
+        options:
+          - 'leave unchanged'
+          - 'take the site down'
+          - 'bring the site back'
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+# `contents: write` is needed only so the availability input above can commit the
+# MAINTENANCE.md flag; every other path here only reads the repository.
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -22,7 +36,63 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # The switch is committed rather than held in workflow state, so the site's
+      # availability is visible in the repository and survives later deploys.
+      # Going live again is therefore also just reverting this commit.
+      - name: Apply the availability choice
+        if: github.event_name == 'workflow_dispatch' && inputs.availability != 'leave unchanged'
+        run: |
+          set -euo pipefail
+          if [ "${{ inputs.availability }}" = "take the site down" ]; then
+            # Only write a default message if there is no file yet, so a message
+            # written by hand is not silently replaced by this one.
+            if [ ! -f MAINTENANCE.md ]; then
+              printf 'Created by the Deploy workflow. Delete this file to bring the site back.\n' > MAINTENANCE.md
+            fi
+            git add MAINTENANCE.md
+            message="Take the site down"
+          else
+            # --ignore-unmatch so that asking for a site that is already live is a
+            # no-op rather than a failed run that skips the deploy.
+            git rm -q -f --ignore-unmatch MAINTENANCE.md
+            message="Bring the site back"
+          fi
+          if git diff --cached --quiet; then
+            echo "::notice::Already in the requested state; nothing to commit."
+          else
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m "$message"
+            git push
+          fi
+
+      # The kill switch. While MAINTENANCE.md exists in the repository root the
+      # whole site is replaced by a single "temporarily offline" page. Presence is
+      # the trigger, not the contents, so there is no syntax to get wrong — and
+      # this path never runs `astro build`, so it still works when the site itself
+      # is what is broken.
+      - name: Check for maintenance mode
+        id: maintenance
+        run: |
+          if [ -f MAINTENANCE.md ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::MAINTENANCE.md is present - publishing the offline page instead of the site."
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Build the maintenance page
+        if: steps.maintenance.outputs.enabled == 'true'
+        run: node scripts/maintenance-page.mjs
+
+      - name: Upload the maintenance page
+        if: steps.maintenance.outputs.enabled == 'true'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
       - name: Install, build, and upload site
+        if: steps.maintenance.outputs.enabled == 'false'
         uses: withastro/action@v3
         env:
           # The Releases page queries the GitHub API at build time. Without a

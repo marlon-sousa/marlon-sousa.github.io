@@ -79,7 +79,8 @@ paste them into that component.
 
 `.github/workflows/deploy.yml` builds and deploys to GitHub Pages on every push
 to `main`. GitHub Pages must be set to the "GitHub Actions" source in the
-repository settings.
+repository settings. The workflow also accepts a manual run that takes the site
+offline or restores it; the file itself documents how.
 
 ## Credit
 

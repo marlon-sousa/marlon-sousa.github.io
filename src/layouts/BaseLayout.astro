@@ -8,19 +8,32 @@ interface Props {
 	title: string;
 	description: string;
 	image?: ImageMetadata;
+	/** Generated social card path, when the page has one of its own. */
+	ogImage?: string;
 	/** Width of the content column. Articles read better narrow; listings need room. */
 	width?: 'prose' | 'wide';
+	/**
+	 * Whether site search should index this page.
+	 *
+	 * Listing pages repeat the title and description of everything they link to,
+	 * so indexing them means one search hit answered twice: once by the article
+	 * and once by the index that mentions it. Set false on any page that only
+	 * points at content held elsewhere.
+	 */
+	searchable?: boolean;
 }
 
-const { title, description, image, width = 'prose' } = Astro.props;
+const { title, description, image, ogImage, width = 'prose', searchable = true } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} image={image} />
+		<BaseHead title={title} description={description} image={image} ogImage={ogImage} />
 	</head>
-	<body>
+	<!-- The ignore attribute belongs on body, not main: anywhere narrower and
+	     Pagefind still lists the page, matching only its header and footer. -->
+	<body data-pagefind-ignore={searchable ? undefined : 'all'}>
 		<a class="skip-link" href="#main-content">Skip to content</a>
 		<Header />
 		<main id="main-content" class:list={[width]}>

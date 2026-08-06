@@ -1,21 +1,34 @@
 ---
 title: 'Welcome'
-description: 'Why this site exists, and what I plan to write about here.'
-pubDate: 'Aug 04 2026'
+description: 'Why this site exists, what I am going to write here, and what I will do if any of it breaks for you.'
+pubDate: 'Aug 06 2026'
+tags: ['accessibility', 'writing']
 ---
 
-This is my personal corner of the web. After years of writing for other outlets, speaking at conferences, and shipping open-source add-ons, I wanted one place that collects all of it — and one place where I control how accessible it is.
+I have been writing and talking about technology for over a decade — on BlindTec, on podcasts, at conferences, in other people's publications. This is the first time it lives somewhere I control, including control over whether it is actually accessible.
 
-## What you'll find here
+## Where I am coming from
 
-**Projects.** I build add-ons for the NVDA screen reader: better find dialogs, profile-aware speech dictionaries, timers, app module mapping. They're all open source, and the [Projects](/projects) page links to every repository.
+I am a software engineer. Since 2004 I have mostly worked on systems that move people's money: the internet banking platform at Itaú, an entire core banking stack in Rust for an international bank in the Turks and Caicos, cross-border payments at EBANX. I am also blind, and I write add-ons for the NVDA screen reader, published through the NV Access add-on store.
 
-**Releases.** The [Releases](/releases) page always shows the newest published version of each project, pulled directly from GitHub when this site is built. No stale download links.
+Those are not two careers. Building software people trust, and building software everyone can actually use, is the same problem walked in from two directions.
 
-**Writing.** Posts about accessibility engineering, screen reader internals, testing, and what it's actually like to work as a blind developer. Some of it will be deeply technical. Some of it will be about the profession itself.
+If there is a pattern to what I build, it is that I like being one layer down — the framework rather than the screen, the test harness rather than the feature, the add-on rather than the app. That is also what I expect to write about.
+
+## What is coming
+
+Two series are coming.
+
+**Engineering with AI.** Not whether agents can write code — they obviously can — but what it takes to get software from one that professionals can depend on. My argument runs against the popular one: doing this well demands *more* of a single engineer, not less, because you are suddenly the product owner, the project manager, the architect, the platform engineer, the manager and the reviewer at once. Every claim in it is measured against two repositories I built that way, with the numbers attached.
+
+**Rust beyond systems programming.** The case that Rust is a reasonable choice for ordinary software — tools, services, desktop applications — and not only for the systems layer people assume it is reserved for.
+
+In between, single posts on screen reader internals, testing things that were never designed to be tested, and the parts of this profession worth arguing about.
 
 ## On accessibility
 
-It would be strange to write about accessibility on an inaccessible site, so this one is deliberately plain: semantic HTML, a skip link, real heading structure, keyboard-visible focus, and no JavaScript required to read anything. If you hit something here that doesn't work with your screen reader, browser, or magnifier, I want to hear about it — that's a bug, and I'll fix it.
+It would be embarrassing to write about accessibility on an inaccessible site, so this one is deliberately plain: semantic HTML, a skip link, real headings, visible keyboard focus, and no JavaScript needed to read anything. Search and comments use it; the words do not.
 
-More soon.
+It is also checked rather than assumed. Every build runs axe against every page in both light and dark mode, and a separate check proves the colour contrast arithmetic. If either fails, the build fails.
+
+That still will not catch everything. So if something here does not work with your screen reader, your browser or your magnifier, tell me. That is a bug, and I will fix it.

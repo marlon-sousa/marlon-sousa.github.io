@@ -1,15 +1,23 @@
 ---
 // Comments powered by Giscus (GitHub Discussions).
 //
-// To activate: enable Discussions on the repository, create a "Comments"
-// category, then visit https://giscus.app to generate the real repo/category
-// IDs and paste them below. Until `repoId` and `categoryId` are filled in, the
-// component renders nothing rather than loading a script that would fail.
+// The category is "Announcements" rather than a custom one because only
+// maintainers can open a discussion there. Readers still comment normally —
+// giscus creates the thread on their behalf through its GitHub App — but nobody
+// can start comment threads out of band, so the discussion list stays a
+// one-to-one mirror of the pages on this site.
+//
+// Both IDs come from the GitHub GraphQL API (`repository { id
+// discussionCategories { nodes { id name } } }`), not from giscus.app's form.
+// They are public identifiers, not secrets. If `repoId` or `categoryId` is ever
+// blanked, the component renders nothing rather than loading a script that would
+// fail — which is also what happens before the giscus App is installed on the
+// repository, since without it giscus cannot create the discussion.
 const GISCUS = {
 	repo: 'marlon-sousa/marlon-sousa.github.io',
-	repoId: '',
-	category: 'Comments',
-	categoryId: '',
+	repoId: 'R_kgDOPBVKsw',
+	category: 'Announcements',
+	categoryId: 'DIC_kwDOPBVKs84DC1B4',
 };
 
 const isConfigured = Boolean(GISCUS.repoId && GISCUS.categoryId);

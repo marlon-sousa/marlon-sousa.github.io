@@ -1,0 +1,24 @@
+---
+// Shown above the title of a series article, so a reader who arrives from a
+// search result knows immediately that there is a beginning to go back to.
+import { seriesUrl } from '../data/series';
+import type { SeriesNav } from '../lib/posts';
+
+interface Props {
+	nav: SeriesNav;
+}
+
+const { nav } = Astro.props;
+---
+
+<p class="series-badge">
+	Part {nav.part} of {nav.total} in <a href={seriesUrl(nav.series.slug)}>{nav.series.title}</a>
+</p>
+
+<style>
+	.series-badge {
+		margin: 0 0 0.5em 0;
+		font-size: 0.9em;
+		color: rgb(var(--gray));
+	}
+</style>
