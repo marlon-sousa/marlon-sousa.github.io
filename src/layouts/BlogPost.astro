@@ -16,11 +16,10 @@ const { title, description, pubDate, updatedDate, heroImage, tags, draft, nav, o
 	Astro.props;
 
 // The browser tab, the bookmark and the shared link all show this rather than
-// the <h1>, so a part of a series names its series and its position — including
-// the total, since "part 2" alone does not say whether there are three or ten.
-const pageTitle = nav
-	? `${nav.series.title} — part ${nav.part} of ${nav.total}: ${title}`
-	: title;
+// the <h1>, so a part of a series names its series and its position. No total:
+// the outline is one click away on the series page, and a count in every tab
+// title ages badly — it changes for every article whenever a part is added.
+const pageTitle = nav ? `${nav.series.title} — part ${nav.part}: ${title}` : title;
 ---
 
 <BaseLayout title={pageTitle} description={description} image={heroImage} ogImage={ogImage}>

@@ -12,7 +12,7 @@ const { nav } = Astro.props;
 ---
 
 <p class="series-badge">
-	Part {nav.part} of {nav.total} in <a href={seriesUrl(nav.series.slug)}>{nav.series.title}</a>
+	Part {nav.part} in <a href={seriesUrl(nav.series.slug)}>{nav.series.title}</a>
 </p>
 
 <style>
