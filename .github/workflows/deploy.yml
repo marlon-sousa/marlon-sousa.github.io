@@ -94,6 +94,12 @@ jobs:
       - name: Install, build, and upload site
         if: steps.maintenance.outputs.enabled == 'false'
         uses: withastro/action@v3
+        with:
+          # withastro/action still defaults to Node 20, which Astro 7 refuses
+          # outright ("Please upgrade Node.js to a supported version:
+          # >=22.12.0"). Keep this in step with package.json's engines field —
+          # the failure is a hard exit before any page is built, not a warning.
+          node-version: 22
         env:
           # The Releases page queries the GitHub API at build time. Without a
           # token, runners share an IP against a 60 requests/hour limit and the
