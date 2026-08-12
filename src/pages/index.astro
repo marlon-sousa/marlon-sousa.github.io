@@ -1,13 +1,13 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { HOME_TITLE, SITE_DESCRIPTION } from '../consts';
 import portrait from '../assets/marlon-portrait.jpg';
 import climbing from '../assets/marlon-climbing.jpg';
 import summit from '../assets/cognition-champions-summit.jpg';
 ---
 
-<BaseLayout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+<BaseLayout title={HOME_TITLE} description={SITE_DESCRIPTION}>
 	<h1>About Me</h1>
 	<div class="intro">
 		<Image
@@ -70,8 +70,13 @@ import summit from '../assets/cognition-champions-summit.jpg';
 			cross-border payments infrastructure global merchants use to sell into the region. My work has
 			two tracks. The first is research into AI for software engineering — how agents earn a place in
 			a production engineering organisation rather than a demo, including extensive use of Cognition
-			AI's Devin, which took me to Cognition's Champions Summit in San Francisco in June 2026 as one
-			of twenty users invited from around the world. The second is writing the base frameworks other teams build on, so that engineering
+			AI's Devin, which took me to
+			<a
+				href="https://www.linkedin.com/feed/update/urn:li:share:7491468849029013504/"
+				target="_blank"
+				rel="noopener noreferrer"
+				>Cognition's Champions Summit</a
+			> in San Francisco in June 2026 as one of twenty users invited from around the world. The second is writing the base frameworks other teams build on, so that engineering
 			operations are something the platform provides rather than something every team reinvents.
 		</li>
 		<li>
