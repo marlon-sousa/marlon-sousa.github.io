@@ -1,0 +1,12 @@
+# Everything on this site is meant to be read, so crawling is open.
+#
+# The one exclusion is /pagefind/, which holds the search index: a few hundred
+# binary fragments and shards that Pagefind fetches from the browser. They are
+# not pages, they render as nothing, and letting a crawler spend its budget on
+# them costs the real pages attention they would otherwise get.
+
+User-agent: *
+Allow: /
+Disallow: /pagefind/
+
+Sitemap: https://marlon-sousa.github.io/sitemap-index.xml
