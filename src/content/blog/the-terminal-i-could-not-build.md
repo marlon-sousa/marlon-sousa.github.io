@@ -5,7 +5,7 @@ pubDate: 'Aug 06 2026 20:30'
 series: 'engineering-with-ai'
 seriesPart: 1
 tags: ['ai', 'accessibility', 'nvda', 'rust', 'testing']
-draft: false
+draft: true
 ---
 
 With AI, anyone can code. That is true, and I have no interest in arguing with
