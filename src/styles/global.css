@@ -136,6 +136,17 @@ img {
 	height: auto;
 	border-radius: 8px;
 }
+/* A figure is used only where the picture explains something the prose already
+   said, so the image itself carries alt="" and the caption does the talking. */
+figure {
+	margin: 2em 0;
+}
+figcaption {
+	margin-top: 0.75em;
+	color: rgb(var(--gray));
+	font-size: 0.85em;
+	line-height: 1.5;
+}
 code {
 	padding: 2px 5px;
 	background-color: rgb(var(--gray-light));

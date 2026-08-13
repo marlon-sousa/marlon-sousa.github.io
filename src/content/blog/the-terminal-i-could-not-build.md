@@ -126,6 +126,15 @@ Not far enough. **H** again:
 There. Down arrow, and I am reading the output of that command, which begins
 exactly where the heading said it would.
 
+<figure>
+	<img src="/diagrams/acter-headings.svg" alt="" width="720" height="306" loading="lazy" />
+	<figcaption>
+		The same session twice. Nothing was added and nothing was hidden — the
+		command line was already there, in both. All that changed is that it stopped
+		being one more line and became a heading.
+	</figcaption>
+</figure>
+
 That is the entire idea. It is not clever. It is a structure that has existed on
 the web for twenty-five years, applied to the one place I spend my working day
 where nobody had bothered to apply it.
