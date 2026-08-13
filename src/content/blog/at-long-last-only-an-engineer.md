@@ -2,11 +2,14 @@
 title: 'At long last, only an engineer'
 description: 'We were always the engineer and the bricklayer, because in software putting the walls up is itself an ultra-qualified job. Something else can lay the bricks now — which does not make you less of an engineer, it makes you only an engineer.'
 pubDate: 'Aug 13 2026'
+series: 'you-are-now-the-whole-team'
+seriesPart: 1
 tags: ['ai engineering', 'ai', 'software engineering']
 draft: false
 ---
 
-Hello, and welcome to *You are now the whole team*.
+Hello, and welcome to
+[*You are now the whole team*](/series/you-are-now-the-whole-team/).
 
 Let me start by telling you what I believe, because everything else I write here
 is an attempt to explain why.

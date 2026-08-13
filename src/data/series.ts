@@ -42,6 +42,29 @@ export interface Series {
 
 export const series: Series[] = [
 	{
+		slug: 'you-are-now-the-whole-team',
+		title: 'You are now the whole team',
+		description:
+			'What it actually takes to build professional software with an AI agent, drawn from the record of two projects built that way.',
+		intro:
+			'A common claim is that AI makes software engineering easier, and that anyone can now code. ' +
+			'The first half is true: writing code was slow and expensive, and an agent genuinely removes ' +
+			'that cost. The second half is true only for software nobody depends on. This series argues ' +
+			'the opposite of the usual conclusion. We were always the engineer and the bricklayer at once, ' +
+			'because in our trade putting the walls up is itself an ultra-qualified job and there was ' +
+			'never a cheaper pair of hands to give it to — so the engineering always competed with the ' +
+			'building, and lost. Now that something else can lay the bricks, one person is left holding ' +
+			'every role a team used to spread around: product owner, project manager, architect, platform ' +
+			'engineer, QA and reviewer. Every claim here is measured against two real repositories, and ' +
+			'the conversations are quoted on both sides.',
+		// Deliberately empty: the outline is built from what has actually been
+		// published, so the series page counts real articles rather than promising
+		// a shape that is still changing. Parts get declared here only when the
+		// order they are written in stops being negotiable.
+		parts: [],
+		status: 'in-progress',
+	},
+	{
 		slug: 'engineering-with-ai',
 		title: 'Engineering with AI',
 		description:
