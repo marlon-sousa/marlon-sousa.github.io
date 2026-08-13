@@ -258,7 +258,8 @@ Don't believe me? Fair enough. I wouldn't either, from a paragraph.
 
 So let me stop asserting things and start showing you some.
 
-Next I want to tell you about a piece of software I wanted for years and could not
+Next, in [*The terminal I could not build*](/blog/the-terminal-i-could-not-build/),
+I want to tell you about a piece of software I wanted for years and could not
 afford to build — what it is, what it sounds like, why it was out of reach for
 somebody with a full-time job and a family, and what finally changed.
 
