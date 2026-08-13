@@ -127,7 +127,10 @@ There. Down arrow, and I am reading the output of that command, which begins
 exactly where the heading said it would.
 
 <figure>
-	<img src="/diagrams/acter-headings.svg" alt="" width="720" height="306" loading="lazy" />
+	<picture>
+		<source media="(max-width: 720px)" srcset="/diagrams/acter-headings-stacked.svg" width="360" height="632" />
+		<img src="/diagrams/acter-headings.svg" alt="" width="720" height="306" loading="lazy" />
+	</picture>
 	<figcaption>
 		The same session twice. Nothing was added and nothing was hidden — the
 		command line was already there, in both. All that changed is that it stopped

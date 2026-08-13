@@ -2,6 +2,12 @@
 	<title id="diagram-title">The same terminal session shown twice: once as plain output, once with each command as a heading</title>
 	<desc>On the left, a session where the two command lines look exactly like the output around them. On the right, the same session in acter, where each command is a level two heading with its output beneath it.</desc>
 
+	<!--
+	  The wide cut, shown at 720px and above. acter-headings-stacked.svg is the
+	  narrow companion the picture element swaps in below that, with the same
+	  thirteen rows and the same strings. Any wording change has to be made in
+	  both files.
+	-->
 	<style>
 		/*
 		  Palette copied from src/styles/global.css. This file is loaded through

@@ -141,6 +141,14 @@ img {
 figure {
 	margin: 2em 0;
 }
+/* Figures carry diagrams that come in a wide and a narrow cut, and the two are
+   different shapes, so the box has to take its height from whichever the
+   picture element chose rather than from a fixed ratio. */
+figure img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
 figcaption {
 	margin-top: 0.75em;
 	color: rgb(var(--gray));
