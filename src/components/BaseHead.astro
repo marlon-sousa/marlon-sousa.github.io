@@ -42,6 +42,11 @@ const socialImage = image ? new URL(image.src, Astro.url) : new URL(ogImage, Ast
 />
 <meta name="generator" content={Astro.generator} />
 
+<!-- Proof of ownership for Google Search Console. Not a secret: it only tells
+     Google that whoever controls this site also controls that account, and it
+     has to stay in place for the property to remain verified. -->
+<meta name="google-site-verification" content="9lj6nRXPyK-Ln_xR_021ovRufNrqqlKcXbgW9xzLulw" />
+
 <Font cssVariable="--font-atkinson" preload />
 
 <!-- Canonical URL -->
