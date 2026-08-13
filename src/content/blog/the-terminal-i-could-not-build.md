@@ -186,4 +186,6 @@ almost never see it explained anywhere. Every single thing about the way I work
 with agents — the documents, the specifications, the gates, the arguments at
 midnight about where a trait belongs — comes out of one idea.
 
-The idea is called extrapolation, and it is what I want to talk about next.
+The idea is called extrapolation, and it is what I want to talk about next, in
+[*The gap between what you said and what you
+meant*](/blog/the-gap-between-what-you-said-and-what-you-meant/).
