@@ -7,7 +7,9 @@ import { defineConfig, fontProviders } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://marlon-sousa.github.io',
+	// The canonical home. marlon-sousa.github.io still answers, and GitHub
+	// redirects it here, so links shared before the move keep working.
+	site: 'https://marlon-sousa.com',
 	integrations: [mdx(), sitemap(), pagefind()],
 	fonts: [
 		{
