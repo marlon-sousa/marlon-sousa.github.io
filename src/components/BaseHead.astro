@@ -72,3 +72,22 @@ const socialImage = image ? new URL(image.src, Astro.url) : new URL(ogImage, Ast
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content={socialImage} />
 <meta name="twitter:image:alt" content={title} />
+
+<!--
+  Visit counting, GoatCounter. No cookies, and nothing that identifies a reader
+  is stored, so there is no consent banner to put in anybody's way.
+
+  Only in a production build: `astro dev`, `astro preview` and the a11y sweep
+  would otherwise report my own machine as an audience. count.js ignores
+  localhost on its own, but a tag that is not there cannot be miscounted.
+-->
+{
+	import.meta.env.PROD && (
+		<script
+			is:inline
+			data-goatcounter="https://marlon-sousa.goatcounter.com/count"
+			async
+			src="https://gc.zgo.at/count.js"
+		/>
+	)
+}
