@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { HOME_TITLE, SITE_DESCRIPTION } from '../consts';
+import { HOME_TITLE, SITE_DESCRIPTION, SITE_EMAIL } from '../consts';
 import portrait from '../assets/marlon-portrait.jpg';
 import climbing from '../assets/marlon-climbing.jpg';
 import summit from '../assets/cognition-champions-summit.jpg';
@@ -250,6 +250,18 @@ import summit from '../assets/cognition-champions-summit.jpg';
 		<li>Download the latest add-on builds on the <a href="/releases">Releases</a> page.</li>
 		<li>Search all content using the <a href="/search">Search</a> page.</li>
 	</ul>
+
+	<h2>Get in Touch</h2>
+	<p>
+		The best way to reach me is email: <a href={`mailto:${SITE_EMAIL}`}>{SITE_EMAIL}</a>. Questions
+		about anything I have written, corrections, or an accessibility problem you have run into — all
+		welcome.
+	</p>
+	<p>
+		You will also find me on <a href="https://github.com/marlon-sousa">GitHub</a>, where the issues
+		and discussions are open. And every article here has a comment box at the bottom, if you would
+		rather say it where other readers can see it.
+	</p>
 </BaseLayout>
 
 <style>

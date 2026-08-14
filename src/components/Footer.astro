@@ -1,5 +1,5 @@
 ---
-import { SITE_AUTHOR } from '../consts';
+import { SITE_AUTHOR, SITE_EMAIL } from '../consts';
 
 const today = new Date();
 ---
@@ -8,6 +8,7 @@ const today = new Date();
 	<p>&copy; {today.getFullYear()} {SITE_AUTHOR}. All rights reserved.</p>
 	<nav aria-label="Elsewhere">
 		<ul>
+			<li><a href={`mailto:${SITE_EMAIL}`}>Email</a></li>
 			<li>
 				<a href="https://github.com/marlon-sousa" target="_blank" rel="noopener noreferrer">
 					GitHub
