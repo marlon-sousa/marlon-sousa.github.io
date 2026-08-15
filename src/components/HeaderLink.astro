@@ -1,12 +1,25 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
+import { stripLocale } from '../i18n/config';
 
 type Props = HTMLAttributes<'a'>;
 
 const { href, class: className, ...props } = Astro.props;
-const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, '');
-const subpath = pathname.match(/[^\/]+/g);
-const isActive = href === pathname || href === '/' + (subpath?.[0] || '');
+
+/**
+ * The top-level section a path belongs to, with the language taken off.
+ *
+ * Both sides are reduced to this before being compared, so /pt/blog/ marks the
+ * same nav item as /blog/ — the reader is in the same section of the site,
+ * reading it in a different language — and so an article deep under /blog/
+ * still marks Blog as the current page.
+ */
+function section(path: string): string {
+	const [first] = stripLocale(path.replace(import.meta.env.BASE_URL, '/')).split('/').filter(Boolean);
+	return `/${first ?? ''}`;
+}
+
+const isActive = section(String(href ?? '/')) === section(Astro.url.pathname);
 ---
 
 <a

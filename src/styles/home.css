@@ -1,0 +1,41 @@
+/* Layout for the About page.
+ *
+ * In a plain stylesheet rather than a <style> block because the page body is a
+ * component per language, and an Astro scoped style only reaches the markup of
+ * the component it is written in. One file keeps the two versions from drifting
+ * apart visually while their words are translated independently.
+ *
+ * Class names are prefixed so a global stylesheet cannot collide with anything
+ * else on the site. */
+
+/* The portrait sits beside the opening paragraphs on wide screens and above
+   them on narrow ones, so the text column never drops below a readable width. */
+.home-intro::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+.home-portrait {
+	float: left;
+	margin: 0.3rem 1.5rem 0.75rem 0;
+	border-radius: 12px;
+}
+/* Below this width the text column beside a 200px portrait gets too narrow
+   to read, so the portrait stops floating and sits above the prose. */
+@media (max-width: 34rem) {
+	.home-portrait {
+		float: none;
+		margin: 0 0 1rem 0;
+	}
+}
+.home-photo {
+	margin: 0 0 1.5rem 0;
+}
+.home-photo img {
+	border-radius: 12px;
+}
+.home-photo figcaption {
+	margin-top: 0.4rem;
+	font-size: 0.9em;
+	color: rgb(var(--gray));
+}

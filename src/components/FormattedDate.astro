@@ -1,14 +1,22 @@
 ---
+import { getLocale, localeMeta } from '../i18n/config';
+
 interface Props {
 	date: Date;
 }
 
 const { date } = Astro.props;
+
+// "Aug 13, 2026" in English, "13 de ago. de 2026" in Portuguese. The month order
+// is not a formatting preference, it is what the language does — a date written
+// the English way on a Portuguese page reads as the wrong day for the first half
+// of every month.
+const locale = getLocale(Astro.url);
 ---
 
 <time datetime={date.toISOString()}>
 	{
-		date.toLocaleDateString('en-us', {
+		date.toLocaleDateString(localeMeta[locale].dateLocale, {
 			year: 'numeric',
 			month: 'short',
 			day: 'numeric',

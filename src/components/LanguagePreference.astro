@@ -1,0 +1,82 @@
+---
+// Sends a reader to the language they asked for, when this page has one.
+//
+// Two things count as asking. The stronger is an explicit choice: picking a
+// language in the switcher writes it to localStorage, and from then on it is
+// honoured on every page that has a version in it. The weaker is the browser's
+// own language list, which is only consulted while no explicit choice exists —
+// a reader who has said "English" once is not overruled by their operating
+// system on the next page.
+//
+// The browser's list is also only consulted on an unprefixed URL. A /pt/ address
+// is somebody's deliberate request for the Portuguese version — usually a link
+// that was shared — and a guess from an operating system setting has no business
+// overriding it. Plenty of Brazilian developers run their machines in English,
+// and without this rule sharing a Portuguese article would send exactly the
+// readers it was written for to the English one.
+//
+// The redirect runs from <head>, before anything is painted, and uses
+// `location.replace`, so it costs no flash of the wrong language and leaves no
+// history entry — Back goes where the reader came from rather than bouncing off
+// this page again. It fires only towards a page that actually exists, and only
+// away from the language the page is already in, so it cannot loop.
+//
+// Everything here is optional behaviour. With JavaScript off, or if this whole
+// component is deleted, the site still serves both languages and the switcher in
+// the header still works; readers just have to click it themselves.
+
+import { defaultLocale, getLocale, type Locale } from '../i18n/config';
+import { STORAGE_KEY } from '../i18n/preference';
+
+interface Props {
+	/** Locale → path, for the languages this page exists in. */
+	translations: Partial<Record<Locale, string>>;
+}
+
+const { translations } = Astro.props;
+const current = getLocale(Astro.url);
+
+// Nothing to offer, nothing to run.
+const isUseful = Object.keys(translations).length > 1;
+---
+
+{
+	isUseful && (
+		<script
+			is:inline
+			define:vars={{ translations, current, storageKey: STORAGE_KEY, fallback: defaultLocale }}
+		>
+			try {
+				var stored = localStorage.getItem(storageKey);
+				var wanted;
+
+				if (stored) {
+					wanted = stored;
+				} else if (current === fallback) {
+					// navigator.languages is ordered by preference. Match on the primary
+					// subtag, so a reader whose browser says pt-PT or pt-BR both land on
+					// the Portuguese pages — the alternative is publishing a page in a
+					// language somebody asked for and refusing to send them to it over a
+					// region code.
+					var offered = Object.keys(translations);
+					var asked = navigator.languages || [navigator.language || fallback];
+					for (var i = 0; i < asked.length; i++) {
+						var primary = String(asked[i]).toLowerCase().split('-')[0];
+						if (offered.indexOf(primary) !== -1) {
+							wanted = primary;
+							break;
+						}
+					}
+				}
+
+				if (wanted && wanted !== current && translations[wanted]) {
+					location.replace(translations[wanted]);
+				}
+			} catch (error) {
+				// Private modes can make localStorage throw on read. The page is
+				// already in a language the reader can probably read; failing to
+				// improve on that is not worth breaking it over.
+			}
+		</script>
+	)
+}

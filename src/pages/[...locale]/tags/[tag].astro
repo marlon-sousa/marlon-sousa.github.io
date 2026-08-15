@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import FormattedDate from '../../../components/FormattedDate.astro';
+import { SITE_TITLE } from '../../../consts';
+import { getResolvedSeries, seriesUrl } from '../../../data/series';
+import { getTagListings, postUrl, tagUrl, type Post } from '../../../lib/posts';
+import { defaultLocale, localeUrl, locales, type Locale } from '../../../i18n/config';
+import { useTranslations } from '../../../i18n/ui';
+
+// Tags are written in the language of the article carrying them, so the two
+// languages have two independent sets of tag pages. A tag whose slug happens to
+// be the same in both — rust, nvda, ai — is paired here and gets a language
+// switcher. "accessibility" and "acessibilidade" are not paired, and each page
+// advertises only itself: they collect different articles, and a switcher that
+// silently changed which articles you were looking at would be worse than none.
+export async function getStaticPaths() {
+	const byLocale = await Promise.all(
+		locales.map(async (locale) => ({ locale, tags: await getTagListings(locale) })),
+	);
+
+	const languagesOf = new Map<string, Partial<Record<Locale, string>>>();
+	for (const { locale, tags } of byLocale) {
+		for (const { slug } of tags) {
+			const found = languagesOf.get(slug) ?? {};
+			found[locale] = tagUrl(slug, locale);
+			languagesOf.set(slug, found);
+		}
+	}
+
+	return byLocale.flatMap(({ locale, tags }) =>
+		tags.map(({ tag, slug, posts }) => ({
+			params: { locale: locale === defaultLocale ? undefined : locale, tag: slug },
+			props: { locale, tag, posts, translations: languagesOf.get(slug) ?? {} },
+		})),
+	);
+}
+
+interface Props {
+	locale: Locale;
+	tag: string;
+	posts: Post[];
+	translations: Partial<Record<Locale, string>>;
+}
+
+const { locale, tag, posts, translations } = Astro.props;
+const t = useTranslations(locale);
+
+// Series parts are listed individually here, unlike on the blog index — someone
+// browsing a tag is looking for a specific piece, not deciding what to read next.
+// Naming the series keeps the part from arriving without its context.
+function seriesOf(post: Post) {
+	return post.data.series ? getResolvedSeries(post.data.series, locale) : undefined;
+}
+
+const [countBefore = '', countAfter = ''] = t('tag.partOf', { part: '{part}' }).split('{series}');
+---
+
+<BaseLayout
+	title={t('site.pageTitle', { page: tag, site: SITE_TITLE })}
+	description={t('tag.description', { tag })}
+	width="wide"
+	searchable={false}
+	translations={translations}
+>
+	<h1>{t('tag.heading', { tag })}</h1>
+	<p>
+		{t.n('tags.count', posts.length)}. <a href={localeUrl('/tags/', locale)}>{t('tag.seeAll')}</a>.
+	</p>
+
+	<ul class="post-list">
+		{
+			posts.map((post) => {
+				const series = seriesOf(post);
+				return (
+					<li>
+						<article>
+							<h2 class="title">
+								<a href={postUrl(post)}>{post.data.title}</a>
+								{post.data.draft && <span class="draft"> {t('blog.draft')}</span>}
+							</h2>
+							<p class="date">
+								<FormattedDate date={post.data.pubDate} />
+								{series && (
+									<>
+										{' — '}
+										{countBefore.replace('{part}', String(post.data.seriesPart))}
+										<a href={seriesUrl(series.slug, locale)}>{series.title}</a>
+										{countAfter}
+									</>
+								)}
+							</p>
+							<p>{post.data.description}</p>
+						</article>
+					</li>
+				);
+			})
+		}
+	</ul>
+</BaseLayout>
+
+<style>
+	.post-list {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+	.post-list > li {
+		margin-bottom: 2rem;
+	}
+	.title {
+		margin: 0;
+		font-size: 1.6em;
+	}
+	.title a {
+		text-decoration: none;
+	}
+	.title a:hover {
+		text-decoration: underline;
+	}
+	.date {
+		margin: 0 0 0.4em 0;
+		color: rgb(var(--gray));
+	}
+	.draft {
+		font-size: 0.7em;
+		font-weight: 400;
+		color: rgb(var(--gray));
+	}
+</style>

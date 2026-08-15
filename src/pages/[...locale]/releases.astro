@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { SITE_TITLE } from '../../consts';
+import { getLatestReleases } from '../../data/releases';
+import { localeRoutes } from '../../lib/posts';
+import { pick } from '../../i18n/localized';
+import type { Locale } from '../../i18n/config';
+import { useTranslations } from '../../i18n/ui';
+
+export const getStaticPaths = localeRoutes;
+
+const { locale } = Astro.props as { locale: Locale };
+const t = useTranslations(locale);
+
+// Fetched from the GitHub API at build time. See src/data/releases.ts.
+//
+// Release notes are whatever GitHub was given, in whatever language they were
+// written in, and are shown untranslated on both sites. Translating them here
+// would mean paraphrasing a release note, which is a thing a reader is entitled
+// to see exactly as it was published.
+const releases = await getLatestReleases();
+
+const [releasedBefore = '', releasedAfter = ''] = t('releases.released', { date: '{date}' }).split(
+	'{date}',
+);
+---
+
+<BaseLayout
+	title={t('site.pageTitle', { page: t('releases.title'), site: SITE_TITLE })}
+	description={t('releases.description')}
+	width="wide"
+>
+	<h1>{t('releases.heading')}</h1>
+	<p>{t('releases.intro')}</p>
+
+	{
+		releases.length === 0 ? (
+			<p>{t('releases.empty')}</p>
+		) : (
+			releases.map((release) => (
+				<article class="release-card">
+					<h2>
+						{release.project.name} {release.version}
+					</h2>
+					{release.publishedAt && (
+						<p class="date">
+							{releasedBefore}
+							<FormattedDate date={release.publishedAt} />
+							{releasedAfter}
+						</p>
+					)}
+					{release.notes ? (
+						<p class="notes">{release.notes}</p>
+					) : (
+						<p>{pick(release.project.description, locale)}</p>
+					)}
+					<p>
+						<a href={release.url} target="_blank" rel="noopener noreferrer">
+							{t('releases.download', {
+								name: release.project.name,
+								version: release.version,
+							})}
+						</a>
+					</p>
+				</article>
+			))
+		)
+	}
+</BaseLayout>
+
+<style>
+	.release-card {
+		background-color: rgba(var(--gray-light), 30%);
+		border-left: 4px solid var(--accent);
+		padding: 1.5em;
+		margin-bottom: 1.5em;
+	}
+	.release-card h2 {
+		margin-top: 0;
+		font-size: 1.563em;
+	}
+	.date {
+		color: rgb(var(--gray));
+		margin-bottom: 0.5em;
+	}
+	/* Release notes arrive as Markdown; preserve their line breaks without
+	   rendering untrusted HTML. */
+	.notes {
+		white-space: pre-wrap;
+	}
+</style>

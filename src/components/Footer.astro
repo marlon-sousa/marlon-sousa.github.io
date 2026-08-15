@@ -1,14 +1,18 @@
 ---
 import { SITE_AUTHOR, SITE_EMAIL } from '../consts';
+import { getLocale, localeUrl } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
 
+const locale = getLocale(Astro.url);
+const t = useTranslations(locale);
 const today = new Date();
 ---
 
 <footer>
-	<p>&copy; {today.getFullYear()} {SITE_AUTHOR}. All rights reserved.</p>
-	<nav aria-label="Elsewhere">
+	<p>{t('footer.rights', { year: today.getFullYear(), author: SITE_AUTHOR })}</p>
+	<nav aria-label={t('footer.elsewhere')}>
 		<ul>
-			<li><a href={`mailto:${SITE_EMAIL}`}>Email</a></li>
+			<li><a href={`mailto:${SITE_EMAIL}`}>{t('footer.email')}</a></li>
 			<li>
 				<a href="https://github.com/marlon-sousa" target="_blank" rel="noopener noreferrer">
 					GitHub
@@ -19,7 +23,9 @@ const today = new Date();
 					BlindTec
 				</a>
 			</li>
-			<li><a href="/rss.xml">RSS feed</a></li>
+			{/* The feed for the language being read. A reader who subscribes from a
+			    Portuguese page should not start receiving English articles. */}
+			<li><a href={localeUrl('/rss.xml', locale)}>{t('footer.rss')}</a></li>
 		</ul>
 	</nav>
 </footer>

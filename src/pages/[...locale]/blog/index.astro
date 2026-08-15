@@ -1,0 +1,118 @@
+---
+import { Image } from 'astro:assets';
+import ArticleLink from '../../../components/ArticleLink.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import FormattedDate from '../../../components/FormattedDate.astro';
+import { SITE_TITLE } from '../../../consts';
+import { seriesUrl } from '../../../data/series';
+import { getBlogFeed, localeRoutes, postUrl } from '../../../lib/posts';
+import { localeUrl, type Locale } from '../../../i18n/config';
+import { useTranslations } from '../../../i18n/ui';
+
+export const getStaticPaths = localeRoutes;
+
+const { locale } = Astro.props as { locale: Locale };
+const t = useTranslations(locale);
+
+// Every article is its own entry. A part of a series says so above its title,
+// and links out to the series page for the rest.
+//
+// An article with no version in this language is listed anyway, in English, and
+// ArticleLink marks it as such — a reader who cannot find part four at all is
+// worse served than one who is told it exists and is not translated yet.
+const feed = await getBlogFeed(locale);
+
+const [introBefore = '', introAfter = ''] = t('blog.intro').split('{tagLink}');
+---
+
+<BaseLayout
+	title={t('site.pageTitle', { page: t('blog.title'), site: SITE_TITLE })}
+	description={t('blog.description')}
+	width="wide"
+	searchable={false}
+>
+	<h1>{t('blog.title')}</h1>
+	<p>
+		{introBefore}<a href={localeUrl('/tags/', locale)}>{t('blog.browseByTag')}</a>{introAfter}
+	</p>
+
+	{
+		feed.length === 0 ? (
+			<p>{t('blog.empty')}</p>
+		) : (
+			<ul class="post-list">
+				{feed.map(({ article, nav }) => (
+					<li>
+						<article>
+							{/* Just the part number here. The total belongs where a reader
+							    has committed to the article — the badge above its title and
+							    the page title both say "part N of M" — but on a listing it
+							    is noise repeated down the page. */}
+							{nav && (
+								<p class="kind">
+									<a href={seriesUrl(nav.series.slug, locale)}>{nav.series.title}</a> —{' '}
+									{t('blog.seriesPart', { part: nav.part })}
+								</p>
+							)}
+							<h2 class="title">
+								<ArticleLink article={article} />
+								{article.post.data.draft && <span class="draft"> {t('blog.draft')}</span>}
+							</h2>
+							<p class="date">
+								<FormattedDate date={article.post.data.pubDate} />
+							</p>
+							{article.post.data.heroImage && (
+								<a href={postUrl(article.post)} tabindex="-1" aria-hidden="true">
+									<Image width={720} height={360} src={article.post.data.heroImage} alt="" />
+								</a>
+							)}
+							<p>{article.post.data.description}</p>
+						</article>
+					</li>
+				))}
+			</ul>
+		)
+	}
+</BaseLayout>
+
+<style>
+	.post-list {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+	.post-list > li {
+		margin-bottom: 3rem;
+	}
+	.title {
+		margin: 0;
+		font-size: 1.953em;
+	}
+	.title a {
+		text-decoration: none;
+	}
+	.title a:hover {
+		text-decoration: underline;
+	}
+	.date {
+		margin: 0 0 0.5em 0;
+		color: rgb(var(--gray));
+	}
+	/* The series label above a part's title. Deliberately quieter than the
+	   title, and not uppercased: it carries a proper noun and a part number,
+	   both of which read worse in capitals. */
+	.kind {
+		margin: 0 0 0.15em 0;
+		font-size: 0.9em;
+		color: rgb(var(--gray));
+	}
+	.draft {
+		font-size: 0.7em;
+		font-weight: 400;
+		color: rgb(var(--gray));
+	}
+	.post-list img {
+		margin-bottom: 0.5rem;
+		border-radius: 12px;
+	}
+</style>

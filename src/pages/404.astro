@@ -1,0 +1,149 @@
+---
+// The page a wrong address lands on, in both languages at once.
+//
+// This is the one page on the site that cannot be built per language, and it is
+// worth being clear about why. GitHub Pages answers *every* unmatched path with
+// the single file at the root of the site — /404.html — so /pt/blog/nao-existe/
+// is served by this same file. Nothing on the server knows the reader was asking
+// in Portuguese, and no amount of routing can teach it.
+//
+// So both languages are rendered, each in its own `lang`-tagged section, and a
+// script picks between them from the address that was actually requested. With
+// JavaScript off, both sections stay visible: for a page whose whole job is to
+// say "that is not here, try these instead", saying it twice is a perfectly good
+// failure mode, and much better than saying it in the wrong language.
+//
+// Internal links are written *unprefixed* and rewritten to /pt/ by the same
+// script, so the way back is in the reader's language too.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { defaultLocale, localeMeta, locales } from '../i18n/config';
+import { STORAGE_KEY } from '../i18n/preference';
+import { useTranslations } from '../i18n/ui';
+
+// Every locale's strings at once, which is the one place on this site that needs
+// them — everywhere else, the page knows which language it is.
+const sections = locales.map((locale) => {
+	const t = useTranslations(locale);
+	return {
+		locale,
+		tag: localeMeta[locale].tag,
+		title: t('notFound.title'),
+		heading: t('notFound.heading'),
+		body: t('notFound.body'),
+		tryThese: t('notFound.tryThese'),
+		links: [
+			{ href: '/', label: t('nav.home') },
+			{ href: '/blog/', label: t('nav.blog') },
+			{ href: '/search/', label: t('nav.search') },
+		],
+	};
+});
+
+const titles = Object.fromEntries(sections.map(({ locale, title }) => [locale, title]));
+const tags = Object.fromEntries(sections.map(({ locale, tag }) => [locale, tag]));
+const t = useTranslations(defaultLocale);
+---
+
+{/*
+  `translations` is deliberately empty. Left to itself BaseLayout would derive
+  mechanical alternates — /404/ and /pt/404/ — and advertise hreflang for two
+  pages that do not exist, then let LanguagePreference redirect between them.
+  A page that exists at exactly one address has no alternates and must never
+  redirect: the reader is already lost, and moving them again is not a kindness.
+*/}
+<BaseLayout
+	title={t('notFound.title')}
+	description={t('notFound.body')}
+	searchable={false}
+	translations={{}}
+>
+	{
+		sections.map(({ locale, tag, heading, body, tryThese, links }) => (
+			<section lang={tag} data-locale={locale} class="not-found">
+				<h1>{heading}</h1>
+				<p>{body}</p>
+				<p>{tryThese}</p>
+				<ul>
+					{links.map(({ href, label }) => (
+						<li>
+							<a href={href}>{label}</a>
+						</li>
+					))}
+				</ul>
+			</section>
+		))
+	}
+</BaseLayout>
+
+<script
+	is:inline
+	define:vars={{ titles, tags, storageKey: STORAGE_KEY, fallback: defaultLocale }}
+>
+	(function () {
+		var offered = Object.keys(titles);
+		var wanted = null;
+
+		// The address comes first here, unlike the redirect on every other page.
+		// Somebody who asked for /pt/ asked in Portuguese, whatever their browser
+		// or their stored preference says — a shared link is the most common way
+		// to arrive at a wrong address, and it carries its own language with it.
+		var prefixed = /^\/([a-z]{2})(?:\/|$)/.exec(location.pathname);
+		if (prefixed && offered.indexOf(prefixed[1]) !== -1) {
+			wanted = prefixed[1];
+		}
+
+		if (!wanted) {
+			try {
+				var stored = localStorage.getItem(storageKey);
+				if (stored && offered.indexOf(stored) !== -1) wanted = stored;
+			} catch (error) {
+				// Private modes can make localStorage throw. Fall through to the
+				// browser's own list, which is the next best guess.
+			}
+		}
+
+		if (!wanted) {
+			var asked = navigator.languages || [navigator.language || fallback];
+			for (var i = 0; i < asked.length && !wanted; i++) {
+				var primary = String(asked[i]).toLowerCase().split('-')[0];
+				if (offered.indexOf(primary) !== -1) wanted = primary;
+			}
+		}
+
+		if (!wanted) wanted = fallback;
+
+		var sections = document.querySelectorAll('[data-locale]');
+		for (var s = 0; s < sections.length; s++) {
+			if (sections[s].getAttribute('data-locale') !== wanted) sections[s].hidden = true;
+		}
+
+		document.documentElement.lang = tags[wanted];
+		document.title = titles[wanted];
+
+		// The header, the footer and the links above were all rendered in the
+		// default language, because that is the only language the build could
+		// know about. Point them at the reader's.
+		if (wanted !== fallback) {
+			var prefix = '/' + wanted;
+			var links = document.querySelectorAll('a[href^="/"]');
+			for (var l = 0; l < links.length; l++) {
+				var href = links[l].getAttribute('href');
+				if (href.indexOf(prefix + '/') === 0 || href === prefix) continue;
+				links[l].setAttribute('href', prefix + href);
+			}
+		}
+	})();
+</script>
+
+<style>
+	/* Both sections are in normal flow until the script hides one, so with
+	   JavaScript off they read as two stacked messages rather than overlapping. */
+	.not-found + .not-found {
+		margin-top: 3rem;
+		padding-top: 2rem;
+		border-top: 1px solid rgb(var(--gray-light));
+	}
+	.not-found ul {
+		padding-left: 1.2rem;
+	}
+</style>

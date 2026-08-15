@@ -1,0 +1,272 @@
+---
+// The About page, in Portuguese. Its English counterpart is HomeEn.astro.
+//
+// A translation rather than a transposition: the talks given in Portuguese keep
+// their original titles, the podcasts keep their names, and the sentences that
+// only worked because of an English turn of phrase were rewritten instead of
+// carried over. Layout lives in src/styles/home.css, shared by both.
+import { Image } from 'astro:assets';
+import { SITE_EMAIL } from '../../consts';
+import { localeUrl } from '../../i18n/config';
+import portrait from '../../assets/marlon-portrait.jpg';
+import climbing from '../../assets/marlon-climbing.jpg';
+import summit from '../../assets/cognition-champions-summit.jpg';
+---
+
+<h1>Sobre mim</h1>
+<div class="home-intro">
+	<Image
+		class="home-portrait"
+		src={portrait}
+		loading="eager"
+		width={200}
+		height={200}
+		alt="Marlon Brandão de Sousa, de braços cruzados e sorrindo abertamente, diante de um fundo de estúdio azul neutro."
+	/>
+	<div>
+		<p>
+			Olá! Eu sou o <strong>Marlon Brandão de Sousa</strong>, engenheiro de software, aqui de
+			Curitiba. Trabalho com tecnologia desde 2004, e boa parte desse tempo nos sistemas que movem o
+			dinheiro das pessoas: internet banking, remessas e pagamentos internacionais.
+		</p>
+		<p>
+			Também sou um desenvolvedor cego, palestrante e defensor da acessibilidade digital. Pagamentos
+			de um lado, acessibilidade do outro — não são duas carreiras. Construir software financeiro em
+			que as pessoas confiam, e construir software que todo mundo consegue usar, é o mesmo problema
+			atacado por dois caminhos, e é o trabalho com que mais me importo.
+		</p>
+	</div>
+</div>
+
+<p>
+	Se existe um fio ligando tudo que eu faço, é o gosto de ficar nos bastidores. O framework em
+	vez da interface, a infraestrutura de testes em vez da funcionalidade, o complemento em vez do
+	aplicativo — a
+	parte que torna possível o trabalho dos outros e quase nunca leva o crédito. O mesmo desafio me
+	motiva desde mais ou menos 2005: como a tecnologia inclui as pessoas. Troquei de ferramenta o
+	tempo todo, sem nunca trocar de desafio. Também é explicando que eu penso: se eu não
+	consigo escrever uma coisa para outra pessoa, provavelmente ainda não entendi. E peço ajuda sem
+	constrangimento — a colegas, a um agente de IA, a alguém na calçada para atravessar a rua — porque
+	recusar ajuda para proteger o próprio ego deixa você pior, o seu software pior e o mundo pior.
+</p>
+<p>
+	Longe do teclado sou cristão e marido, e minha família vem antes do resto desta página. Eu canto,
+	leio, toco trompete e viajo o quanto consigo — tanto que minha esposa Atena e eu passamos vários
+	anos fazendo o
+	<a href="https://blindando.com.br" target="_blank" rel="noopener noreferrer">Blindando</a>, um
+	podcast sobre turismo e diversão do ponto de vista de nós, cegos, com episódios de Havana a
+	Machu Picchu e Estocolmo. No fim das contas, quase tudo de que eu gosto volta para o mesmo ponto
+	que o trabalho: ajudar pessoas.
+</p>
+<figure class="home-photo">
+	<Image
+		src={climbing}
+		width={420}
+		height={280}
+		alt="Marlon no meio de uma escalada em uma parede de rocha, de capacete vermelho com o nome dele colado em fita e óculos escuros, uma das mãos buscando a próxima agarra. Outro escalador e rolos de corda aparecem desfocados atrás."
+	/>
+	<figcaption>Escalada, 2017.</figcaption>
+</figure>
+
+<h2>Experiência profissional</h2>
+<ul>
+	<li>
+		<strong><a href="https://www.ebanx.com" target="_blank" rel="noopener noreferrer">EBANX</a> — Engineer Specialist (ago. 2024 – hoje):</strong> Uma das maiores fintechs da América Latina, e a
+		infraestrutura de pagamentos internacionais que comerciantes globais usam para vender na
+		região. Meu trabalho tem duas frentes. A primeira é pesquisa sobre IA aplicada à engenharia de
+		software — como agentes conquistam um lugar dentro de uma organização de engenharia que roda
+		software em produção, e não dentro de uma demonstração, incluindo uso extensivo do Devin, da
+		Cognition AI, que me levou ao
+		<a
+			href="https://www.linkedin.com/posts/cognition-ai-labs_we-recently-hosted-the-first-cognition-champions-activity-7471215029489471488-0hKr/"
+			target="_blank"
+			rel="noopener noreferrer"
+			>Champions Summit da Cognition</a
+		> em São Francisco, em junho de 2026, como um dos vinte usuários convidados do mundo inteiro. A segunda é escrever os frameworks de base sobre os quais os outros times constroem, para que operações
+		de engenharia sejam algo que a plataforma oferece, e não algo que cada time reinventa.
+	</li>
+	<li>
+		<strong><a href="https://www.remessaonline.com.br" target="_blank" rel="noopener noreferrer">Remessa Online</a> — Staff Engineer (nov. 2022 – jul. 2024):</strong> Transferências internacionais de dinheiro, na plataforma
+		que move recursos entre países para pessoas físicas e empresas. Além de atuar na plataforma,
+		construí produtos de enablement para outros times de engenharia e assessorei a alta liderança
+		sobre necessidades de engenharia e sobre onde estavam de fato as maiores oportunidades de
+		melhoria.
+	</li>
+	<li>
+		<strong><a href="https://www.ebanx.com" target="_blank" rel="noopener noreferrer">EBANX</a> — Senior Engineer, e Chief Engineer no Compass (ago. 2019 – out. 2022):</strong> Em uma passagem anterior
+		pelo EBANX, liderei a engenharia do Compass, a operação bancária da empresa nas Ilhas Turks e
+		Caicos, licenciada lá como Compass Trust Ltd. Montei o sistema bancário inteiro: contas, gestão
+		de cartões, extratos, o autorizador de cartão de crédito, back office, atendimento ao cliente e
+		processamento de arquivos. Tudo em Rust, tudo em Kubernetes. No auge, o cartão Compass atendia
+		perto de dez mil pessoas que viviam nas ilhas ou vinham delas, muitas das quais não se qualificavam para um
+		cartão de um banco comercial estabelecido.
+	</li>
+	<li>
+		<strong><a href="https://www.itau.com.br" target="_blank" rel="noopener noreferrer">Itaú Unibanco</a> — Plataforma de Internet Banking (mar. 2011 – jul. 2019):</strong> Desenvolvimento e evolução do
+		framework por trás do internet banking do maior banco privado do Brasil, junto com a manutenção
+		do sistema central de internet banking e o desenho de camadas de interoperabilidade entre
+		sistemas. Também assessorei os times de front-end de mobile e internet banking em acessibilidade.
+	</li>
+	<li>
+		<strong><a href="https://www.accenture.com/br-pt" target="_blank" rel="noopener noreferrer">Accenture</a> — Senior Software Developer, depois Analyst Programmer (2008–2011):</strong>
+		Auditorias CMMI nível 5 em projetos ABAP, transformando achados de auditoria em melhorias de
+		processo e, mais tarde, supervisionando o time de auditoria — treinando auditores e construindo
+		o ferramental sobre o qual rodavam os processos de qualidade e engenharia da organização.
+	</li>
+	<li>
+		<strong><a href="https://redeglobo.globo.com" target="_blank" rel="noopener noreferrer">Rede Globo</a> — Software Developer (2004–2008):</strong> Pesquisa e desenvolvimento para
+		a maior emissora do Brasil: prototipar e avaliar novas tecnologias frente às demandas internas
+		da emissora, apresentar os projetos resultantes e ajudar a estabelecer um processo básico de
+		desenvolvimento de software.
+	</li>
+</ul>
+
+<h2>Palestras e entrevistas</h2>
+<ul>
+	<li>
+		<strong>Cognition Champions Summit</strong> — sede da Cognition, São Francisco, junho de 2026.
+		Para o seu primeiro Champions Summit, a Cognition reuniu vinte dos seus principais usuários de
+		Devin no mundo — times que já rodavam o Devin em produção em migrações, ferramental interno e
+		automação — para um dia de workshops sobre os fluxos de trabalho que mais importam para cada um
+		deles. Eu fui um dos vinte, e falo no
+		<a
+			href="https://www.youtube.com/watch?v=CHHtsJGivE4&amp;t=109s"
+			target="_blank"
+			rel="noopener noreferrer"
+			>vídeo do summit, a partir de 1:49</a
+		>, sobre o que tornou o dia útil: sessões em que os problemas reais do produto foram discutidos
+		tão abertamente quanto as soluções que tínhamos encontrado para eles.
+	</li>
+	<li>
+		<strong>Agentes de IA em produção</strong> — segundo EBANX Engineering Meetup, Curitiba, novembro
+		de 2025, apresentado em dupla. Sobre o uso maduro e estratégico de agentes de IA em uma
+		organização de engenharia: o que medimos, por que não é mais um ciclo de hype, e a
+		construção ao vivo de um serviço testado em quinze minutos. O meetup não foi gravado, então a
+		palestra está escrita em
+		<a
+			href="https://www.linkedin.com/pulse/ai-agents-hype-driving-core-business-value-ebanx-brand%C3%A3o-de-sousa-gs94f"
+			target="_blank"
+			rel="noopener noreferrer"
+			>“AI Agents are Not Hype: They are Driving Core Business Value at EBANX”</a
+		>.
+	</li>
+	<li>
+		<strong>“Escolhi uma plataforma para desenvolver. E agora?”</strong> — trilha de Acessibilidade,
+		TDC Florianópolis, 2018.
+		<a href="https://thedevconf.com/palestrante/marlon-brandao-de-sousa" target="_blank" rel="noopener noreferrer">Perfil de palestrante</a>.
+	</li>
+	<li>
+		<strong>“Programar sem enxergar”</strong> —
+		<a href="https://www.hipsters.tech/programar-sem-enxergar-hipsters-82/" target="_blank" rel="noopener noreferrer">Hipsters Ponto Tech #82</a>, fevereiro de 2018.
+		Uma conversa sobre se dá para escrever software sem enxergar, e como.
+	</li>
+	<li>
+		<strong>“Como cegos desenvolvem software: da concepção à implementação”</strong> — DevDay, Belo
+		Horizonte, setembro de 2017.
+		<a href="https://www.infoq.com/br/presentations/como-cegos-desenvolvem-software-da-concepcao-a-implementacao" target="_blank" rel="noopener noreferrer">Vídeo no InfoQ Brasil</a>.
+	</li>
+	<li>
+		<strong>“O protagonismo dos deficientes visuais na área de tecnologia da informação”</strong> —
+		trilha de Acessibilidade Digital, TDC Porto Alegre, 2017.
+	</li>
+	<li>
+		<strong>“Como deficientes visuais desenvolvem software — da concepção até uma implementação
+		prática”</strong> — trilha de Acessibilidade Digital, TDC Porto Alegre, 2017.
+	</li>
+	<li>
+		<strong>podProgramar</strong> — entrevistado em
+		<a href="https://mundopodcast.com.br/podprogramar/" target="_blank" rel="noopener noreferrer">um dos podcasts de programação mais conhecidos do Brasil</a>.
+	</li>
+	<li>
+		<strong>BlindTec</strong> — quase uma década de artigos, tutoriais e episódios de podcast sobre
+		tecnologia assistiva, no meu
+		<a href="https://www.blindtec.com.br/blog/author/marlonsousa/" target="_blank" rel="noopener noreferrer">arquivo de autor</a>.
+	</li>
+</ul>
+<figure class="home-photo">
+	<Image
+		src={summit}
+		width={640}
+		height={427}
+		alt="Marlon em uma poltrona de couro em um loft ensolarado nos escritórios da Cognition, uma das mãos erguida no meio de uma frase, falando com cerca de oito pessoas sentadas em um círculo solto ao redor dele. Janelas altas de fábrica e um vaso de planta ao fundo."
+	/>
+	<figcaption>
+		Em discussão no Cognition Champions Summit, São Francisco, junho de 2026. Foto da Cognition.
+	</figcaption>
+</figure>
+
+<h2>Divulgação e comunidade</h2>
+<ul>
+	<li>
+		<strong>Fundador e editor-chefe — BlindTec:</strong> Criei e lidero o
+		<a href="https://www.blindtec.com.br" target="_blank" rel="noopener noreferrer">BlindTec</a>,
+		principal portal e podcast de tecnologia assistiva do Brasil, publicando artigos técnicos,
+		tutoriais e entrevistas sobre leitores de tela, acessibilidade de software e carreira em
+		tecnologia.
+	</li>
+	<li>
+		<strong>Coordenador de trilha — The Developer's Conference (TDC):</strong> Coordenador da trilha
+		de Acessibilidade no TDC São Paulo em 2018, e palestrante no TDC e no DevDay ao longo de vários
+		anos. As palestras estão listadas acima.
+	</li>
+	<li>
+		<strong>EasyWay — segundo lugar no FIAP StartupOne:</strong> Com um designer e outros dois
+		engenheiros, construí o protótipo de um sistema de localização em ambientes internos para ajudar
+		pessoas a se orientarem em locais complexos como centros de exposições, shoppings e estádios.
+	</li>
+</ul>
+
+<h2>Áreas de interesse</h2>
+<p>Na ordem em que elas me interessam hoje:</p>
+<ul>
+	<li>
+		<strong>IA aplicada à engenharia de software:</strong> O que é preciso para um agente produzir
+		software do qual profissionais possam realmente depender — especificações, arquitetura definida
+		antes, ciclos de feedback rápidos e validações que o próprio agente consiga conferir. Aí entram
+		servidores Model Context Protocol como o <code>screen-readers-mcp</code>, que permitem a agentes
+		dirigir leitores de tela para rodar testes funcionais automatizados, trazendo cobertura de
+		verdade para software que historicamente foi conferido à mão — quando era conferido.
+	</li>
+	<li>
+		<strong>Desenvolvimento bancário:</strong> Core banking, autorização de cartões, livros-razão e
+		pagamentos — correção, confiabilidade e confiança em sistemas em que errar custa dinheiro real
+		de alguém.
+	</li>
+	<li>
+		<strong>Desenvolvimento em Rust:</strong> Minha linguagem preferida. Me interessa o argumento de
+		que Rust não serve só para trabalho de sistemas — de que dá para escrever ferramentas de linha de
+		comando, serviços e aplicações de desktop nela em um alto nível de abstração e ainda assim ganhar
+		de graça o desempenho, a facilidade de distribuição e as garantias de segurança de memória.
+	</li>
+	<li>
+		<strong>Desenvolvimento de código aberto:</strong> Construir em público, principalmente
+		tecnologia assistiva: complementos para o NVDA, ergonomia de leitores de tela e ferramentas que a
+		comunidade de acessibilidade possa pegar e usar sem pedir permissão a ninguém.
+	</li>
+</ul>
+
+<h2>Formação</h2>
+<ul>
+	<li><strong>Pós-graduação (MBA) em Mobile &amp; Game Development (2016–2017):</strong> <a href="https://www.fiap.com.br" target="_blank" rel="noopener noreferrer">FIAP</a></li>
+	<li><strong>Tecnólogo em Gestão da Tecnologia da Informação (2011–2013):</strong> <a href="https://www.unisul.br" target="_blank" rel="noopener noreferrer">Unisul</a></li>
+	<li><strong>Técnico em Processamento de Dados (2002–2003):</strong> Etec Lauro Gomes</li>
+</ul>
+
+<h2>Navegue pelo site</h2>
+<ul>
+	<li>Leia meus artigos e séries de artigos no <a href={localeUrl('/blog/', 'pt')}>Blog</a>.</li>
+	<li>Conheça meus projetos de código aberto na página de <a href={localeUrl('/projects/', 'pt')}>Projetos</a>.</li>
+	<li>Baixe as versões mais recentes dos complementos na página de <a href={localeUrl('/releases/', 'pt')}>Versões</a>.</li>
+	<li>Busque em todo o conteúdo pela página de <a href={localeUrl('/search/', 'pt')}>Busca</a>.</li>
+</ul>
+
+<h2>Fale comigo</h2>
+<p>
+	A melhor forma de me alcançar é por e-mail: <a href={`mailto:${SITE_EMAIL}`}>{SITE_EMAIL}</a>.
+	Dúvidas sobre qualquer coisa que eu tenha escrito, correções, ou um problema de acessibilidade que
+	você tenha encontrado — tudo é bem-vindo.
+</p>
+<p>
+	Você também me encontra no <a href="https://github.com/marlon-sousa">GitHub</a>, onde as issues e
+	as discussões estão abertas. E todo artigo aqui tem um campo de comentários no fim.
+</p>

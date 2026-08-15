@@ -9,7 +9,7 @@ I have been writing and talking about technology for over a decade — on BlindT
 
 ## Where I am coming from
 
-I am a software engineer. Since 2004 I have mostly worked on systems that move people's money: the internet banking platform at Itaú, an entire core banking stack in Rust for an international bank in the Turks and Caicos, cross-border payments at EBANX. I am also blind, and I write add-ons for the NVDA screen reader, published through the NV Access add-on store.
+I am a software engineer. Since 2004 I have mostly worked on systems that move people's money: the internet banking platform at Itaú, an entire core banking stack in Rust for a local bank in the Turks and Caicos, cross-border payments at EBANX. I am also blind, and I write add-ons for the NVDA screen reader, published through the NV Access add-on store.
 
 Those are not two careers. Building software people trust, and building software everyone can actually use, is the same problem walked in from two directions.
 

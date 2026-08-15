@@ -1,18 +1,38 @@
 ---
 import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { getLocale, localeUrl, type Locale } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+	/** Locale → path, for the languages this page exists in. */
+	translations: Partial<Record<Locale, string>>;
+}
+
+const { translations } = Astro.props;
+const locale = getLocale(Astro.url);
+const t = useTranslations(locale);
+
+// Every destination in the nav exists in every language, so each href is just
+// the same route under this page's locale prefix. Following a nav link never
+// changes the language you are reading in.
+const links = [
+	{ href: localeUrl('/', locale), label: t('nav.home') },
+	{ href: localeUrl('/blog/', locale), label: t('nav.blog') },
+	{ href: localeUrl('/projects/', locale), label: t('nav.projects') },
+	{ href: localeUrl('/releases/', locale), label: t('nav.releases') },
+	{ href: localeUrl('/search/', locale), label: t('nav.search') },
+];
 ---
 
 <header>
-	<nav aria-label="Primary Navigation">
-		<p class="site-title"><a href="/">{SITE_TITLE}</a></p>
+	<nav aria-label={t('nav.primary')}>
+		<p class="site-title"><a href={localeUrl('/', locale)}>{SITE_TITLE}</a></p>
 		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
-			<HeaderLink href="/projects">Projects</HeaderLink>
-			<HeaderLink href="/releases">Releases</HeaderLink>
-			<HeaderLink href="/search">Search</HeaderLink>
+			{links.map(({ href, label }) => <HeaderLink href={href}>{label}</HeaderLink>)}
 		</div>
+		<LanguageSwitcher translations={translations} />
 	</nav>
 </header>
 <style>

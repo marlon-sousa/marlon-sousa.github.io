@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import FormattedDate from '../../../components/FormattedDate.astro';
+import { SITE_TITLE } from '../../../consts';
+import { seriesUrl } from '../../../data/series';
+import { getSeriesListings, localeRoutes } from '../../../lib/posts';
+import type { Locale } from '../../../i18n/config';
+import { useTranslations } from '../../../i18n/ui';
+
+export const getStaticPaths = localeRoutes;
+
+const { locale } = Astro.props as { locale: Locale };
+const t = useTranslations(locale);
+
+const listings = await getSeriesListings(locale);
+---
+
+<BaseLayout
+	title={t('site.pageTitle', { page: t('series.title'), site: SITE_TITLE })}
+	description={t('series.description')}
+	width="wide"
+	searchable={false}
+>
+	<h1>{t('series.title')}</h1>
+	<p>{t('series.intro')}</p>
+
+	{
+		listings.length === 0 ? (
+			<p>{t('series.empty')}</p>
+		) : (
+			<ul class="series-list">
+				{listings.map(({ series, parts, updated }) => (
+					<li>
+						<article>
+							<h2 class="title">
+								<a href={seriesUrl(series.slug, locale)}>{series.title}</a>
+							</h2>
+							<p class="meta">
+								{t.n('series.published', parts.length)}
+								{series.plannedParts > parts.length && (
+									<> {t('series.ofPlanned', { total: series.plannedParts })}</>
+								)}
+								{` — ${t('series.lastUpdated')} `}
+								<FormattedDate date={updated} />
+							</p>
+							<p>{series.description}</p>
+						</article>
+					</li>
+				))}
+			</ul>
+		)
+	}
+</BaseLayout>
+
+<style>
+	.series-list {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+	.series-list > li {
+		margin-bottom: 2.5rem;
+	}
+	.title {
+		margin: 0;
+		font-size: 1.953em;
+	}
+	.title a {
+		text-decoration: none;
+	}
+	.title a:hover {
+		text-decoration: underline;
+	}
+	.meta {
+		margin: 0 0 0.5em 0;
+		color: rgb(var(--gray));
+	}
+</style>

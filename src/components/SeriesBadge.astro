@@ -3,16 +3,26 @@
 // search result knows immediately that there is a beginning to go back to.
 import { seriesUrl } from '../data/series';
 import type { SeriesNav } from '../lib/posts';
+import { getLocale } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
 
 interface Props {
 	nav: SeriesNav;
 }
 
 const { nav } = Astro.props;
+const locale = getLocale(Astro.url);
+const t = useTranslations(locale);
+
+// The sentence is one string in the catalogue rather than three fragments glued
+// together, because the pieces do not sit in the same order in both languages —
+// "Part 1 in X" against "Parte 1 de X". Leaving {series} uninterpolated and
+// splitting the result on it puts the link wherever that language put it.
+const [before = '', after = ''] = t('series.badge', { part: nav.part }).split('{series}');
 ---
 
 <p class="series-badge">
-	Part {nav.part} in <a href={seriesUrl(nav.series.slug)}>{nav.series.title}</a>
+	{before}<a href={seriesUrl(nav.series.slug, locale)}>{nav.series.title}</a>{after}
 </p>
 
 <style>

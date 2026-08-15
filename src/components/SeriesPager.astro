@@ -4,51 +4,56 @@
 // A neighbouring part that is not written yet is still named, as plain text
 // rather than a dead link: a disabled link still lands in a screen reader's list
 // of links and in the tab order, promising somewhere to go that does not exist.
+//
+// A part that is written but not translated is a different case, and is a real
+// link: it goes somewhere, and ArticleLink says which language it goes to.
+import ArticleLink from './ArticleLink.astro';
 import { seriesUrl } from '../data/series';
-import { postUrl, type SeriesNav, type SeriesEntry } from '../lib/posts';
+import { type SeriesNav, type SeriesEntry } from '../lib/posts';
+import { getLocale } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
 
 interface Props {
 	nav: SeriesNav;
 }
 
 const { nav } = Astro.props;
+const locale = getLocale(Astro.url);
+const t = useTranslations(locale);
 
 const label = (direction: string, entry: SeriesEntry) =>
-	`${direction} — part ${entry.number}: ${entry.title}`;
+	t('pager.entry', { direction, number: entry.number, title: entry.title });
+
+const previousLabel = nav.previous && label(t('pager.previous'), nav.previous);
+const nextLabel = nav.next && label(t('pager.next'), nav.next);
 ---
 
-<nav class="series-pager" aria-label={`${nav.series.title} series`}>
-	<h2>More in this series</h2>
+<nav class="series-pager" aria-label={t('pager.label', { series: nav.series.title })}>
+	<h2>{t('pager.heading')}</h2>
 	<ul>
 		{
 			nav.previous &&
-				(nav.previous.post ? (
+				(nav.previous.article ? (
 					<li>
-						<a rel="prev" href={postUrl(nav.previous.post)}>
-							{label('Previous', nav.previous)}
-						</a>
+						<ArticleLink article={nav.previous.article} label={previousLabel} rel="prev" />
 					</li>
 				) : (
-					<li class="unpublished">
-						{label('Previous', nav.previous)} — not published yet
-					</li>
+					<li class="unpublished">{t('pager.unpublished', { entry: previousLabel as string })}</li>
 				))
 		}
 		{
 			nav.next &&
-				(nav.next.post ? (
+				(nav.next.article ? (
 					<li>
-						<a rel="next" href={postUrl(nav.next.post)}>
-							{label('Next', nav.next)}
-						</a>
+						<ArticleLink article={nav.next.article} label={nextLabel} rel="next" />
 					</li>
 				) : (
-					<li class="unpublished">{label('Next', nav.next)} — not published yet</li>
+					<li class="unpublished">{t('pager.unpublished', { entry: nextLabel as string })}</li>
 				))
 		}
 		<li>
-			<a href={seriesUrl(nav.series.slug)}>
-				All {nav.total} parts of {nav.series.title}
+			<a href={seriesUrl(nav.series.slug, locale)}>
+				{t('pager.all', { total: nav.total, series: nav.series.title })}
 			</a>
 		</li>
 	</ul>

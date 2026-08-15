@@ -11,6 +11,20 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import satori from 'satori';
 import sharp from 'sharp';
+import { defaultLocale, type Locale } from '../i18n/config';
+
+/**
+ * Where the card for one slug lives.
+ *
+ * The slug space mirrors the content collection: a Portuguese card sits under
+ * `pt/`, exactly as its article does. That is a directory inside /og/ rather
+ * than a language prefix in front of it — these are images, not pages, and they
+ * are not something a reader navigates to in a language.
+ */
+export function ogPath(slug: string, locale: Locale): string {
+	const prefix = locale === defaultLocale ? '' : `${locale}/`;
+	return `/og/${prefix}${slug}.png`;
+}
 
 // Resolved against the project root rather than import.meta.url: this module is
 // bundled into dist/.prerender/chunks during a build, so a path relative to the

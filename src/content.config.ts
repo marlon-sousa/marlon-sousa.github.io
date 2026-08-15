@@ -5,6 +5,11 @@ import { seriesSlugs } from './data/series';
 
 const blog = defineCollection({
 	// Load Markdown and MDX files in the `src/content/blog/` directory.
+	//
+	// A file directly in that directory is English. A file in a subdirectory named
+	// after a locale — `pt/` — is written in that language. Nothing in a post's
+	// frontmatter says which language it is in, because the one place a file can
+	// be is harder to get wrong than a field that can disagree with it.
 	loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
 	// Type-check frontmatter using a schema
 	schema: ({ image }) =>
@@ -16,6 +21,18 @@ const blog = defineCollection({
 				pubDate: z.coerce.date(),
 				updatedDate: z.coerce.date().optional(),
 				heroImage: z.optional(image()),
+
+				/**
+				 * The id of the article this one translates — the English original's
+				 * file name, without a directory or an extension.
+				 *
+				 * Set on a translation, left out on an original. It is what pairs the
+				 * two together for `hreflang`, for the language switcher, and for
+				 * knowing that a Portuguese reader who lands on an English article has
+				 * somewhere better to be. The file name itself is free to be the
+				 * translated slug, which is what a Portuguese URL should say.
+				 */
+				translationOf: z.string().optional(),
 
 				// --- Series. Omit both fields for a standalone post. ---
 				/** Slug of an entry in src/data/series.ts. */

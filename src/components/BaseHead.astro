@@ -5,6 +5,9 @@ import '../styles/global.css';
 import type { ImageMetadata } from 'astro';
 import { SITE_TITLE } from '../consts';
 import { Font } from 'astro:assets';
+import { alternatesFor, getLocale, localeMeta, localeUrl, type Locale } from '../i18n/config';
+import { ogPath } from '../lib/og';
+import LanguagePreference from './LanguagePreference.astro';
 
 interface Props {
 	title: string;
@@ -16,15 +19,37 @@ interface Props {
 	 * Defaults to the site-wide card. See src/pages/og/[...slug].png.ts.
 	 */
 	ogImage?: string;
+	/**
+	 * Where this page can be read in each language, as locale → path.
+	 *
+	 * Left out by every page that is a straight translation of one route, since
+	 * those alternates are just this path under each locale prefix. An article
+	 * passes its own map: its Portuguese slug is not its English one, and the
+	 * translation may not exist at all, in which case it is absent here and the
+	 * page advertises no alternate rather than one that would 404.
+	 */
+	translations?: Partial<Record<Locale, string>>;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image, ogImage = '/og/site.png' } = Astro.props;
+const { title, description, image, translations } = Astro.props;
+
+const locale = getLocale(Astro.url);
+const meta = localeMeta[locale];
+
+const { ogImage = ogPath('site', locale) } = Astro.props;
 
 // A generated card carries the page's own title, so it beats no image at all —
 // but a real hero image, when the author chose one, beats both.
 const socialImage = image ? new URL(image.src, Astro.url) : new URL(ogImage, Astro.site);
+
+// One entry per language this page exists in. A page with only one is not
+// translated, and gets no alternates at all: a single hreflang pointing at
+// itself tells a crawler nothing it did not already know.
+const alternates = translations ?? alternatesFor(Astro.url.pathname);
+const alternateEntries = Object.entries(alternates) as [Locale, string][];
+const isTranslated = alternateEntries.length > 1;
 ---
 
 <!-- Global Metadata -->
@@ -38,7 +63,7 @@ const socialImage = image ? new URL(image.src, Astro.url) : new URL(ogImage, Ast
 	rel="alternate"
 	type="application/rss+xml"
 	title={SITE_TITLE}
-	href={new URL('rss.xml', Astro.site)}
+	href={new URL(localeUrl('/rss.xml', locale), Astro.site)}
 />
 <meta name="generator" content={Astro.generator} />
 
@@ -52,6 +77,24 @@ const socialImage = image ? new URL(image.src, Astro.url) : new URL(ogImage, Ast
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
+<!--
+  Which languages this page exists in.
+
+  x-default names the version to serve a reader whose language we do not
+  publish in, which is English — not because it is the original, but because
+  it is the one more of them will be able to read.
+-->
+{
+	isTranslated && (
+		<>
+			{alternateEntries.map(([code, path]) => (
+				<link rel="alternate" hreflang={localeMeta[code].tag} href={new URL(path, Astro.site)} />
+			))}
+			{alternates.en && <link rel="alternate" hreflang="x-default" href={new URL(alternates.en, Astro.site)} />}
+		</>
+	)
+}
+
 <!-- Primary Meta Tags -->
 <title>{title}</title>
 <meta name="description" content={description} />
@@ -59,7 +102,12 @@ const socialImage = image ? new URL(image.src, Astro.url) : new URL(ogImage, Ast
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content={SITE_TITLE} />
-<meta property="og:locale" content="en" />
+<meta property="og:locale" content={meta.ogLocale} />
+{
+	alternateEntries
+		.filter(([code]) => code !== locale)
+		.map(([code]) => <meta property="og:locale:alternate" content={localeMeta[code].ogLocale} />)
+}
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
@@ -72,6 +120,8 @@ const socialImage = image ? new URL(image.src, Astro.url) : new URL(ogImage, Ast
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:image" content={socialImage} />
 <meta name="twitter:image:alt" content={title} />
+
+<LanguagePreference translations={alternates} />
 
 <!--
   Visit counting, GoatCounter. No cookies, and nothing that identifies a reader

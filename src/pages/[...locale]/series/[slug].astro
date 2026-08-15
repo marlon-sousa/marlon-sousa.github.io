@@ -1,0 +1,129 @@
+---
+import ArticleLink from '../../../components/ArticleLink.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import FormattedDate from '../../../components/FormattedDate.astro';
+import { seriesUrl, type ResolvedSeries } from '../../../data/series';
+import { getSeriesListings, getSeriesOutline, type SeriesEntry } from '../../../lib/posts';
+import { defaultLocale, locales, type Locale } from '../../../i18n/config';
+import { useTranslations } from '../../../i18n/ui';
+
+// A series page exists in a language only where at least one part has been
+// published in it, so its alternates are worked out here rather than derived
+// from the path: linking a Portuguese reader to a series whose translation has
+// not started would send them to a page that was never built.
+export async function getStaticPaths() {
+	const byLocale = await Promise.all(
+		locales.map(async (locale) => ({ locale, listings: await getSeriesListings(locale) })),
+	);
+
+	const languagesOf = new Map<string, Partial<Record<Locale, string>>>();
+	for (const { locale, listings } of byLocale) {
+		for (const { series } of listings) {
+			const found = languagesOf.get(series.slug) ?? {};
+			found[locale] = seriesUrl(series.slug, locale);
+			languagesOf.set(series.slug, found);
+		}
+	}
+
+	return byLocale.flatMap(({ locale, listings }) =>
+		listings.map(({ series }) => ({
+			params: { locale: locale === defaultLocale ? undefined : locale, slug: series.slug },
+			props: {
+				locale,
+				series,
+				translations: languagesOf.get(series.slug) ?? {},
+			},
+		})),
+	);
+}
+
+interface Props {
+	locale: Locale;
+	series: ResolvedSeries;
+	translations: Partial<Record<Locale, string>>;
+}
+
+const { locale, series, translations } = Astro.props;
+const t = useTranslations(locale);
+
+const outline: SeriesEntry[] = await getSeriesOutline(series.slug, locale);
+const published = outline.filter((entry) => entry.article).length;
+---
+
+<BaseLayout
+	title={series.title}
+	description={series.description}
+	searchable={false}
+	translations={translations}
+>
+	<h1>{series.title}</h1>
+	<p class="lede">{series.intro ?? series.description}</p>
+	<p class="progress">{t('series.progress', { published, total: outline.length })}</p>
+
+	<h2>{t('series.parts')}</h2>
+	<ol class="parts">
+		{
+			outline.map((entry) => (
+				<li value={entry.number}>
+					{entry.article ? (
+						<>
+							<h3>
+								<ArticleLink article={entry.article} label={entry.title} />
+								{entry.article.post.data.draft && <span class="note"> {t('blog.draft')}</span>}
+							</h3>
+							<p class="date">
+								<FormattedDate date={entry.article.post.data.pubDate} />
+							</p>
+							<p>{entry.article.post.data.description}</p>
+						</>
+					) : (
+						<>
+							{/* Not a link: a disabled link still lands in a screen reader's
+							    link list and the tab order, promising a page that is not there. */}
+							<h3 class="unwritten">{entry.title}</h3>
+							<p class="note">{t('series.unpublished')}</p>
+							{entry.summary && <p>{entry.summary}</p>}
+						</>
+					)}
+				</li>
+			))
+		}
+	</ol>
+</BaseLayout>
+
+<style>
+	.lede {
+		font-size: 1.1em;
+	}
+	.progress {
+		color: rgb(var(--gray));
+	}
+	.parts {
+		padding-left: 1.5rem;
+	}
+	.parts > li {
+		margin-bottom: 2rem;
+	}
+	.parts h3 {
+		margin: 0;
+		font-size: 1.3em;
+	}
+	.parts h3 a {
+		text-decoration: none;
+	}
+	.parts h3 a:hover {
+		text-decoration: underline;
+	}
+	.unwritten {
+		color: rgb(var(--gray));
+	}
+	.date {
+		margin: 0 0 0.4em 0;
+		color: rgb(var(--gray));
+	}
+	.note {
+		margin: 0 0 0.4em 0;
+		font-size: 0.9em;
+		color: rgb(var(--gray));
+	}
+</style>

@@ -1,0 +1,268 @@
+---
+// The About page, in English. Its Portuguese counterpart is HomePt.astro, and
+// the two are kept in step by hand rather than by a string table: this is
+// writing, not labelling, and a sentence that has to be rewritten to work in
+// Portuguese should be rewritten rather than translated word for word.
+//
+// Layout lives in src/styles/home.css, shared by both.
+import { Image } from 'astro:assets';
+import { SITE_EMAIL } from '../../consts';
+import { localeUrl } from '../../i18n/config';
+import portrait from '../../assets/marlon-portrait.jpg';
+import climbing from '../../assets/marlon-climbing.jpg';
+import summit from '../../assets/cognition-champions-summit.jpg';
+---
+
+<h1>About Me</h1>
+<div class="home-intro">
+	<Image
+		class="home-portrait"
+		src={portrait}
+		loading="eager"
+		width={200}
+		height={200}
+		alt="Marlon Brandão de Sousa, arms folded and smiling broadly, against a plain blue studio background."
+	/>
+	<div>
+		<p>
+			Hello! I'm <strong>Marlon Brandão de Sousa</strong>, a software engineer based in Curitiba,
+			Brazil. I have worked in technology since 2004, and for much of that time on the systems that
+			move people's money: internet banking, international remittances, and cross-border payments.
+		</p>
+		<p>
+			I am also a blind developer, a conference speaker, and a digital accessibility advocate. Those
+			two halves are not separate careers. Building financial software that people trust — and that
+			everyone can actually use — is the same problem approached from two directions, and it is the
+			work I care most about.
+		</p>
+	</div>
+</div>
+
+<p>
+	If there is one thread through all of it, it is that I like being a layer down. The framework
+	rather than the screen, the harness rather than the feature, the add-on rather than the app — the
+	part that makes other people's work possible and rarely gets the credit. I have been working on
+	the same question, how technology includes people, since around 2005, and I have changed tools
+	constantly without ever changing the question. I also think mainly by explaining: if I cannot
+	write something down for someone else, I probably do not understand it yet. And I ask for help
+	without embarrassment — from colleagues, from an AI agent, from a stranger at a crossing —
+	because refusing help to protect your ego makes you worse, your software worse, and the world
+	worse.
+</p>
+<p>
+	Away from the keyboard I am a Christian and a husband, and my family comes before the rest of
+	this page. I sing, I read, I play the trumpet, and I travel as much as I can manage — enough that
+	my wife Atena and I spent several years making
+	<a href="https://blindando.com.br" target="_blank" rel="noopener noreferrer">Blindando</a>, a
+	podcast about tourism and having fun from the point of view of us blind people, with episodes
+	from Havana to Machu Picchu to Stockholm. Most of what I enjoy comes back to the same thing the
+	work does: helping people.
+</p>
+<figure class="home-photo">
+	<Image
+		src={climbing}
+		width={420}
+		height={280}
+		alt="Marlon mid-climb on a rock face, in a red helmet taped with his name and dark sunglasses, one hand reaching for the next hold. A second climber and coils of rope are out of focus behind him."
+	/>
+	<figcaption>Climbing, 2017.</figcaption>
+</figure>
+
+<h2>Professional Experience</h2>
+<ul>
+	<li>
+		<strong><a href="https://www.ebanx.com" target="_blank" rel="noopener noreferrer">EBANX</a> — Engineer Specialist (Aug 2024 – present):</strong> One of Latin America's largest fintechs, and the
+		cross-border payments infrastructure global merchants use to sell into the region. My work has
+		two tracks. The first is research into AI for software engineering — how agents earn a place in
+		a production engineering organisation rather than a demo, including extensive use of Cognition
+		AI's Devin, which took me to
+		<a
+			href="https://www.linkedin.com/posts/cognition-ai-labs_we-recently-hosted-the-first-cognition-champions-activity-7471215029489471488-0hKr/"
+			target="_blank"
+			rel="noopener noreferrer"
+			>Cognition's Champions Summit</a
+		> in San Francisco in June 2026 as one of twenty users invited from around the world. The second is writing the base frameworks other teams build on, so that engineering
+		operations are something the platform provides rather than something every team reinvents.
+	</li>
+	<li>
+		<strong><a href="https://www.remessaonline.com.br" target="_blank" rel="noopener noreferrer">Remessa Online</a> — Staff Engineer (Nov 2022 – Jul 2024):</strong> International money transfers, on the platform
+		that moves funds across borders for individuals and businesses. Beyond the platform itself, I
+		built enablement products for other engineering teams, and advised senior management on
+		engineering needs and where the largest improvement opportunities actually were.
+	</li>
+	<li>
+		<strong><a href="https://www.ebanx.com" target="_blank" rel="noopener noreferrer">EBANX</a> — Senior Engineer, and Chief Engineer at Compass (Aug 2019 – Oct 2022):</strong> During an earlier spell
+		at EBANX I led engineering at Compass, its banking operation in the Turks and Caicos Islands,
+		licensed there as Compass Trust Ltd. I set up the entire banking system: accounts, card
+		management, statements, the credit card authoriser, back office, customer service, and file
+		processing. All of it in Rust, all of it on Kubernetes. At its height the Compass card served
+		close to ten thousand people in and from the islands, many of whom did not qualify for a card
+		from an established commercial bank.
+	</li>
+	<li>
+		<strong><a href="https://www.itau.com.br" target="_blank" rel="noopener noreferrer">Itaú Unibanco</a> — Internet Banking Platform (Mar 2011 – Jul 2019):</strong> Development and evolution of the
+		framework behind the internet banking of Brazil's largest private bank, along with maintenance
+		of the internet banking core system and the design of interoperability layers between systems.
+		I also advised mobile and internet banking front-end teams on accessibility.
+	</li>
+	<li>
+		<strong><a href="https://www.accenture.com/br-pt" target="_blank" rel="noopener noreferrer">Accenture</a> — Senior Software Developer, then Analyst Programmer (2008–2011):</strong>
+		CMMI level 5 audits on ABAP projects, turning audit findings into process improvements, and
+		later supervising the audit team — training auditors and building the tooling the
+		organisation's quality and engineering processes ran on.
+	</li>
+	<li>
+		<strong><a href="https://redeglobo.globo.com" target="_blank" rel="noopener noreferrer">Rede Globo</a> — Software Developer (2004–2008):</strong> Research and development for
+		Brazil's largest broadcaster: prototyping and evaluating new technology against the station's
+		internal demands, presenting the resulting projects, and helping establish a basic software
+		development process.
+	</li>
+</ul>
+
+<h2>Talks &amp; Interviews</h2>
+<ul>
+	<li>
+		<strong>Cognition Champions Summit</strong> — Cognition's headquarters, San Francisco, June
+		2026. For its first Champions Summit, Cognition brought together twenty of its top Devin users
+		from around the world — teams already running Devin in production on migrations, internal
+		tooling and automation — for a day of workshops on the workflows that matter most to each of
+		them. I was one of the twenty, and I speak in the
+		<a
+			href="https://www.youtube.com/watch?v=CHHtsJGivE4&amp;t=109s"
+			target="_blank"
+			rel="noopener noreferrer"
+			>summit video, from 1:49</a
+		>, about what made the day useful: sessions where the real problems with the product
+		were discussed as openly as the solutions we had found for them.
+	</li>
+	<li>
+		<strong>AI agents in production</strong> — second EBANX Engineering Meetup, Curitiba, November
+		2025, co-presented. On the mature and strategic use of AI agents in an
+		engineering organisation: what we measured, why it is not another hype cycle, and a live
+		build of a tested service in fifteen minutes. The meetup was not recorded, so the talk is
+		written up as
+		<a
+			href="https://www.linkedin.com/pulse/ai-agents-hype-driving-core-business-value-ebanx-brand%C3%A3o-de-sousa-gs94f"
+			target="_blank"
+			rel="noopener noreferrer"
+			>“AI Agents are Not Hype: They are Driving Core Business Value at EBANX”</a
+		>.
+	</li>
+	<li>
+		<strong>“Escolhi uma plataforma para desenvolver. E agora?”</strong> — Accessibility track, TDC
+		Florianópolis, 2018.
+		<a href="https://thedevconf.com/palestrante/marlon-brandao-de-sousa" target="_blank" rel="noopener noreferrer">Speaker profile</a>.
+	</li>
+	<li>
+		<strong>“Programar sem enxergar”</strong> —
+		<a href="https://www.hipsters.tech/programar-sem-enxergar-hipsters-82/" target="_blank" rel="noopener noreferrer">Hipsters Ponto Tech #82</a>, February 2018.
+		A conversation on whether, and how, you write software without sight.
+	</li>
+	<li>
+		<strong>“Como cegos desenvolvem software: da concepção à implementação”</strong> — DevDay, Belo
+		Horizonte, September 2017.
+		<a href="https://www.infoq.com/br/presentations/como-cegos-desenvolvem-software-da-concepcao-a-implementacao" target="_blank" rel="noopener noreferrer">Video on InfoQ Brasil</a>.
+	</li>
+	<li>
+		<strong>“O protagonismo dos deficientes visuais na área de tecnologia da informação”</strong> —
+		Digital Accessibility track, TDC Porto Alegre, 2017.
+	</li>
+	<li>
+		<strong>“Como deficientes visuais desenvolvem software — da concepção até uma implementação
+		prática”</strong> — Digital Accessibility track, TDC Porto Alegre, 2017.
+	</li>
+	<li>
+		<strong>podProgramar</strong> — interviewed on
+		<a href="https://mundopodcast.com.br/podprogramar/" target="_blank" rel="noopener noreferrer">one of Brazil's best-known programming podcasts</a>.
+	</li>
+	<li>
+		<strong>BlindTec</strong> — nearly a decade of articles, tutorials and podcast episodes on
+		assistive technology, in my
+		<a href="https://www.blindtec.com.br/blog/author/marlonsousa/" target="_blank" rel="noopener noreferrer">author archive</a>.
+	</li>
+</ul>
+<figure class="home-photo">
+	<Image
+		src={summit}
+		width={640}
+		height={427}
+		alt="Marlon in a leather armchair in a sunlit loft at Cognition's offices, one hand raised mid-sentence, talking to about eight people seated in a loose circle around him. Tall factory windows and a potted plant stand behind."
+	/>
+	<figcaption>
+		In discussion at the Cognition Champions Summit, San Francisco, June 2026. Photo by Cognition.
+	</figcaption>
+</figure>
+
+<h2>Speaking &amp; Community</h2>
+<ul>
+	<li>
+		<strong>Founder &amp; Editor-in-Chief — BlindTec:</strong> I created and lead
+		<a href="https://www.blindtec.com.br" target="_blank" rel="noopener noreferrer">BlindTec</a>,
+		Brazil's leading portal and podcast for assistive technology, publishing technical articles,
+		tutorials, and interviews on screen readers, software accessibility, and tech careers.
+	</li>
+	<li>
+		<strong>Track Coordinator — The Developer's Conference (TDC):</strong> Coordinator of the
+		Accessibility track at TDC São Paulo in 2018, and a speaker at TDC and DevDay across several
+		years. The talks are listed above.
+	</li>
+	<li>
+		<strong>EasyWay — second place, FIAP StartupOne:</strong> With a designer and two other
+		engineers, I built the prototype of an indoor location system to help people find their way
+		through complex venues such as expo centres, shopping malls, and stadiums.
+	</li>
+</ul>
+
+<h2>Areas of Interest</h2>
+<p>In the order I currently care about them:</p>
+<ul>
+	<li>
+		<strong>AI Applied to Software Engineering:</strong> What it takes for an agent to produce
+		software professionals can actually depend on — specifications, architecture set up front,
+		fast feedback loops, and gates the agent can check itself against. This includes Model Context
+		Protocol servers such as <code>screen-readers-mcp</code>, which let agents drive screen readers
+		to run automated functional tests, bringing real coverage to software that has historically
+		been checked by hand, if at all.
+	</li>
+	<li>
+		<strong>Banking Development:</strong> Core banking, card authorisation, ledgers, and payments —
+		correctness, reliability, and trust in systems where being wrong costs somebody real money.
+	</li>
+	<li>
+		<strong>Rust Development:</strong> My language of choice. I am interested in the case that
+		Rust is not only for systems work — that you can write command line tools, services, and
+		desktop applications in it at a high level of abstraction and still get the performance,
+		the deployment story, and the safety guarantees for free.
+	</li>
+	<li>
+		<strong>Open Source Development:</strong> Building in public, mostly assistive technology:
+		NVDA add-ons, screen reader ergonomics, and tools the accessibility community can pick up and
+		use without asking anyone's permission.
+	</li>
+</ul>
+
+<h2>Education</h2>
+<ul>
+	<li><strong>Postgraduate MBA in Mobile &amp; Game Development (2016–2017):</strong> <a href="https://www.fiap.com.br" target="_blank" rel="noopener noreferrer">FIAP</a></li>
+	<li><strong>Technologist in IT Management (2011–2013):</strong> <a href="https://www.unisul.br" target="_blank" rel="noopener noreferrer">Unisul</a></li>
+	<li><strong>Technical Diploma in Data Processing (2002–2003):</strong> Etec Lauro Gomes</li>
+</ul>
+
+<h2>Explore the Site</h2>
+<ul>
+	<li>Read my articles and article series on the <a href={localeUrl('/blog/', 'en')}>Blog</a>.</li>
+	<li>Discover my open-source projects on the <a href={localeUrl('/projects/', 'en')}>Projects</a> page.</li>
+	<li>Download the latest add-on builds on the <a href={localeUrl('/releases/', 'en')}>Releases</a> page.</li>
+	<li>Search all content using the <a href={localeUrl('/search/', 'en')}>Search</a> page.</li>
+</ul>
+
+<h2>Get in Touch</h2>
+<p>
+	The best way to reach me is email: <a href={`mailto:${SITE_EMAIL}`}>{SITE_EMAIL}</a>. Questions
+	about anything I have written, corrections, or an accessibility problem you have run into — all
+	welcome.
+</p>
+<p>
+	You will also find me on <a href="https://github.com/marlon-sousa">GitHub</a>, where the issues
+	and discussions are open. And every article here has a comment box at the bottom.
+</p>

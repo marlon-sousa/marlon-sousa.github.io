@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Search from 'astro-pagefind/components/Search.astro';
+import { SITE_TITLE } from '../../consts';
+import { localeRoutes } from '../../lib/posts';
+import type { Locale } from '../../i18n/config';
+import { useTranslations } from '../../i18n/ui';
+
+export const getStaticPaths = localeRoutes;
+
+const { locale } = Astro.props as { locale: Locale };
+const t = useTranslations(locale);
+
+// Pagefind builds one index per language, keyed off the `lang` attribute of the
+// page it indexed, and its UI picks the index — and its own labels — from the
+// `lang` of the page it is embedded in. Both are now correct per page, so the
+// Portuguese search box searches the Portuguese articles and says "Buscar",
+// without either being configured here. That is also why <html lang> had to be
+// real rather than a hardcoded "en": search results were the thing that would
+// have broken quietly.
+---
+
+<BaseLayout
+	title={t('site.pageTitle', { page: t('search.title'), site: SITE_TITLE })}
+	description={t('search.description')}
+	width="wide"
+	searchable={false}
+>
+	<h1>{t('search.heading')}</h1>
+	<p>{t('search.intro')}</p>
+
+	<Search className="pagefind-ui" />
+</BaseLayout>

@@ -1,0 +1,64 @@
+---
+// A link to an article, in whichever language the reader can actually have it.
+//
+// This is the one place the site renders that rule, so that every listing obeys
+// it the same way: the reader's own language where the article exists in it, and
+// English otherwise — never silently, always said out loud.
+//
+// The marker goes *inside* the anchor because that puts it in the link's
+// accessible name. Somebody moving through a page link by link hears "part four
+// — six jobs, one night, no code, in English" and can decide before following
+// it. `hreflang` is set too, but it is for search engines: no screen reader
+// announces it, so it is not on its own a way of telling anybody anything.
+//
+// The link text is deliberately *not* wrapped in `lang`. It is often a label
+// composed in the reader's language around a title in another one — "Próxima —
+// parte 4: Six jobs, one night, no code" — and tagging the whole string as
+// English would make a screen reader mispronounce the Portuguese half of it.
+// Marking only the title would need the two passed separately, which is a lot of
+// plumbing for a nicety; the visible marker is what does the real work.
+//
+// plugins/remark-article-links.mjs applies the same rule to `article:` links
+// written in prose, for the same reasons, and has to state them again because it
+// runs inside the Markdown pipeline and cannot import any of this.
+import { postUrl, type Readable } from '../lib/posts';
+import { getLocale, languageName, localeMeta } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+	article: Readable;
+	/** Defaults to the article's title. Pass a composed label to override it. */
+	label?: string;
+	rel?: string;
+}
+
+const { article, label, rel } = Astro.props;
+const { post, locale: articleLocale, fallback } = article;
+
+const locale = getLocale(Astro.url);
+const t = useTranslations(locale);
+---
+
+<a href={postUrl(post)} rel={rel} hreflang={fallback ? localeMeta[articleLocale].tag : undefined}>
+	{label ?? post.data.title}{
+		fallback && (
+			<>
+				{' '}
+				<span class="in-other-language">
+					{t('lang.fallback', { language: languageName(articleLocale, locale) })}
+				</span>
+			</>
+		)
+	}
+</a>
+
+<style>
+	/* Quieter than the title it follows, but not decoration: it changes what the
+	   link does, so it stays at a size and contrast that can be read. */
+	.in-other-language {
+		font-size: 0.75em;
+		font-weight: 400;
+		color: rgb(var(--gray));
+		white-space: nowrap;
+	}
+</style>

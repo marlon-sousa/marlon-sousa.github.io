@@ -7,22 +7,40 @@ import Giscus from '../components/Giscus.astro';
 import SeriesBadge from '../components/SeriesBadge.astro';
 import SeriesPager from '../components/SeriesPager.astro';
 import { tagUrl, type SeriesNav } from '../lib/posts';
+import { getLocale, type Locale } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
 
 // The post's own frontmatter, plus its place in a series when it has one.
 // Standalone posts pass no `nav` and render exactly as they did before.
-type Props = CollectionEntry<'blog'>['data'] & { nav?: SeriesNav; ogImage?: string };
+type Props = CollectionEntry<'blog'>['data'] & {
+	nav?: SeriesNav;
+	ogImage?: string;
+	/** Locale → path for the languages this article has been written in. */
+	translations?: Partial<Record<Locale, string>>;
+};
 
-const { title, description, pubDate, updatedDate, heroImage, tags, draft, nav, ogImage } =
+const { title, description, pubDate, updatedDate, heroImage, tags, draft, nav, ogImage, translations } =
 	Astro.props;
+
+const locale = getLocale(Astro.url);
+const t = useTranslations(locale);
 
 // The browser tab, the bookmark and the shared link all show this rather than
 // the <h1>, so a part of a series names its series and its position. No total:
 // the outline is one click away on the series page, and a count in every tab
 // title ages badly — it changes for every article whenever a part is added.
-const pageTitle = nav ? `${nav.series.title} — part ${nav.part}: ${title}` : title;
+const pageTitle = nav
+	? t('post.pageTitle', { series: nav.series.title, part: nav.part, title })
+	: title;
 ---
 
-<BaseLayout title={pageTitle} description={description} image={heroImage} ogImage={ogImage}>
+<BaseLayout
+	title={pageTitle}
+	description={description}
+	image={heroImage}
+	ogImage={ogImage}
+	translations={translations}
+>
 	<article>
 		{
 			heroImage && (
@@ -33,20 +51,18 @@ const pageTitle = nav ? `${nav.series.title} — part ${nav.part}: ${title}` : t
 		}
 		<div class="title">
 			{nav && <SeriesBadge nav={nav} />}
-			{
-				draft && (
-					<p class="draft-notice">
-						Draft — this is unfinished and is not published on the live site.
-					</p>
-				)
-			}
+			{draft && <p class="draft-notice">{t('post.draftNotice')}</p>}
 			<h1>{title}</h1>
 			<p class="date">
 				<FormattedDate date={pubDate} />
 				{
 					updatedDate && (
 						<span class="last-updated-on">
-							(last updated on <FormattedDate date={updatedDate} />)
+							{/* Split around the date so it stays a <time> element rather
+							    than a string baked into a sentence. */}
+							{t('post.lastUpdated', { date: '{date}' }).split('{date}')[0]}
+							<FormattedDate date={updatedDate} />
+							{t('post.lastUpdated', { date: '{date}' }).split('{date}')[1]}
 						</span>
 					)
 				}
@@ -54,11 +70,11 @@ const pageTitle = nav ? `${nav.series.title} — part ${nav.part}: ${title}` : t
 			{
 				tags && tags.length > 0 && (
 					<p class="tags">
-						Tagged:{' '}
+						{t('post.tagged')}{' '}
 						{tags.map((tag, index) => (
 							<>
 								{index > 0 && ', '}
-								<a href={tagUrl(tag)}>{tag}</a>
+								<a href={tagUrl(tag, locale)}>{tag}</a>
 							</>
 						))}
 					</p>

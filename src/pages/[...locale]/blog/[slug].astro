@@ -1,0 +1,47 @@
+---
+import { render } from 'astro:content';
+import BlogPost from '../../../layouts/BlogPost.astro';
+import {
+	getAllPosts,
+	getSeriesNav,
+	getTranslations,
+	postLocale,
+	postOgPath,
+	postSlug,
+} from '../../../lib/posts';
+import { defaultLocale, type Locale } from '../../../i18n/config';
+
+// One route per article per language. The slug is the file name with the locale
+// directory taken off, so a Portuguese article is served from the Portuguese
+// path under its own translated name — /pt/blog/o-terminal-que-eu-nao-conseguia-construir/
+// rather than the English slug with a prefix bolted on.
+export async function getStaticPaths() {
+	const posts = await getAllPosts();
+	return posts.map((post) => {
+		const locale = postLocale(post);
+		return {
+			params: {
+				locale: locale === defaultLocale ? undefined : locale,
+				slug: postSlug(post),
+			},
+			props: { post },
+		};
+	});
+}
+
+// No `Props` interface here on purpose. This page's props come from
+// getStaticPaths above, and Astro infers `Astro.props` from that return type —
+// declaring the shape a second time would be a copy that TypeScript never
+// checks against the original, and `astro check` calls it out as unused.
+const { post } = Astro.props;
+const { Content } = await render(post);
+const nav = await getSeriesNav(post);
+
+// Only the languages this particular article exists in. An article nobody has
+// translated yet advertises no alternate and shows no switcher.
+const translations = (await getTranslations(post)) as Partial<Record<Locale, string>>;
+---
+
+<BlogPost {...post.data} nav={nav} ogImage={postOgPath(post)} translations={translations}>
+	<Content />
+</BlogPost>

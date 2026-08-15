@@ -59,7 +59,10 @@ const server = createServer(async (req, res) => {
 await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
 const origin = `http://127.0.0.1:${server.address().port}`;
 
-const pages = await findPages();
+// 404.html is not an index.html and so is invisible to findPages, but it is a
+// real page a real reader lands on — and the one most likely to be reached by
+// somebody already having a bad time. It gets tested like everything else.
+const pages = [...(await findPages()), '/404.html'];
 const browser = await chromium.launch();
 let violations = 0;
 

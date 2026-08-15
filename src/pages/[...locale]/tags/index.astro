@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { SITE_TITLE } from '../../../consts';
+import { getTagListings, localeRoutes, tagUrl } from '../../../lib/posts';
+import type { Locale } from '../../../i18n/config';
+import { useTranslations } from '../../../i18n/ui';
+
+export const getStaticPaths = localeRoutes;
+
+const { locale } = Astro.props as { locale: Locale };
+const t = useTranslations(locale);
+
+const tags = await getTagListings(locale);
+---
+
+<BaseLayout
+	title={t('site.pageTitle', { page: t('tags.title'), site: SITE_TITLE })}
+	description={t('tags.description')}
+	searchable={false}
+>
+	<h1>{t('tags.title')}</h1>
+	<p>{t('tags.intro')}</p>
+
+	{
+		tags.length === 0 ? (
+			<p>{t('tags.empty')}</p>
+		) : (
+			<ul class="tag-list">
+				{tags.map(({ tag, posts }) => (
+					<li>
+						<a href={tagUrl(tag, locale)}>{tag}</a>{' '}
+						<span class="count">({t.n('tags.count', posts.length)})</span>
+					</li>
+				))}
+			</ul>
+		)
+	}
+</BaseLayout>
+
+<style>
+	.tag-list {
+		margin: 0;
+		padding-left: 1.5rem;
+	}
+	.tag-list > li {
+		margin-bottom: 0.4rem;
+	}
+	.count {
+		color: rgb(var(--gray));
+	}
+</style>

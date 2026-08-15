@@ -1,0 +1,25 @@
+---
+// The About page. Structure here, words in a component per language.
+//
+// This is the one page whose body is duplicated rather than driven from a string
+// table, and deliberately: it is several hundred words of prose with links and
+// image descriptions threaded through it, and pulling that through placeholders
+// would make both versions unreadable in the editor to save a duplication
+// nobody was suffering from.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HomeEn from '../../components/home/HomeEn.astro';
+import HomePt from '../../components/home/HomePt.astro';
+import { localeRoutes } from '../../lib/posts';
+import type { Locale } from '../../i18n/config';
+import { useTranslations } from '../../i18n/ui';
+import '../../styles/home.css';
+
+export const getStaticPaths = localeRoutes;
+
+const { locale } = Astro.props as { locale: Locale };
+const t = useTranslations(locale);
+---
+
+<BaseLayout title={t('site.homeTitle')} description={t('site.description')}>
+	{locale === 'pt' ? <HomePt /> : <HomeEn />}
+</BaseLayout>

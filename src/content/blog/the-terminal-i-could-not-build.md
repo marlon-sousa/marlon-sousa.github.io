@@ -95,8 +95,6 @@ anything bigger gets announced as big and signalled with a beep, so you are
 keystroke drops into real terminal emulation for when you need `nano` or anything
 else built on curses.
 
-Rust, Tauri 2 — an HTML frontend over WebView2 — Windows first.
-
 Let me make that concrete, because "each command is a heading" is one of those
 sentences that means nothing at all until you have heard it.
 
@@ -141,6 +139,8 @@ exactly where the heading said it would.
 That is the entire idea. It is not clever. It is a structure that has existed on
 the web for twenty-five years, applied to the one place I spend my working day
 where nobody had bothered to apply it.
+
+Rust, Tauri 2 — an HTML frontend over WebView2 — Windows first.
 
 ## So why didn't I build it years ago?
 

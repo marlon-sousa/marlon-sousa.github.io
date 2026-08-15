@@ -1,4 +1,7 @@
 ---
+import { getLocale, localeMeta } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+
 // Comments powered by Giscus (GitHub Discussions).
 //
 // The category is "Announcements" rather than a custom one because only
@@ -20,13 +23,21 @@ const GISCUS = {
 	categoryId: 'DIC_kwDOPBVKs84DC1B4',
 };
 
+//
+// `data-mapping="pathname"` means the two language versions of an article carry
+// two separate threads, because they are two separate paths. That is the right
+// answer rather than a limitation: a reader who comments in Portuguese under the
+// Portuguese article is talking to the people reading it.
 const isConfigured = Boolean(GISCUS.repoId && GISCUS.categoryId);
+
+const locale = getLocale(Astro.url);
+const t = useTranslations(locale);
 ---
 
 {
 	isConfigured && (
-		<section class="giscus-wrapper" aria-label="Comments">
-			<h2>Comments</h2>
+		<section class="giscus-wrapper" aria-label={t('post.comments')}>
+			<h2>{t('post.comments')}</h2>
 			<div class="giscus" />
 			<script
 				src="https://giscus.app/client.js"
@@ -40,7 +51,7 @@ const isConfigured = Boolean(GISCUS.repoId && GISCUS.categoryId);
 				data-emit-metadata="0"
 				data-input-position="bottom"
 				data-theme="preferred_color_scheme"
-				data-lang="en"
+				data-lang={localeMeta[locale].giscus}
 				crossorigin="anonymous"
 				is:inline
 				async

@@ -1,0 +1,95 @@
+---
+// Links to this page in the other languages it exists in.
+//
+// Only the alternatives are listed, never the language the reader is already
+// reading: a link to the page you are on is a link that does nothing, and in a
+// screen reader's link list it is indistinguishable from one that does.
+//
+// Each label is the language's own name for itself, tagged with `lang` so it is
+// spoken by a voice that can pronounce it — "Português" read with an English
+// voice is not a word anybody recognises. The accessible name around it is in
+// the language of the page being read, because that is the language the reader
+// has in front of them at the moment they choose.
+//
+// Renders nothing when this page has no translation, rather than a disabled
+// control. An article whose Portuguese version is not written yet should not
+// offer to show it.
+
+import { getLocale, languageName, localeMeta, locales, type Locale } from '../i18n/config';
+import { STORAGE_KEY } from '../i18n/preference';
+import { useTranslations } from '../i18n/ui';
+
+interface Props {
+	/** Locale → path, for the languages this page exists in. */
+	translations: Partial<Record<Locale, string>>;
+}
+
+const { translations } = Astro.props;
+const locale = getLocale(Astro.url);
+const t = useTranslations(locale);
+
+const others = locales
+	.filter((code) => code !== locale && translations[code])
+	.map((code) => ({
+		code,
+		href: translations[code] as string,
+		meta: localeMeta[code],
+		/** "Read this page in Portuguese", said in the current page's language. */
+		label: t('lang.switchTo', { language: languageName(code, locale) }),
+	}));
+---
+
+{
+	others.length > 0 && (
+		<>
+			<nav class="language-switcher" aria-label={t('lang.label')}>
+				<ul>
+					{others.map(({ code, href, meta, label }) => (
+						<li>
+							<a href={href} hreflang={meta.tag} aria-label={label} data-language={code}>
+								<span lang={meta.tag}>{meta.endonym}</span>
+							</a>
+						</li>
+					))}
+				</ul>
+			</nav>
+
+			{/*
+			  Remember the choice, so the redirect in LanguagePreference stops
+			  second guessing it on every other page. Inside the same condition as
+			  the links: a page with nothing to switch to has nothing to remember.
+
+			  The click is allowed to proceed normally — writing to localStorage is
+			  synchronous and the navigation that follows is the browser's own,
+			  which keeps middle-click and "open in new tab" working.
+			*/}
+			<script is:inline define:vars={{ storageKey: STORAGE_KEY }}>
+				document.addEventListener('click', function (event) {
+					var link = event.target instanceof Element ? event.target.closest('[data-language]') : null;
+					if (!link) return;
+					try {
+						localStorage.setItem(storageKey, link.getAttribute('data-language'));
+					} catch (error) {
+						// Storage unavailable. The link still navigates; the choice just
+						// will not survive to the next page.
+					}
+				});
+			</script>
+		</>
+	)
+}
+
+<style>
+	.language-switcher ul {
+		display: flex;
+		gap: 1em;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	.language-switcher a {
+		padding: 1em 0.5em;
+		color: rgb(var(--black));
+		text-decoration: underline;
+	}
+</style>
