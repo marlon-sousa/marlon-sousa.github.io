@@ -402,6 +402,8 @@ costing nothing and being noticed by nobody.
 That is the sort of claim that is easy to make on the night and hard to check, so
 let me check it. Today is the 30th of August. Six weeks and one day later.
 
+### The documents are still the documents
+
 - 49 merged pull requests.
 - 47 specification documents, one per unit of work, each one agreed before its
   code was written.
@@ -413,6 +415,8 @@ let me check it. Today is the 30th of August. Six weeks and one day later.
   still one word at the top of every module in the workspace.
 - The two-track plan ran the way it was drawn. Convergence happened. It was
   boring.
+
+### The size of the thing
 
 And the terminal exists. It is not finished. It works.
 
@@ -433,6 +437,8 @@ Let me put some size on that, because "it works" is cheap to say.
   WSL, and a machine somewhere else on the network. Two transports underneath
   them — the Windows console API, and an SSH client we own rather than shell out
   to, with the whole authentication flow rebuilt so a screen reader can hear it.
+
+### Did any of it drift?
 
 Then there is the question I did not expect to be able to answer with numbers at
 all: did any of it *drift*?
@@ -486,6 +492,8 @@ sessions that shared no memory with each other, because the question had been
 answered before it was ever asked — not with a map of the project, which goes
 stale, but with a procedure for classifying a module, which does not.
 
+### What broke
+
 Now the number I actually went looking for, because it is the one that would
 embarrass me if it were bad.
 
@@ -516,6 +524,8 @@ trains everybody to ignore the suite that catches what unit tests cannot. Which 
 the same discipline as the toll booth, pointed at myself: the failure got a name,
 a date and a decision to make, rather than a shrug.
 
+### "Six weeks" is doing a lot of work in that sentence
+
 And now the honesty about "six weeks", because that phrase is doing a great deal
 of work and most of it is wrong.
 
@@ -541,6 +551,8 @@ That is the claim of this whole series in one measurement. The agent did not mak
 the job easier. It made a job possible that was not possible, and the price of
 admission was one evening spent writing down what the thing was, before anybody
 was allowed to type.
+
+### The part I could not quote you
 
 One more thing, and it is the one I find genuinely striking.
 
