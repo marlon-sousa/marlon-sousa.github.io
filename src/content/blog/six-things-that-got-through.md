@@ -3,9 +3,9 @@ title: 'Six things that got through'
 description: 'Every mechanism in the previous six articles, and the six things that beat them anyway — the wrong remedy for a right diagnosis, the machine that never complains, the gate that lied about itself, and the rule I was proudest of, whose hole an agent found and was entirely right about.'
 pubDate: 'Aug 30 2026 23:00'
 series: 'you-are-now-the-whole-team'
-seriesPart: 7
+seriesPart: 8
 tags: ['ai engineering', 'ai', 'software engineering', 'rust', 'accessibility']
-draft: false
+draft: true
 ---
 
 [Last time](article:an-hour-a-day) I put numbers on all of it: 191 commits across
@@ -57,9 +57,9 @@ of documentation bought: 49 pull requests later, four documents that still
 describe the code. [Part five](article:conditions-not-instructions) showed the
 five moves that produce them. [Part six](article:an-hour-a-day) measured the lot.
 
-**The proof that a role is staffed is the mechanism, not the absence of failure.** Every one of those
-mechanisms was built at the exact moment its absence cost something. Which means
-the interesting artifact is not the mechanism. It is the thing that beat it.
+**The proof that a role is staffed is the mechanism, not the absence of failure.**
+Every one of those mechanisms was built at the exact moment its absence cost
+something. Which means the interesting artifact is not the mechanism. It is the thing that beat it.
 
 Each of the six below gets four beats, in this order:
 

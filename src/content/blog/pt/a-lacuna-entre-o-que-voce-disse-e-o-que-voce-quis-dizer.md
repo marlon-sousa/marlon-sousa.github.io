@@ -1,118 +1,120 @@
 ---
 title: 'A lacuna entre o que você disse e o que você quis dizer'
-description: 'A extrapolação é toda a razão de você usar um agente, e todo o risco de usar um, porque são o mesmo mecanismo. Então a pergunta nunca é como impedi-la — é onde ela deve ser ampla e onde precisa ser estreita.'
+description: 'A extrapolação é toda a razão para você usar um agente — e todo o risco de usá-lo, porque os dois são o mesmo mecanismo. Então a pergunta nunca é como impedi-la: é onde ela deve ser ampla e onde precisa ser estreita.'
 pubDate: 'Aug 13 2026 22:00'
 translationOf: 'the-gap-between-what-you-said-and-what-you-meant'
 series: 'you-are-now-the-whole-team'
 seriesPart: 3
 tags: ['engenharia com ia', 'ia', 'engenharia de software']
-draft: true
+draft: false
 ---
 
-[Da última vez](/pt/blog/o-terminal-que-eu-nao-conseguia-construir/) eu te contei
-sobre um terminal que eu queria havia anos, por que eu nunca consegui construí-lo,
-e por que um agente é a razão de ele existir. E então eu te deixei
-com uma recusa: eu tinha a ferramenta, tinha o desenho na cabeça, e não pedi que
-ele começasse a escrever.
+[Da última vez](article:the-terminal-i-could-not-build) falei sobre um terminal
+que eu queria havia anos, por que nunca tinha conseguido tirá-lo do papel e por
+que um agente é a razão de ele existir. E terminei com uma recusa: eu tinha a
+ferramenta, tinha o design na cabeça, e não pedi que ele saísse escrevendo
+código.
 
-Deixe eu explicar essa recusa agora, porque ela é a fundação de todo o resto que
-eu vou escrever, e é a coisa que eu quase nunca vejo explicada em lugar nenhum.
+Vou explicar essa recusa agora, porque ela é a base de tudo o que vou escrever
+daqui em diante, e é o tipo de coisa que quase nunca vejo alguém explicando por
+aí.
 
-Vamos falar de extrapolação.
+Vamos falar sobre extrapolação.
 
-(Se você chegou aqui sem contexto, tudo bem. Tudo de que você precisa é da
-afirmação que eu fico repetindo: que construir software profissional com um agente
-pede *mais* de você, não menos. O que vem a seguir é o mecanismo por trás disso, e
-se sustenta sozinho.)
+(Se você caiu aqui de paraquedas, tranquilo. Você só precisa da afirmação que
+fico repetindo: que construir software profissional com um agente pede *mais* de
+você, não menos. O que vem a seguir é a engrenagem por trás disso, e ela se
+sustenta sozinha.)
 
-## Por que você usa um agente afinal
+## Por que você usa um agente, afinal
 
-Comece por uma pergunta que soa boba: para que serve um agente, de fato?
+Vamos começar com uma pergunta que parece boba: para que serve um agente, na
+prática?
 
-A resposta óbvia é "ele escreve o código para eu não ter que escrever". Verdade,
-mas não é útil. Vamos descer um nível.
+A resposta óbvia é "ele escreve o código para eu não precisar escrever".
+Verdade, mas pouco útil. Vamos descer um nível.
 
-Você descreve alguma coisa. O agente produz alguma coisa. E o que ele produz é
-sempre, inevitavelmente, **mais específico do que o que você descreveu.**
+Você descreve algo. O agente gera algo. E o que ele gera é sempre,
+inevitavelmente, **mais específico do que o que você descreveu.**
 
-Você disse "adiciona uma tela de configurações". Você não disse o que acontece
-quando um valor é inválido, onde o arquivo é guardado, se ele salva ao mudar ou ao
-fechar, o que a mensagem de erro diz, ou se a coisa toda é uma struct ou cinco.
-Mas o código tem que responder todas essas perguntas, porque código não pode ser
-vago. Então o agente decidiu, vinte ou trinta vezes, no espaço entre a sua frase e
-o arquivo que ele escreveu.
+Você disse "adicione uma tela de configurações". Não disse o que acontece quando
+um valor é inválido, onde o arquivo é salvo, se ele grava ao mudar ou ao fechar,
+o que a mensagem de erro diz, ou se a coisa toda é uma struct ou cinco. Mas o
+código precisa responder a todas essas perguntas, porque código não aceita
+ambiguidade. Então o agente tomou vinte ou trinta decisões no espaço entre a sua
+frase e o arquivo que ele escreveu.
 
-Esse espaço — entre o que você disse e o que você quis dizer — é o produto inteiro.
-É isso que você está comprando. Vamos chamar de **extrapolação** o ato de
-preenchê-lo.
+Esse espaço — entre o que você disse e o que você *quis* dizer — é o produto
+inteiro. É isso que você está comprando. Vamos chamar esse preenchimento de
+**extrapolação**.
 
-E agora a parte que vale a pena ficar remoendo:
+E agora a parte que vale a pena remoer:
 
 > **Se um agente não pudesse extrapolar, ele seria inútil para você.**
 
-Pense. Se você tivesse que enunciar cada regra, cada ramo, cada convenção, cada
-caso de erro, de forma exaustiva e sem ambiguidade, para que nada fosse deixado
-para ser inferido... você não estaria escrevendo um prompt. Você estaria
-*programando*. É isso que programar sempre foi: fechar essa lacuna até zero, à
-mão, em uma linguagem que não consegue te ler errado.
+Pense comigo. Se você tivesse que declarar cada regra, cada ramificação, cada
+convenção, cada caso de erro de forma exaustiva e inequívoca, sem deixar nada
+para ser inferido... você não estaria fazendo prompt. Estaria *programando*.
+Programar sempre foi isso: fechar essa lacuna até o zero, à mão, numa linguagem
+incapaz de interpretar você mal.
 
-Então a extrapolação não é um efeito colateral de usar um agente. É todo o valor.
+Portanto, a extrapolação não é um efeito colateral de usar um agente. É todo o
+valor.
 
-O que significa — e essa é a parte que levou um tempo para eu entender — que
-**ela é também todo o risco, exatamente pela mesma razão.** Você não pode ter uma
-sem a outra. Não existe uma configuração que te dê inferência útil e nenhuma
-inferência indesejada, porque são o mesmo mecanismo.
+O que significa — e essa foi a ficha que demorei um pouco para virar — que **ela
+é também o risco inteiro, exatamente pelo mesmo motivo.** Não dá para ter um lado
+sem o outro. Não existe configuração que entregue a inferência útil sem trazer a
+inferência indesejada junto, porque as duas são o mesmo mecanismo.
 
-## Um agente sem limites não extrapola um pouquinho
+## Um agente sem limites não extrapola "só um pouquinho"
 
-É aqui que dá errado.
+É aqui que a coisa desanda.
 
-Suponha que você dê a um agente uma tarefa e mais nada. Ele não vai
-cuidadosamente extrapolar as coisas pequenas e deixar as grandes em paz. Por que
-faria isso? Ele não tem como saber qual é qual. Então ele extrapola *tudo* — a
-arquitetura, as camadas, os nomes, o tratamento de erro, para que serve um teste,
-se isso merece um arquivo novo, se aquela duplicação importa.
+Suponha que você dê uma tarefa a um agente e mais nada. Ele não vai extrapolar
+com cuidado as coisas pequenas e deixar as grandes em paz. Por que faria isso?
+Ele não tem como saber a diferença. Então ele extrapola *tudo* — a arquitetura,
+as camadas, a nomenclatura, o tratamento de erros, o propósito de um teste, se
+aquilo merece um arquivo novo ou se aquela duplicação de código importa.
 
-Com confiança. Educadamente. De um jeito que se lê bem.
+Com confiança. Com educação. De um jeito que se lê bem.
 
-E eu quero defendê-lo por um momento, porque a reação usual aqui é tratar isso
-como um defeito da máquina, e não é.
+E quero defendê-lo por um instante, porque a reação normal é tratar isso como um
+defeito da máquina — e não é.
 
-Pegue um bom engenheiro — um genuinamente bom — e solte-o em um repositório que
-ele nunca viu, com um chamado de uma linha, nenhuma convenção escrita e ninguém a
-quem perguntar. O que você recebe? Você recebe vinte decisões que você nunca
-mencionou, cada uma localmente razoável, várias delas erradas para a *sua* base de
-código de um jeito que vai te custar em três semanas.
+Pegue um bom engenheiro — um genuinamente bom — e solte-o num repositório que ele
+nunca viu na vida, com um ticket de uma linha, nenhuma convenção documentada e
+ninguém a quem perguntar. O que você recebe? Vinte decisões que você nunca
+mencionou, cada uma localmente razoável, mas várias erradas para a *sua* base de
+código de um jeito que vai cobrar o preço daqui a três semanas.
 
-A gente chama isso de defeito de caráter? Não. A gente chama de onboarding que
-faltou. É a mesma coisa aqui.
+A gente chama isso de falha de caráter do dev? Não. Chama de falta de
+*onboarding*. Com o agente é a mesma coisa.
 
-Deixe eu colocar de outro jeito, porque eu gosto de explicar as coisas pela vida
-comum.
+Vou colocar de outro jeito, porque gosto de explicar as coisas pela vida comum.
 
-Você pede a alguém que arrume a sua cozinha. Se a pessoa for boa, ela vai tomar
-decisões que você não mencionou — vai notar a panela queimada que você esqueceu e
-esfregá-la, vai jogar fora aquilo no fundo da geladeira que virou um projeto de
-ciências. Excelente. É por isso que você chamou uma pessoa e não um braço robótico
-parafusado na bancada. Se você tivesse que especificar cada uma dessas coisas,
-teria simplesmente arrumado a cozinha você mesmo.
+Você pede a alguém para dar uma geral na sua cozinha. Se a pessoa for boa, vai
+tomar decisões que você nem mencionou: vai notar a panela queimada que você tinha
+esquecido e esfregar até sair, vai jogar fora aquele pote no fundo da geladeira
+que virou projeto de ciências. Excelente. Foi por isso que você chamou uma pessoa,
+e não um braço robótico parafusado no balcão. Se tivesse que especificar cada um
+desses detalhes, você mesmo já teria arrumado a cozinha.
 
-Mas ela também vai decidir em qual armário as panelas moram.
+Mas ela também vai decidir em qual armário as panelas vão ficar.
 
-E essa decisão não é obviamente errada quando ela a toma. Pode até ser melhor que
-o seu arranjo, objetivamente. Ainda assim é cara, porque outras três pessoas
-naquela casa têm memória muscular, e você vai pagar por isso toda manhã por um
-mês, e ninguém vai ligar o custo de volta à arrumação.
+E essa decisão não parece errada no momento em que é tomada. Pode até ser
+objetivamente melhor que o seu arranjo anterior. Ainda assim sai caro, porque
+outras três pessoas naquela casa têm memória muscular, e você paga por isso toda
+manhã durante um mês, e ninguém liga o custo de volta à arrumação.
 
-Mesmo ato. Mesma competência. Consequências completamente diferentes. A diferença
-não é *quanto* a pessoa extrapolou — é *onde*.
+Mesmo ato. Mesma competência. Consequências totalmente diferentes. A diferença
+não é o *quanto* extrapolaram — é *onde*.
 
-## Então a pergunta nunca é "como eu impeço isso"
+## Então a pergunta nunca é "como impedir isso?"
 
-As pessoas tentam. Escrevem prompts mais longos, acrescentam "não faça nada que eu
-não pedi", ficam frustradas. Mas você não pode pedir inferência e não-inferência ao
-mesmo tempo, e se conseguisse estaria apenas programando de novo, devagar, em
-inglês.
+As pessoas tentam. Escrevem prompts gigantescos, colocam "não faça nada além do
+que pedi", ficam frustradas. Mas não dá para pedir inferência e ausência de
+inferência ao mesmo tempo — e se você conseguisse, estaria apenas programando de
+novo, devagar, em inglês.
 
 A pergunta de verdade é esta:
 
@@ -121,83 +123,84 @@ A pergunta de verdade é esta:
 **Ampla** é onde você a quer. Resolvendo o problema. Escolhendo o algoritmo.
 Notando o caso em que você não tinha pensado. Esfregando a panela.
 
-**Estreita** é onde errar é caro e difícil de enxergar. A arquitetura. As camadas.
-O que "pronto" significa. O que não pode ser mudado sem uma conversa. Em qual
-armário as panelas moram.
+**Estreita** é onde errar custa caro e é difícil de perceber. A arquitetura. As
+camadas. O que "pronto" significa. O que não pode mudar sem uma conversa. Em qual
+armário as panelas vão ficar.
 
-E eis a consequência desconfortável, aquela sobre a qual todo o resto que eu
-escrevo aqui de fato trata: **essa decisão tem que ser tomada com antecedência.**
-Quando ela importa, o código já está escrito. Você não consegue revisar o seu
-caminho para fora dela, porque revisar mil decisões localmente razoáveis não é uma
-coisa que uma pessoa cansada faz numa terça à noite.
+E aí vem a consequência desconfortável, aquela sobre a qual tudo o que escrevo
+aqui trata, de verdade: **essa decisão precisa ser tomada com antecedência.**
+Quando ela passa a importar, o código já está escrito. Não dá para resolver isso
+no *code review*, porque revisar mil decisões localmente razoáveis não é algo que
+uma pessoa cansada consiga fazer numa terça-feira à noite.
 
-## Como "estreita" se parece na prática
+## O que "estreita" quer dizer na prática
 
-Deixe eu parar de ser abstrato, porque "estabeleça um limite" é o tipo de conselho
-que soa sábio e não te diz nada.
+Vou parar de ser abstrato, porque "defina um limite" é o tipo de conselho que soa
+sábio e não diz nada.
 
-Aqui está um de verdade. Está no `CLAUDE.md` do `acter`, que é o arquivo que o
-agente lê no começo de toda sessão, e estava lá desde a primeira noite. (Estes
-arquivos são escritos em inglês, que é o idioma em que eu trabalho com os agentes,
-e estão citados aqui exatamente como estão no repositório.)
+Aqui vai um exemplo real. Está no `CLAUDE.md` do `acter`, o arquivo que o agente
+lê no começo de toda sessão, e esteve lá desde a primeira noite. Esses arquivos
+vivem em inglês — o idioma em que trabalho com os agentes — e as citações a
+seguir estão reproduzidas exatamente como aparecem:
 
 > Items marked **Decided** in the docs are settled. Do not relitigate them
 > silently; to change one, propose it explicitly and update the doc in the same
 > PR that implements the change.
 
-Três linhas. Deixe eu abrir por que elas estão ali, porque a razão não é a que
-você adivinharia.
+Três linhas. Vou abrir o porquê de estarem ali, porque a razão não é a que você
+imagina.
 
-Não está ali porque o agente seja desobediente. Está ali porque o agente é
-*prestativo*, e prestativo é o problema.
+Não está ali porque o agente é desobediente. Está ali porque o agente é
+*prestativo* — e prestativo é o problema.
 
-Pense em como uma sessão se parece do lado da máquina. Ela chega sem memória
+Pense em como uma sessão funciona do lado da máquina. Ela chega sem memória
 nenhuma da discussão que tivemos na terça passada. Lê o código, vê uma decisão de
-projeto e — sendo boa no que faz — nota que existe uma alternativa razoável. De
-onde ela está, aquela questão está genuinamente aberta. Então ela a levanta.
-Educadamente. Com um raciocínio decente.
+design e — sendo boa no que faz — nota que existe uma alternativa razoável. Do
+ponto de vista dela, aquela questão está genuinamente aberta. Então ela levanta o
+assunto. Educadamente. Com um raciocínio decente.
 
 E vai fazer isso de novo na próxima sessão. E na seguinte. Cada uma dessas
-conversas te custa tempo e atenção e, pior, mais cedo ou mais tarde você vai estar
-cansado e vai dizer "tá bom, tudo bem", e uma decisão que você achava resolvida vai
-silenciosamente virar outra coisa, de um jeito que ninguém nunca revisou.
+conversas custa tempo e atenção e, pior, mais cedo ou mais tarde você vai estar
+cansado e vai dizer "tá bom, pode ser", e uma decisão que você achava consolidada
+vira silenciosamente outra coisa, de um jeito que ninguém nunca revisou.
 
-É isso que a regra fecha. Não "o agente tem que me obedecer". Algo bem mais
-estreito: **esta questão não está aberta, e aqui é onde olhar para descobrir quais
-estão.**
+É isso que a regra fecha. Não um "o agente tem que me obedecer". Algo bem mais
+estreito: **esta questão não está aberta, e é aqui que você olha para descobrir
+quais estão.**
 
-Agora leia a segunda metade dela de novo, porque essa é a parte que eu defenderia
-com mais força:
+Agora leia de novo a segunda metade, porque é a parte que eu defenderia com mais
+força:
 
 > to change one, propose it explicitly and update the doc in the same PR that
 > implements the change.
 
-Não é uma tranca. É um pedágio. Você está explicitamente autorizado a mudar uma
-coisa Decidida — só precisa fazer isso onde alguém possa ver, e pagar por isso
-atualizando o documento no mesmo fôlego que o código. O que significa que o
-documento não pode se afastar do que o código de fato faz, porque os dois se movem
-juntos ou não se movem.
+Não é um bloqueio. É um pedágio. Você está explicitamente autorizado a mudar algo
+Decidido — só tem que fazer isso de forma visível e pagar o preço atualizando o
+documento no mesmo fôlego que o código. O que significa que o documento não
+consegue se descolar do que o código de fato faz, porque os dois andam juntos ou
+não andam.
 
-De volta à cozinha: a regra não é *nunca mude as panelas de lugar*. A regra é **se
-você mudar as panelas de lugar, avise a casa e deixe um bilhete no armário.**
+Voltando à cozinha: a regra não é *nunca mude as panelas de lugar*. A regra é **se
+mudar as panelas de lugar, avise a casa e deixe um bilhete no armário.**
 
-## A metade que eu demorei muito mais para aprender
+## A metade que demorei muito mais para aprender
 
-Então você traça um limite. Ótimo. Você ainda vai passar por maus bocados, eu te
-garanto — porque eu tinha traçado vários e ainda estava passando.
+Então você traça um limite. Ótimo. Eu garanto: você ainda vai passar raiva —
+porque eu tinha traçado vários e continuava passando.
 
-Eis o que estava me faltando:
+Eis o que me faltava:
 
-> **Um limite que o agente não consegue conferir não é um limite. É um desejo.**
+> **Um limite que o agente não consegue verificar não é um limite. É apenas um
+> desejo.**
 
-Ele não pode corrigir o que não consegue ver. Se "isto está correto?" é respondido
-pelo julgamento do próprio agente, então a resposta vai ser o julgamento do
-próprio agente, oferecido com sinceridade, e você vai descobrir quanto ele valia
+Ele não corrige o que não enxerga. Se a resposta para "isso está correto?" vem do
+julgamento do próprio agente, então a resposta vai ser o julgamento do próprio
+agente, com toda a sinceridade do mundo — e você só vai descobrir quanto ele valia
 bem mais tarde.
 
-A formulação mais afiada disso não é minha — é uma regra que acabou no `AGENTS.md`
-do `screen-readers-mcp`, e eu acho que é a melhor frase de qualquer um dos dois
-repositórios:
+Quem disse isso do jeito mais afiado não fui eu — é uma regra que acabou no
+`AGENTS.md` do `screen-readers-mcp`, e acho que é a melhor frase de qualquer um
+dos dois repositórios:
 
 > **`uv run poe dev` is the gate. Nothing is "done", "working" or "verified"
 > until it has passed, and you ran it.** Not a suite you picked, not the tests you
@@ -205,59 +208,55 @@ repositórios:
 > the single most expensive mistake made in this repo, because the subset is
 > always chosen by the same reasoning that wrote the bug.
 
-Leia devagar aquela última oração — *the subset is always chosen by the same
-reasoning that wrote the bug* — porque eu levei um tempo constrangedor para
-enxergá-la:
+Leia devagar essa última frase, porque levei um tempo constrangedor para enxergar
+o que ela diz:
 
-**o subconjunto é sempre escolhido pelo mesmo raciocínio que escreveu o defeito.**
+**the subset is always chosen by the same reasoning that wrote the bug.**
 
-Se um modelo entendeu errado o que você queria, ele não entende errado apenas
-enquanto escreve o código. Ele entende errado enquanto escolhe quais testes rodar,
-e enquanto decide quais deles importavam, e enquanto resume o resultado para você.
-O mal-entendido está a montante de tudo isso. Então ele vai escolher as
-verificações que concordam com ele, rodá-las, vê-las passar, e te dizer —
-honestamente, sem nenhuma intenção de enganar — que está tudo bem.
+Se um modelo entendeu errado o que você queria, ele não entende errado só
+enquanto escreve o código. Entende errado também enquanto escolhe quais testes
+rodar, enquanto decide quais deles importavam e enquanto resume o resultado para
+você. O mal-entendido está na raiz de tudo isso. Então ele escolhe as verificações
+que concordam com ele, roda, vê passar e te diz — honestamente, sem a menor
+intenção de enganar — que está tudo certo.
 
-Isso não é mentir. É um laço fechado. E você não conserta um laço fechado pedindo
-que ele tenha mais cuidado, porque o cuidado está dentro do laço.
+Isso não é mentir. É um ciclo fechado. E não se conserta um ciclo fechado pedindo
+"mais cuidado", porque o cuidado está dentro do próprio ciclo.
 
-A única correção é fazer a verificação vir de **fora** do raciocínio que está
-sendo verificado. Um comando, definido com antecedência, cujo conteúdo o agente não
-pôde escolher, e que ele precisa rodar e reportar. É só isso que "verde"
+A única saída é a verificação vir de **fora** do raciocínio que está sendo
+verificado. Um comando, definido de antemão, cujo conteúdo o agente não pode
+escolher, e que ele é obrigado a rodar e reportar. É só isso que "verde"
 significa. É por isso que o `acter` tinha integração contínua já na primeira
 noite, antes de existir uma única linha de código de aplicação para ela testar.
 
-O que, se você me permitir mais uma viagem ao avião: é por isso que um piloto tem
-instrumentos em vez de uma sensação. Dentro da nuvem, o seu próprio corpo vai te
-dizer, com confiança e continuamente, que você está voando reto e nivelado
-enquanto, de fato, você está em uma espiral suave. O instrumento não está ali
-porque pilotos sejam descuidados. Está ali porque a coisa que faz a percepção é a
-mesma coisa que está errada.
+E, se você me permitir mais um paralelo com a aviação: é por isso que piloto voa
+olhando para os instrumentos, e não para a sensação. Na nuvem, o seu próprio corpo
+diz, com confiança e sem parar, que você está voando reto e nivelado quando, na
+verdade, está numa espiral suave. O instrumento não está ali porque piloto é
+descuidado. Está ali porque quem sente e quem se engana são a mesma coisa.
 
-## Então quem faz tudo isso?
+## Então, quem faz tudo isso?
 
-Duas coisas, então, antes que um agente possa receber a confiança para algo que
-importa.
+Duas coisas precisam acontecer antes de você confiar a um agente qualquer coisa
+que importe.
 
-O limite precisa **existir** — o que significa que alguém decidiu, com
-antecedência, quais questões estão abertas e quais não estão, e escreveu isso onde
-será lido.
+O limite tem que **existir** — o que significa que alguém decidiu, de antemão,
+quais questões estão abertas e quais não estão, e escreveu isso onde será lido.
 
-E o limite precisa ser **conferível** — o que significa que alguém construiu o
-instrumento, o transformou em um comando, e tornou rodá-lo não opcional.
+E o limite tem que ser **verificável** — o que significa que alguém construiu o
+instrumento, botou tudo num único comando e tornou rodá-lo obrigatório.
 
-Nenhuma dessas duas coisas é código. Nenhuma delas pode ser delegada à coisa que
-está sendo limitada. As duas têm que acontecer antes de a primeira linha ser
-escrita, porque depois é tarde demais — as decisões já estão nos arquivos, cada
-uma localmente razoável, e ninguém vai encontrá-las numa terça à noite.
+Nenhuma das duas é código. Nenhuma delas pode ser delegada à coisa que está sendo
+limitada. As duas têm que acontecer antes de escrever a primeira linha, porque
+depois é tarde demais — as decisões já vão estar espalhadas pelos arquivos, cada
+uma localmente razoável, e ninguém vai encontrá-las numa terça-feira à noite.
 
-Então: quem decide onde ficam os limites? Quem decide o que verde significa, em
-que ordem as coisas são construídas, e se a explicação que você acabou de receber
-é de fato verdadeira?
+Então: quem decide onde ficam os limites? Quem decide o que "verde" significa, em
+que ordem as coisas são construídas e se a explicação que você acabou de receber é
+de fato verdadeira?
 
-Você. Tudo isso.
+Você. Tudo isso é você.
 
-O que me leva a uma noite de julho, e a uma conversa que produziu quinhentas
-linhas de documentação e nenhuma linha de código — onde, relendo depois, eu contei
-seis trabalhos diferentes que eu vinha fazendo sem perceber que estava alternando
-entre eles.
+O que me leva a uma noite de julho e a uma conversa que gerou quinhentas linhas de
+documentação e nenhuma linha de código — na qual, relendo depois, contei seis
+papéis diferentes que eu vinha desempenhando sem notar que alternava entre eles.
