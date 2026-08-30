@@ -348,6 +348,7 @@ nothing had to be taken back out.
 
 And six things got through all of it anyway.
 
-Next time, those six — past the mechanisms, into the repository, nobody's fault —
-including the one where an agent took a rule I was proud of, found the hole in it,
-and was entirely right.
+Next time, in [*Six things that got
+through*](article:six-things-that-got-through), those six — past the mechanisms,
+into the repository, nobody's fault — including the one where an agent took a rule
+I was proud of, found the hole in it, and was entirely right.
