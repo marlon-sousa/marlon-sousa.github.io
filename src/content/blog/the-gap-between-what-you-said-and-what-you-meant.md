@@ -8,7 +8,7 @@ tags: ['ai engineering', 'ai', 'software engineering']
 draft: false
 ---
 
-[Last time](/blog/the-terminal-i-could-not-build/) I told you about a terminal I
+[Last time](article:the-terminal-i-could-not-build) I told you about a terminal I
 had wanted for years, why I could never afford to build it, and why an agent is
 the reason it exists at all. And then I
 left you with a refusal: I had the tool, I had the design in my head, and I did

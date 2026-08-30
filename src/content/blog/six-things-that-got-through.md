@@ -8,6 +8,18 @@ tags: ['ai engineering', 'ai', 'software engineering', 'rust', 'accessibility']
 draft: false
 ---
 
+[Last time](article:an-hour-a-day) I put numbers on all of it: 191 commits across
+two repositories, an hour and a half of real work on the days I worked, not one
+revert in any of it, and an afternoon in which a machine that had never built a
+line of this was ready to work in nine minutes.
+
+That is six articles of things going right, and I have been aware for a while that
+it is starting to read like an advertisement.
+
+So this one is the correction, and it is not a gesture. It is the list of
+everything that beat the mechanisms — and it starts with one that is not even on
+the list.
+
 On the third of August I sat in front of a computer that had gone completely
 silent.
 
@@ -31,9 +43,9 @@ The agent was not malfunctioning. It was working hard, on the right things, and
 the entire time it was busy it never occurred to it that **being busy is not the
 same as being harmless.**
 
-That one is not on the list below. It is the one that made me start keeping a
-list, and I will come back to it at the end, because what it eventually became is
-the best answer I have to everything in between.
+That is the one that made me start keeping a list, and I will come back to it at
+the end, because what it eventually became is the best answer I have to everything
+in between.
 
 ## What this list is, and what it is not
 
@@ -43,14 +55,9 @@ three](article:the-gap-between-what-you-said-and-what-you-meant) built the toll
 booth. [Part four](article:the-night-that-produced-no-code) counted what a night
 of documentation bought: 49 pull requests later, four documents that still
 describe the code. [Part five](article:conditions-not-instructions) showed the
-five moves. [Part six](article:an-hour-a-day) measured the whole thing: 191
-commits, zero reverts, an hour and a half a day.
+five moves that produce them. [Part six](article:an-hour-a-day) measured the lot.
 
-Read in a row, that is an unbearable amount of things going right, and I have
-been aware for three articles that it is starting to sound like an advertisement.
-
-So here is the correction, and it is not a gesture. **The proof that a role is
-staffed is the mechanism, not the absence of failure.** Every one of those
+**The proof that a role is staffed is the mechanism, not the absence of failure.** Every one of those
 mechanisms was built at the exact moment its absence cost something. Which means
 the interesting artifact is not the mechanism. It is the thing that beat it.
 

@@ -117,6 +117,33 @@ dangle — `article:` links are safe by construction, and that sweep is what cat
 the rest. `404.html` is included in it, and in the accessibility sweep, even
 though it is not an `index.html` and page discovery does not otherwise see it.
 
+## Writing a series
+
+**Every part after the first opens with a recap of the one before it.** Not a
+heading, not a section further down the page — the first paragraph, before any
+scene, anecdote or hook. It states what the previous part argued or measured, in
+one or two sentences, and links to it by `article:` identity:
+
+```markdown
+[Last time](article:an-hour-a-day) I put numbers on all of it: 191 commits across
+two repositories, an hour and a half of real work on the days I worked…
+```
+
+Then a sentence or two saying what *this* one does, so a reader who arrived from a
+search result knows within four lines where they are and what they are missing.
+
+The reason is that articles are read out of order and in isolation. A part that
+opens on a scene is a part that assumes the reader has just finished the previous
+one, which is the one thing that is almost never true. A recap costs a paragraph;
+its absence costs the reader the argument.
+
+A part may still *begin its story* with a scene — put the recap above it and let
+the recap's last line hand over to it.
+
+Series articles also close with a **Next time** naming what the following part
+covers. Once that part is published, go back and turn the promise into an
+`article:` link.
+
 ## Documentation
 
 Full documentation: https://docs.astro.build

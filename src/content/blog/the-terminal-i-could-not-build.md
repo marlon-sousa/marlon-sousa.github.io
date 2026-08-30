@@ -8,7 +8,7 @@ tags: ['ai engineering', 'ai', 'accessibility', 'nvda', 'rust']
 draft: false
 ---
 
-[Last time](/blog/at-long-last-only-an-engineer/) I claimed something unpopular:
+[Last time](article:at-long-last-only-an-engineer) I claimed something unpopular:
 that building professional software with an agent asks *more* of you than
 building it by hand ever did. That we were always both the engineer and the
 bricklayer, because in our trade putting the walls up is itself an
