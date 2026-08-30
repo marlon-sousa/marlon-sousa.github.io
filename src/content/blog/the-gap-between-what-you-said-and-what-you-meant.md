@@ -252,3 +252,6 @@ Which brings me to a night in July, and a conversation that produced five hundre
 lines of documentation and not one line of code — where, reading it back later, I
 counted six different jobs I had been doing without noticing I was switching
 between them.
+
+That one is next:
+[*The night that produced no code*](article:the-night-that-produced-no-code).
