@@ -12,6 +12,7 @@ import { join } from 'node:path';
 import satori from 'satori';
 import sharp from 'sharp';
 import { defaultLocale, type Locale } from '../i18n/config';
+import { SITE_DOMAIN } from '../consts';
 
 /**
  * Where the card for one slug lives.
@@ -141,7 +142,7 @@ export async function renderOgImage({ title, eyebrow }: OgOptions): Promise<Buff
 										],
 									},
 								},
-								{ type: 'div', props: { children: 'marlon-sousa.github.io' } },
+								{ type: 'div', props: { children: SITE_DOMAIN } },
 							],
 						},
 					},
