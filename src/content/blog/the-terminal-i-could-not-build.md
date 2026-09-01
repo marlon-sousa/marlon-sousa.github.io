@@ -23,7 +23,7 @@ know, which is by showing you the actual work.
 Two repositories, on GitHub, with their full history —
 [acter](https://github.com/marlon-sousa/acter), an accessible terminal, and
 [screen-readers-mcp](https://github.com/marlon-sousa/screen-readers-mcp), the
-tool I had to stop and build so that the first one could be tested. Every claim I
+tool I had to stop and finish so that the first one could be tested. Every claim I
 make points at something you can go and read: a commit, a document, a CI job, a
 conversation.
 
@@ -188,4 +188,4 @@ midnight about where a trait belongs — comes out of one idea.
 
 The idea is called extrapolation, and it is what I want to talk about next, in
 [*The gap between what you said and what you
-meant*](/blog/the-gap-between-what-you-said-and-what-you-meant/).
+meant*](article:the-gap-between-what-you-said-and-what-you-meant).

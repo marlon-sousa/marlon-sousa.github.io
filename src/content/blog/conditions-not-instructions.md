@@ -447,6 +447,23 @@ because agreeing is cheap and it has no stake in the argument.
 Which means the disagreement has to be supplied by you. All of it. Every session.
 That is the job.
 
+## Which jobs this one was doing
+
+- **Product owner** — the conditions themselves: one executable, memory-safe by
+  design, each with its reason attached. And *"I don't think hidding the edit
+  field is a good thing at all, explain me why."*
+- **Architect** — asking for objections and getting Tauri back, with a
+  **Rejected** list and three losing alternatives written down beside it.
+- **Project manager** — *"no, this iis way dangerous by now, I want the back ends
+  built by now"*: a sequence overruled in one sentence.
+- **Platform engineer** — `poe dev` and `poe ci`, which exist because I disagreed
+  with a proposal at half past ten in the morning and suggested a different shape.
+- **Reviewer** — reading the persona specification back as a numbered list before
+  agreeing to any of it.
+
+The six are counted in [*The night that produced no
+code*](article:the-night-that-produced-no-code).
+
 ## Next time
 
 So that is the method: five moves, none of them longer than a sentence, all of
@@ -454,7 +471,7 @@ them happening before there is any code to look at.
 
 And now the fair question, which is the one I would ask if somebody told me all
 this. It sounds like a great deal of process for one person working evenings.
-Where did the hours actually go? How much of that hundred thousand lines had to
+Where did the hours actually go? How much of a hundred thousand lines had to
 be written twice? And what did an hour a day of this really buy?
 
 Next time, in [*An hour a day*](article:an-hour-a-day), all of that measured

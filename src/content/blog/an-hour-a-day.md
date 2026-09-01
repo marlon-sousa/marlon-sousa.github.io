@@ -122,7 +122,7 @@ Across the entire history of both repositories:
 - Documentation is the same story: 46,547 lines of Markdown written, 3,760 since
   removed.
 - **Zero reverts.** Part four counted the terminal's — none in 77 commits. Across
-  both repositories, 191 commits, it is still none.
+  both repositories, in all 193 of those commits, it is still none.
 - **Eight commits** — four per cent — carry a fix in their subject line. Of 131
   merged pull requests, four are titled as fixes.
 
@@ -308,7 +308,8 @@ which is the fifth language it now lives in. Rust, TypeScript, Python, Go, Swift
 
 Part four audited that rule where it was written and found it holding: 89 of 96
 modules in the terminal declare one of the six roles in their own first line, and
-the remaining seven are facades that the rule exempts. That is a rule surviving
+the remaining seven are the facades, the build script and the two routers that
+article accounts for one by one. That is a rule surviving
 inside the codebase it was made for, which is impressive enough.
 
 This is the same rule surviving somewhere it was never aimed — a different
@@ -340,14 +341,44 @@ list read back. That is the cheapest part of the whole enterprise.
 The expensive thing is not doing it. That is the part that costs you a week, in
 three weeks' time, when nobody can remember why.
 
+## Which jobs this one was doing
+
+Two, and the shortness of the list is the honest part — a measurement article is
+not doing all six.
+
+- **Project manager** — where the hours actually went, how much had to be written
+  twice, and the discipline of reporting ten per cent as a *ceiling* on rework
+  rather than a measurement of it.
+- **Platform engineer** — `poe doctor`, and a machine that had never built any of
+  this being ready to work in nine minutes.
+
+The six are counted in [*The night that produced no
+code*](article:the-night-that-produced-no-code).
+
 ## Next time
 
 Six roles, five moves, a gate, a spec-first process, documents that still describe
 the code after 49 pull requests, and a hundred thousand lines of which almost
-nothing had to be taken back out.
+nothing had to be taken back out — on about an hour a day.
 
-And six things got through all of it anyway.
+Which leaves one thing in those numbers that I have not accounted for.
 
-Next time, those six — past the mechanisms, into the repository, nobody's fault —
-including the one where an agent took a rule I was proud of, found the hole in it,
-and was entirely right.
+Twenty-two days with any activity on them — and remember that the transcripts only
+reach back to 30 July, so those twenty-two are drawn from the last month of it.
+Part four counted the whole stretch the crude way: twenty days with commits, out
+of the forty-six since the terminal's planning night. I have explained that as
+evenings and weekends around a full-time job, and that is true, but it is not the
+whole of it. There is a stretch in there where the terminal got no commits at all
+— not few, none. Its last commit before the gap is on 20 July. The next one is
+twenty-six days later.
+
+I did not run out of time and I did not lose interest. I stopped on purpose,
+because every pull request was costing me an evening of listening, and there was
+no way to make that cheaper by writing better code.
+
+Next time, in [*I stopped building the product to build the
+tool*](article:i-stopped-building-the-product-to-build-the-tool): what I stopped
+to build, why a screen reader is the one thing an automated accessibility check
+cannot stand in for, and the four questions I would want answered before making
+that call again — because on day one, from the inside, it is indistinguishable
+from procrastination.

@@ -628,12 +628,14 @@ that describes nothing. Somebody had to hold a machine to a conversation it was
 not naturally inclined to have, for three hours, and none of that is in the four
 documents — the documents are what came *out*.
 
-So next time we need to talk about prompts. Not prompt tricks, and not a list of
+So next time, in [*Conditions, not
+instructions*](article:conditions-not-instructions), we need to talk about
+prompts. Not prompt tricks, and not a list of
 phrases that work: the handful of moves that get an agent arguing about a design
 instead of implementing one, and how you tell a real objection from a polite
 agreement.
 
-And after that, the one I keep promising: six things that got through all these
-mechanisms anyway — past the gate, into the repository, nobody's fault — including
-the one where an agent took a rule I was proud of, found the hole in it, and was
-entirely right.
+And later in the series, the one I keep promising: six things that got through all
+these mechanisms anyway — past the gate, into the repository, nobody's fault —
+including the one where an agent took a rule I was proud of, found the hole in it,
+and was entirely right.

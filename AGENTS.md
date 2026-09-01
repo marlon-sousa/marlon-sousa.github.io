@@ -144,6 +144,29 @@ Series articles also close with a **Next time** naming what the following part
 covers. Once that part is published, go back and turn the promise into an
 `article:` link.
 
+### Every part names the jobs it was doing
+
+*You are now the whole team* counts six roles — product owner, architect, project
+manager, platform engineer, QA, reviewer — and every part from the one that counts
+them onward closes by saying which of them it was doing, in a section headed
+**"Which jobs this one was doing"**, placed immediately before **Next time**. That
+section closes the article; **Next time** opens the following one.
+
+The recap at the top binds a part backwards to the one before it. This binds it
+upwards to what the series is about, so an article read in isolation still lands
+inside the argument rather than beside it.
+
+One rule makes or breaks it: **every entry names something specific from that
+article, and a role with nothing specific to show is left out.** "Architect — the
+four decisions, one of them reversed four days later in the open" is an entry.
+"Architect — thinking about structure" is padding, and a section of padding
+teaches the reader to skip it. The lists are deliberately uneven — a measurement
+article really is only two of the six — and the unevenness is a claim worth
+making.
+
+Close the section with one line linking to where the six are counted, so a reader
+arriving cold can find the definition.
+
 ## Documentation
 
 Full documentation: https://docs.astro.build

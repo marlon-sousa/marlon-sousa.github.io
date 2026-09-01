@@ -253,5 +253,9 @@ lines of documentation and not one line of code — where, reading it back later
 counted six different jobs I had been doing without noticing I was switching
 between them.
 
+Those jobs have names, and once they have been counted they are worth keeping
+track of. So from the next article on, every part of this series ends by saying
+which of the six it was doing.
+
 That one is next:
 [*The night that produced no code*](article:the-night-that-produced-no-code).

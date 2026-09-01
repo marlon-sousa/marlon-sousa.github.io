@@ -1,20 +1,20 @@
 ---
 title: 'Six things that got through'
-description: 'Every mechanism in the previous six articles, and the six things that beat them anyway — the wrong remedy for a right diagnosis, the machine that never complains, the gate that lied about itself, and the rule I was proudest of, whose hole an agent found and was entirely right about.'
-pubDate: 'Aug 30 2026 23:00'
+description: 'Every mechanism this series has described, and the six things that beat them anyway — the wrong remedy for a right diagnosis, the machine that never complains, the gate that lied about itself, and the rule I was proudest of, whose hole an agent found and was entirely right about.'
+pubDate: 'Aug 31 2026 22:00'
 series: 'you-are-now-the-whole-team'
-seriesPart: 8
+seriesPart: 9
 tags: ['ai engineering', 'ai', 'software engineering', 'rust', 'accessibility']
-draft: true
+draft: false
 ---
 
-[Last time](article:an-hour-a-day) I put numbers on all of it: 191 commits across
-two repositories, an hour and a half of real work on the days I worked, not one
-revert in any of it, and an afternoon in which a machine that had never built a
-line of this was ready to work in nine minutes.
+[Last time](article:the-server-is-everywhere-a-bridge-is-somewhere) I showed you
+an architecture agreed in July, a decision reversed four days later in the open,
+and a vocabulary that turned up intact in a Swift bundle written by sessions that
+had never read the document it comes from.
 
-That is six articles of things going right, and I have been aware for a while that
-it is starting to read like an advertisement.
+That is eight articles of things going right, and I have been aware for a while
+that it is starting to read like an advertisement.
 
 So this one is the correction, and it is not a gesture. It is the list of
 everything that beat the mechanisms — and it starts with one that is not even on
@@ -49,13 +49,17 @@ in between.
 
 ## What this list is, and what it is not
 
-Six articles have now described mechanisms. [Part
-two](article:the-terminal-i-could-not-build) named the six roles. [Part
-three](article:the-gap-between-what-you-said-and-what-you-meant) built the toll
-booth. [Part four](article:the-night-that-produced-no-code) counted what a night
-of documentation bought: 49 pull requests later, four documents that still
-describe the code. [Part five](article:conditions-not-instructions) showed the
-five moves that produce them. [Part six](article:an-hour-a-day) measured the lot.
+Eight articles have now described mechanisms. [Part
+two](article:the-terminal-i-could-not-build) put both repositories on the table.
+[Part three](article:the-gap-between-what-you-said-and-what-you-meant) built the
+toll booth. [Part four](article:the-night-that-produced-no-code) named the six
+roles and counted what a night of documentation bought: 49 pull requests later,
+four documents that still describe the code. [Part five](article:conditions-not-instructions) showed the
+five moves that produce them. [Part six](article:an-hour-a-day) measured the
+hours. [Part seven](article:i-stopped-building-the-product-to-build-the-tool) is
+the month I stopped to build the instrument, and [part
+eight](article:the-server-is-everywhere-a-bridge-is-somewhere) is the shape that
+came out of it, holding across three languages.
 
 **The proof that a role is staffed is the mechanism, not the absence of failure.**
 Every one of those mechanisms was built at the exact moment its absence cost
@@ -82,7 +86,7 @@ anyway.
 
 **Already in place.** No code before a spec, and the spec has to enumerate every
 file and class the pull request will add, each with a one-line role and its
-collaborators. There are 47 of them in `specs/` today, agreed in conversation,
+collaborators. There are 46 of them in `specs/` today, agreed in conversation,
 riding the branch of the pull request that implements them so the two can never
 drift apart on `main`.
 
@@ -244,9 +248,9 @@ verified until it has passed *and the agent ran it*. The reason is written into
 
 `poe lint` had always claimed *"ruff check + format check"* in its own help text,
 and had never actually run `ruff format --check`. And `poe ci` never ran `lint` at
-all — so even the half that worked was not reached by the gate. Pull request #46
-added a dozen space-indented files to a tab-indented repository and nothing
-objected.
+all — so even the half that worked was not reached by the gate. Pull request #46, in the tool's
+repository, added a dozen space-indented files to a tab-indented repository and
+nothing objected.
 
 The second is subtler and was much more expensive. `.mcp.json` spawns
 `server/screenreader-mcp.exe`. Edit the Go server, then drive the MCP tools, and
@@ -371,7 +375,7 @@ fi
 ```
 
 It shipped on 16 July in commit `7c2e04b`, in pull request #3, before there was
-much product to check. It moved across to the second repository unchanged. It has
+much product to check. It moved across to the other repository unchanged. It has
 gone red on me many times, and every one of those times it was right: the items it
 blocked on were the human-only ones — a beep, a sound cue, whether the reading was
 comfortable — that no agent can observe, and a red gate meant the pull request was
@@ -513,9 +517,29 @@ fact **re-readable**, so that no amount of forgetting can turn it into a guess.
 That is this whole article in one entry. You cannot make the reasoning safe. You
 can make the facts it reasons from impossible to lose.
 
+## Which jobs this one was doing
+
+All six, which is the only time that will be true — because this is the article
+where each of them gets beaten.
+
+- **Product owner** — a sound `waitForFocus` that would have been a good
+  primitive for the wrong product.
+- **Architect** — a vocabulary in which everything was legal: a controller doing
+  two jobs, a parameter object labelled an adapter.
+- **Project manager** — a board that tracked the work and nothing that tracked
+  what a session cost.
+- **Platform engineer** — the gate that lied about itself, and a stale binary
+  measured against a new bridge.
+- **QA** — the checkbox that says yes while the sentence says no. Still open.
+- **Reviewer** — every observation true and the conclusion false, and an
+  instrument we broke and then measured with.
+
+The six are counted in [*The night that produced no
+code*](article:the-night-that-produced-no-code).
+
 ## Next time
 
-Seven articles in, everything I have shown you has been about the machine
+Nine articles in, everything I have shown you has been about the machine
 observing itself: gates, specs, checklists, a bridge that captures speech, a
 document that still describes the code.
 
