@@ -165,7 +165,7 @@ taste. Code works for me, not the other way round.
 This was true when I reviewed code written by people, and it stays true
 reviewing code written by a machine. The review I keep for myself under the
 previous commitment asks whether the code is right. It does not ask whether it is
-mine.[^through]
+mine.[^through][^antirez]
 
 ## 13. The machine does not lower the bar on who can use the result
 
@@ -267,3 +267,14 @@ can be checked against what I actually do.
     [The server is everywhere, a bridge is somewhere](article:the-server-is-everywhere-a-bridge-is-somewhere):
     what it sounds like when a terminal is navigable by heading, and the
     architecture that lets one server serve any screen reader.
+
+[^antirez]:
+    Salvatore Sanfilippo, the author of Redis, in
+    [*Control the ideas, not the code*](https://antirez.com/news/169), July
+    2026, on reviewing code an agent wrote for Redis: he finds things he does
+    not like how they are coded, but other Redis files written by other
+    contributors have *"far worse, and not since they are not good coders, but
+    because it is a matter of taste."* He goes further than I do: he thinks
+    reading the code at all is now mostly pointless, and that the review time
+    should go to design and QA. I keep the reading, under the first commitment.
+    I agree with him about the taste.
