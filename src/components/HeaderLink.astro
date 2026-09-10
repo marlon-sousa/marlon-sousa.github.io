@@ -2,9 +2,16 @@
 import type { HTMLAttributes } from 'astro/types';
 import { stripLocale } from '../i18n/config';
 
-type Props = HTMLAttributes<'a'>;
+type Props = HTMLAttributes<'a'> & {
+	/**
+	 * Overrides the section rule below. The header uses it to keep two links from
+	 * both claiming the current page when one destination lies inside another's
+	 * section — the manifesto is an article, so it is under /blog/.
+	 */
+	active?: boolean;
+};
 
-const { href, class: className, ...props } = Astro.props;
+const { href, class: className, active, ...props } = Astro.props;
 
 /**
  * The top-level section a path belongs to, with the language taken off.
@@ -19,7 +26,7 @@ function section(path: string): string {
 	return `/${first ?? ''}`;
 }
 
-const isActive = section(String(href ?? '/')) === section(Astro.url.pathname);
+const isActive = active ?? section(String(href ?? '/')) === section(Astro.url.pathname);
 ---
 
 <a

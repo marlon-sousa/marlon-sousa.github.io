@@ -29,10 +29,17 @@ interface Props {
 	article: Readable;
 	/** Defaults to the article's title. Pass a composed label to override it. */
 	label?: string;
+	/**
+	 * A short remark about the link that belongs in its accessible name — "(pinned)"
+	 * on the blog index. Rendered inside the anchor, after the language marker,
+	 * for the same reason that marker is: a reader moving link by link should hear
+	 * it without leaving the link.
+	 */
+	note?: string;
 	rel?: string;
 }
 
-const { article, label, rel } = Astro.props;
+const { article, label, note, rel } = Astro.props;
 const { post, locale: articleLocale, fallback } = article;
 
 const locale = getLocale(Astro.url);
@@ -44,9 +51,16 @@ const t = useTranslations(locale);
 		fallback && (
 			<>
 				{' '}
-				<span class="in-other-language">
+				<span class="marker">
 					{t('lang.fallback', { language: languageName(articleLocale, locale) })}
 				</span>
+			</>
+		)
+	}{
+		note && (
+			<>
+				{' '}
+				<span class="marker">{note}</span>
 			</>
 		)
 	}
@@ -55,7 +69,7 @@ const t = useTranslations(locale);
 <style>
 	/* Quieter than the title it follows, but not decoration: it changes what the
 	   link does, so it stays at a size and contrast that can be read. */
-	.in-other-language {
+	.marker {
 		font-size: 0.75em;
 		font-weight: 400;
 		color: rgb(var(--gray));

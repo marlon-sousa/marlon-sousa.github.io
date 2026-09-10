@@ -1,14 +1,42 @@
 ---
 import { SITE_AUTHOR, SITE_EMAIL } from '../consts';
-import { getLocale, localeUrl } from '../i18n/config';
+import { getLocale, languageName, localeMeta, localeUrl } from '../i18n/config';
 import { useTranslations } from '../i18n/ui';
+import { getArticle, postUrl } from '../lib/posts';
 
 const locale = getLocale(Astro.url);
 const t = useTranslations(locale);
 const today = new Date();
+
+// Every page says that it was made with agents, and points at the terms. The
+// manifesto is an article, so the link follows the same rule as any other link
+// to one: the reader's language if it exists, English otherwise, said inside
+// the link.
+const manifesto = await getArticle('manifesto', locale);
+if (!manifesto) {
+	throw new Error('The footer links to the article "manifesto", which is not published.');
+}
 ---
 
 <footer>
+	<p>
+		{t('footer.madeWithAgents')}{' '}
+		<a
+			href={postUrl(manifesto.post)}
+			hreflang={manifesto.fallback ? localeMeta[manifesto.locale].tag : undefined}
+		>
+			{t('footer.manifesto')}{
+				manifesto.fallback && (
+					<>
+						{' '}
+						<span class="marker">
+							{t('lang.fallback', { language: languageName(manifesto.locale, locale) })}
+						</span>
+					</>
+				)
+			}
+		</a>
+	</p>
 	<p>{t('footer.rights', { year: today.getFullYear(), author: SITE_AUTHOR })}</p>
 	<nav aria-label={t('footer.elsewhere')}>
 		<ul>
@@ -38,6 +66,14 @@ const today = new Date();
 	}
 	footer p {
 		margin: 0;
+	}
+	footer p + p {
+		margin-top: 0.75em;
+	}
+	/* The same marker ArticleLink draws: part of the link, quieter than its label. */
+	.marker {
+		font-size: 0.85em;
+		white-space: nowrap;
 	}
 	footer ul {
 		display: flex;

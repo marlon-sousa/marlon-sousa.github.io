@@ -41,7 +41,7 @@ const [introBefore = '', introAfter = ''] = t('blog.intro').split('{tagLink}');
 			<p>{t('blog.empty')}</p>
 		) : (
 			<ul class="post-list">
-				{feed.map(({ article, nav }) => (
+				{feed.map(({ article, nav, pinned }) => (
 					<li>
 						<article>
 							{/* Just the part number here. The total belongs where a reader
@@ -54,8 +54,11 @@ const [introBefore = '', introAfter = ''] = t('blog.intro').split('{tagLink}');
 									{t('blog.seriesPart', { part: nav.part })}
 								</p>
 							)}
+							{/* "(pinned)" goes inside the link, not above it: it is the reason
+							    this entry is out of date order, and a reader walking the page
+							    by links should hear it as part of the link's name. */}
 							<h2 class="title">
-								<ArticleLink article={article} />
+								<ArticleLink article={article} note={pinned ? t('blog.pinned') : undefined} />
 								{article.post.data.draft && <span class="draft"> {t('blog.draft')}</span>}
 							</h2>
 							<p class="date">

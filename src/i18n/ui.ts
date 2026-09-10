@@ -18,6 +18,7 @@ const en = {
 	'nav.projects': 'Projects',
 	'nav.releases': 'Releases',
 	'nav.search': 'Search',
+	'nav.manifesto': 'Manifesto',
 	'nav.skip': 'Skip to content',
 
 	'lang.label': 'Language',
@@ -43,6 +44,10 @@ const en = {
 	'site.pageTitle': '{page} - {site}',
 	'site.ogEyebrow': 'Software engineering, accessibility, and Rust',
 
+	// Shown on every page, above the copyright line. The link text is separate
+	// so the sentence and the link can be phrased independently in each language.
+	'footer.madeWithAgents': 'This work has been produced with the help of AI agents.',
+	'footer.manifesto': 'See my manifesto on AI and software engineering',
 	'footer.rights': '© {year} {author}. All rights reserved.',
 	'footer.elsewhere': 'Elsewhere',
 	'footer.email': 'Email',
@@ -54,6 +59,9 @@ const en = {
 	'blog.browseByTag': 'browse by tag',
 	'blog.empty': 'No posts have been published yet.',
 	'blog.draft': '(draft)',
+	// Inside the link, like `lang.fallback`, so a reader hears why the entry is
+	// out of date order before deciding whether to follow it.
+	'blog.pinned': '(pinned)',
 	'blog.seriesPart': 'part {part}',
 
 	'post.draftNotice': 'Draft — this is unfinished and is not published on the live site.',
@@ -127,6 +135,7 @@ const pt: Record<UIKey, string> = {
 	'nav.projects': 'Projetos',
 	'nav.releases': 'Versões',
 	'nav.search': 'Busca',
+	'nav.manifesto': 'Manifesto',
 	'nav.skip': 'Pular para o conteúdo',
 
 	'lang.label': 'Idioma',
@@ -148,6 +157,8 @@ const pt: Record<UIKey, string> = {
 	'site.pageTitle': '{page} - {site}',
 	'site.ogEyebrow': 'Engenharia de software, acessibilidade e Rust',
 
+	'footer.madeWithAgents': 'Este trabalho foi produzido com a ajuda de agentes de IA.',
+	'footer.manifesto': 'Veja meu manifesto sobre IA e engenharia de software',
 	'footer.rights': '© {year} {author}. Todos os direitos reservados.',
 	'footer.elsewhere': 'Em outros lugares',
 	'footer.email': 'E-mail',
@@ -159,6 +170,7 @@ const pt: Record<UIKey, string> = {
 	'blog.browseByTag': 'navegar por tema',
 	'blog.empty': 'Nenhum artigo foi publicado ainda.',
 	'blog.draft': '(rascunho)',
+	'blog.pinned': '(fixado)',
 	'blog.seriesPart': 'parte {part}',
 
 	'post.draftNotice': 'Rascunho — isto está inacabado e não é publicado no site.',

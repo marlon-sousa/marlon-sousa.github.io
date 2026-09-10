@@ -7,13 +7,19 @@ import { unified } from '@astrojs/markdown-remark';
 import { defineConfig, fontProviders } from 'astro/config';
 
 import remarkArticleLinks from './plugins/remark-article-links.mjs';
+import rehypeNoFootnoteBackrefs from './plugins/rehype-no-footnote-backrefs.mjs';
 
 // https://astro.build/config
 export default defineConfig({
 	markdown: {
 		// Resolves `article:` links in prose to the reader's own language, falling
 		// back to English when a translation does not exist yet. See the plugin.
-		processor: unified({ remarkPlugins: [remarkArticleLinks] }),
+		// Drops the "back to reference" links footnotes would otherwise end with;
+		// see that plugin for why.
+		processor: unified({
+			remarkPlugins: [remarkArticleLinks],
+			rehypePlugins: [rehypeNoFootnoteBackrefs],
+		}),
 	},
 	// The canonical home. marlon-sousa.github.io still answers, and GitHub
 	// redirects it here, so links shared before the move keep working.

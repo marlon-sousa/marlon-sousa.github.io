@@ -44,6 +44,13 @@ const blog = defineCollection({
 				tags: z.array(z.string()).default([]),
 				/** Drafts are visible under `astro dev` and excluded from a built site. */
 				draft: z.boolean().default(false),
+				/**
+				 * Listed above everything else on the blog index, whatever its date,
+				 * and marked as pinned inside its link. For writing that is meant to
+				 * stand — a manifesto — rather than to be read once and scroll away.
+				 * Set it on the English original; a translation inherits it.
+				 */
+				pinned: z.boolean().default(false),
 			})
 			// Half a series reference orders articles arbitrarily or strands one
 			// outside the series it belongs to, so neither field is valid alone.

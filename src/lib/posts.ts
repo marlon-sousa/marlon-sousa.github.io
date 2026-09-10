@@ -210,6 +210,33 @@ export async function getReadablePosts(locale: Locale): Promise<Readable[]> {
 }
 
 /**
+ * One article by identity — the English file name, the same value
+ * `translationOf` and `article:` links take — in the best language available
+ * to this reader, or undefined if nothing by that id is published.
+ *
+ * For the few places that link to a *specific* article rather than to a
+ * listing: the header's link to the manifesto, say. Going through
+ * `selectVersion` means such a link obeys the same rule as every other one on
+ * the site, and is marked when it leads to English.
+ */
+export async function getArticle(id: string, locale: Locale): Promise<Readable | undefined> {
+	const versions = (await getVersions()).get(id);
+	return versions && selectVersion(versions, locale);
+}
+
+/**
+ * Whether an article is pinned, read from its English original.
+ *
+ * A translation does not repeat the flag: pinning is a property of the piece of
+ * writing, not of one language's telling of it, and two files that could
+ * disagree would be one more thing to keep in step.
+ */
+export async function isPinned(post: Post): Promise<boolean> {
+	const versions = (await getVersions()).get(translationKey(post));
+	return versions?.[defaultLocale]?.data.pinned ?? post.data.pinned;
+}
+
+/**
  * The id that identifies a piece of writing across languages.
  *
  * An original is identified by its own id; a translation by the id of what it
@@ -478,19 +505,28 @@ export interface FeedEntry {
 	article: Readable;
 	/** Present only for a series article; standalone posts carry no label. */
 	nav?: SeriesNav;
+	/** Listed first regardless of date, and said so in the link. */
+	pinned: boolean;
 }
 
+/**
+ * Pinned articles come first, newest first among themselves; then everything
+ * else, newest first. The date order is kept within each group rather than
+ * replaced, so pinning one piece does not scramble the rest of the page.
+ */
 export async function getBlogFeed(locale: Locale): Promise<FeedEntry[]> {
 	const readable = await getReadablePosts(locale);
-	return Promise.all(
+	const entries = await Promise.all(
 		readable.map(async (article) => ({
 			article,
 			// The reader's locale, not the article's: an English article listed on
 			// the Portuguese index is still labelled "parte 4" of a series named in
 			// Portuguese. Only the article itself is in the other language.
 			nav: await getSeriesNav(article.post, locale),
+			pinned: await isPinned(article.post),
 		})),
 	);
+	return [...entries.filter((entry) => entry.pinned), ...entries.filter((entry) => !entry.pinned)];
 }
 
 /**

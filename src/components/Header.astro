@@ -2,8 +2,9 @@
 import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
 import LanguageSwitcher from './LanguageSwitcher.astro';
-import { getLocale, localeUrl, type Locale } from '../i18n/config';
+import { getLocale, languageName, localeMeta, localeUrl, stripLocale, type Locale } from '../i18n/config';
 import { useTranslations } from '../i18n/ui';
+import { getArticle, postUrl } from '../lib/posts';
 
 interface Props {
 	/** Locale → path, for the languages this page exists in. */
@@ -17,9 +18,40 @@ const t = useTranslations(locale);
 // Every destination in the nav exists in every language, so each href is just
 // the same route under this page's locale prefix. Following a nav link never
 // changes the language you are reading in.
-const links = [
+//
+// The one exception is the manifesto. It is an article, not a route, so it is
+// the one nav destination that may not exist in this language yet. It goes
+// through the same rule as every other link to an article — the reader's
+// language if it exists, English otherwise, said inside the link — rather than
+// being hidden or pointing at a page that was not built.
+const manifesto = await getArticle('manifesto', locale);
+if (!manifesto) {
+	throw new Error('The header links to the article "manifesto", which is not published.');
+}
+
+// An article lives under /blog/, so without this both Blog and Manifesto would
+// claim the current page while reading the manifesto. Exactly one does.
+const here = (path: string) => stripLocale(path.replace(import.meta.env.BASE_URL, '/'));
+const onManifesto = here(Astro.url.pathname) === here(postUrl(manifesto.post));
+
+interface NavLink {
+	href: string;
+	label: string;
+	/** Left undefined to let HeaderLink decide by section. */
+	active?: boolean;
+	/** Set when the destination is an article in another language. */
+	fallbackFrom?: Locale;
+}
+
+const links: NavLink[] = [
 	{ href: localeUrl('/', locale), label: t('nav.home') },
-	{ href: localeUrl('/blog/', locale), label: t('nav.blog') },
+	{ href: localeUrl('/blog/', locale), label: t('nav.blog'), active: onManifesto ? false : undefined },
+	{
+		href: postUrl(manifesto.post),
+		label: t('nav.manifesto'),
+		active: onManifesto,
+		fallbackFrom: manifesto.fallback ? manifesto.locale : undefined,
+	},
 	{ href: localeUrl('/projects/', locale), label: t('nav.projects') },
 	{ href: localeUrl('/releases/', locale), label: t('nav.releases') },
 	{ href: localeUrl('/search/', locale), label: t('nav.search') },
@@ -30,7 +62,23 @@ const links = [
 	<nav aria-label={t('nav.primary')}>
 		<p class="site-title"><a href={localeUrl('/', locale)}>{SITE_TITLE}</a></p>
 		<div class="internal-links">
-			{links.map(({ href, label }) => <HeaderLink href={href}>{label}</HeaderLink>)}
+			{links.map(({ href, label, active, fallbackFrom }) => (
+				<HeaderLink
+					href={href}
+					active={active}
+					hreflang={fallbackFrom ? localeMeta[fallbackFrom].tag : undefined}
+				>
+					{label}
+					{fallbackFrom && (
+						<>
+							{' '}
+							<span class="marker">
+								{t('lang.fallback', { language: languageName(fallbackFrom, locale) })}
+							</span>
+						</>
+					)}
+				</HeaderLink>
+			))}
 		</div>
 		<LanguageSwitcher translations={translations} />
 	</nav>
@@ -66,5 +114,12 @@ const links = [
 	nav a.active {
 		text-decoration: none;
 		border-bottom-color: var(--accent);
+	}
+	/* The same marker ArticleLink draws: part of the link, quieter than its label. */
+	.marker {
+		font-size: 0.75em;
+		font-weight: 400;
+		color: rgb(var(--gray));
+		white-space: nowrap;
 	}
 </style>
