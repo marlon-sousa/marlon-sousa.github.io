@@ -57,7 +57,7 @@ const published = outline.filter((entry) => entry.article).length;
 	translations={translations}
 >
 	<h1>{series.title}</h1>
-	<p class="lede">{series.intro ?? series.description}</p>
+	{(series.intro ?? series.description).split('\n\n').map((para) => <p class="lede">{para}</p>)}
 	<p class="progress">{t('series.progress', { published, total: outline.length })}</p>
 
 	<h2>{t('series.parts')}</h2>

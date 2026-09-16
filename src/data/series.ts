@@ -244,6 +244,51 @@ export const series: Series[] = [
 		],
 	},
 	{
+		slug: 'is-our-loop-closed',
+		// English only for now; the Portuguese fields arrive with the translation.
+		title: 'The question CTOs are probably not asking: is our loop closed?',
+		description:
+			'In the era of AI agents everybody asks which model and how fast. Almost nobody asks how our loop between ' +
+			'“it is written” and “it is right” actually closes, now that nobody remembers the code.',
+		intro:
+			'Agents write code now, and everybody has questions. How fast can we ship? Which model? Which tool? ' +
+			'How many engineers do we still need? Good questions. Not the one, though. The one almost nobody is asking ' +
+			'is this: how are we structuring software engineering, now that the code is no longer written by the ' +
+			'people who used to remember it?\n\n' +
+			'Every trade has a loop between “it is written” and “it is right”. Newspapers have one. Kitchens have ' +
+			'one. So do we, and we drew it on slides for decades, built some of its stations and left the rest to a ' +
+			'person who knew the code by heart. Did it work? It did, at a cost, for exactly as long as that person was ' +
+			'in the room. An agent produces more code than any head can hold and remembers nothing from one session ' +
+			'to the next. The holes in the loop do not close on their own. So. Is everything lost? Run for the hills? ' +
+			'Or is there a way to do this right?\n\n' +
+			'In this series, Marlon Sousa goes around that loop station by station: what each one was when a person ' +
+			'filled it, what changes when an agent writes the code, and what has to change around it, in the team and ' +
+			'in the organisation, for the answer to “is that code right?” to stop depending on anybody’s memory or ' +
+			'anybody’s nod. He draws on two projects built that way, and on the years he spent as the person in the ' +
+			'room, on both sides of that arrangement.',
+		status: 'in-progress',
+		parts: [
+			{
+				number: 1,
+				title: 'The loop ran in somebody’s head',
+				summary:
+					'The loop every trade runs, the version our industry drew and only partly built, and the person who quietly filled the holes.',
+			},
+			{
+				number: 2,
+				title: 'Put an agent in the chair, and everything moves',
+				summary:
+					'Which stations hold when the writer is an agent, which ones open, and every station rebuilt so that it depends on nobody’s memory.',
+			},
+			{
+				number: 3,
+				title: 'The station nobody draws',
+				summary:
+					'Six jobs on seven stations, how the loop reaches into the language you chose, and the one check that removes a whole class of mistakes before anybody has to remember them.',
+			},
+		],
+	},
+	{
 		slug: 'rust-beyond-systems',
 		title: {
 			en: 'Rust Beyond Systems Programming',
