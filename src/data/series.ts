@@ -276,15 +276,21 @@ export const series: Series[] = [
 			},
 			{
 				number: 2,
-				title: 'Put an agent in the chair, and everything moves',
+				title: 'Put an agent in the chair, and the rules of the game change',
 				summary:
-					'Which stations hold when the writer is an agent, which ones open, and every station rebuilt so that it depends on nobody’s memory.',
+					'Four rules for the moment an agent takes the writer’s chair, and the one question about control you can answer about your own organisation today.',
 			},
 			{
 				number: 3,
+				title: 'The loop, built for real',
+				summary:
+					'Around the loop a second time, slowly: every station rebuilt so that it depends on nobody’s memory and nobody’s nod, and the six jobs put on the stations where they sit.',
+			},
+			{
+				number: 4,
 				title: 'The station nobody draws',
 				summary:
-					'Six jobs on seven stations, how the loop reaches into the language you chose, and the one check that removes a whole class of mistakes before anybody has to remember them.',
+					'How the loop reaches into the language you chose, and the one check that removes a whole class of mistakes before anybody has to remember them.',
 			},
 		],
 	},

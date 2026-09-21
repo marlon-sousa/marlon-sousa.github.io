@@ -2,6 +2,7 @@
 title: 'The loop ran in somebody’s head'
 description: 'Every trade has a loop between “it is written” and “it is right”. Ours too. We drew it, built half of it, and a person quietly did the rest. What that cost, and how I know. Spoiler: I was the person.'
 pubDate: 'Sep 16 2026'
+updatedDate: 'Sep 21 2026'
 series: 'is-our-loop-closed'
 seriesPart: 1
 tags: ['ai engineering', 'ai', 'software engineering']
@@ -18,8 +19,8 @@ our trade. I would go further: it is the oldest question in any trade that makes
 things other people rely on. And the best answer I know to it was worked out by
 people who never saw a computer. Doubt that? Good. Let me show you.
 
-One warning before we start. This is the first of three parts, and the agent
-barely shows up in it. On purpose. Before I put an agent in the writer's chair, I
+One warning before we start. This is the first part, and the agent barely shows
+up in it. On purpose. Before I put an agent in the writer's chair, I
 want us to take a long look at what was sitting in that chair before, and at what
 was sitting around it, because that is where the answer to the question was
 actually coming from. The agent comes next time. This time is about us.
@@ -78,8 +79,8 @@ Alone, you, with a paragraph, before anything gets typed.
 
 **It builds.** The compiler, or the type checker, or, in some languages, a shrug.
 This station is so fast and so familiar that nobody draws it on the diagram. Keep
-an eye on it anyway. We come back for it in part three, and it is half the reason
-this series exists.
+an eye on it anyway. We come back for it before we are done, and it is half the
+reason this series exists.
 
 **The linters.** Formatting, unused stuff, the patterns the team swore never to
 write again. This is the copy desk. Mechanical? Boring? Yes and yes, and that is
@@ -212,8 +213,10 @@ does. It makes the people around it stop saying things.
 ## Next time
 
 Next time, the agent sits down in the writer's chair. And then what? Panic? Run
-for the hills after all? Let's not. Let's watch what happens to each station
-instead. Some of them do not care who typed the code and keep working. Others,
-the ones that were a person, open. Then we go around the loop once more, slowly,
-and build every station for real, so that nothing on it depends on anybody's
-memory or anybody's nod.
+for the hills after all? Let's not. Let's look at that chair instead, because it
+was never an ordinary station on this loop. It is the one thing our whole trade was
+organised around, and it has just stopped being scarce. When that happens, the
+rules of the game change: who is allowed to move, what anybody may still stop a
+change for, who sets the deadline, and the one I hear said backwards most often.
+Nobody loses control because a machine wrote the code. Something else takes it, and
+it is not the machine.

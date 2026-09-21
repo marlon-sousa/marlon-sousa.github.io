@@ -167,6 +167,27 @@ making.
 Close the section with one line linking to where the six are counted, so a reader
 arriving cold can find the definition.
 
+## Editing an article that is already published
+
+`updatedDate` in the frontmatter is the record that a live page changed.
+`src/layouts/BlogPost.astro` renders it beside the publication date, in both
+languages, as a real `<time>` element rather than a date baked into a sentence.
+Two rules keep it worth reading:
+
+- **Set it when the argument or the promises change.** A rewritten section, a claim
+  corrected, a **Next time** that now hands over somewhere else, a term redefined.
+  Not for typos, wording or rewrapping. An article that carries a new date for every
+  comma teaches the reader that the date means nothing.
+- **Never set it on a first publish.** `pubDate` already says when the article went
+  out, and *"(last updated on)"* repeating that same date beside it is noise. The
+  field stays absent until there is a real change to record.
+
+The sitemap's `lastmod` is built from the same field in `astro.config.mjs` —
+`updatedDate` when an article has one, `pubDate` otherwise — so recording a change
+is also what tells a crawler the page is worth fetching again. That parser reads the
+frontmatter directly, because a config file cannot import `astro:content`; a date it
+cannot make sense of is left out rather than guessed at.
+
 ## Documentation
 
 Full documentation: https://docs.astro.build
