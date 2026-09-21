@@ -144,6 +144,17 @@ Series articles also close with a **Next time** naming what the following part
 covers. Once that part is published, go back and turn the promise into an
 `article:` link.
 
+### Never number the parts in prose
+
+A series grows. Write cross references as `article:` links or as relative phrases —
+*last time*, *before we are done*, *the list we drew at the very beginning* — and
+never as "the first of four parts" or "we come back for it in part three". One
+published article had to be edited when a three-part series became four, and the
+next part added will do it again to anything that counts.
+
+Numbering inside a single article is fine, because it is one file to renumber.
+Numbering across articles is a promise that ages.
+
 ### Every part names the jobs it was doing
 
 *You are now the whole team* counts six roles — product owner, architect, project
