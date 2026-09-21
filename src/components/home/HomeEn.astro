@@ -11,6 +11,7 @@ import { localeUrl } from '../../i18n/config';
 import portrait from '../../assets/marlon-portrait.jpg';
 import climbing from '../../assets/marlon-climbing.jpg';
 import summit from '../../assets/cognition-champions-summit.jpg';
+import db1Talk from '../../assets/db1-new-rules-of-the-game.jpg';
 ---
 
 <h1>About Me</h1>
@@ -127,6 +128,17 @@ import summit from '../../assets/cognition-champions-summit.jpg';
 <h2>Talks &amp; Interviews</h2>
 <ul>
 	<li>
+		<strong>“As novas regras do jogo”</strong> — DB1 Global Software, Maringá, September
+		2026. Two hours with DB1's engineers and leaders, in Portuguese, on what changes when the code
+		is written by something that remembers nothing from one session to the next: the loop every
+		trade runs between “it is written” and “it is right”, how much of ours we ever actually
+		built, and what happens to the six jobs around the writer's chair once an agent is sitting in
+		it. The argument is written up as
+		<a href={localeUrl('/series/is-our-loop-closed/', 'en')}
+			>The question CTOs are probably not asking: is our loop closed?</a
+		>.
+	</li>
+	<li>
 		<strong>Cognition Champions Summit</strong> — Cognition's headquarters, San Francisco, June
 		2026. For its first Champions Summit, Cognition brought together twenty of its top Devin users
 		from around the world — teams already running Devin in production on migrations, internal
@@ -197,6 +209,18 @@ import summit from '../../assets/cognition-champions-summit.jpg';
 		<a href="https://www.blindtec.com.br/blog/author/marlonsousa/" target="_blank" rel="noopener noreferrer">author archive</a>.
 	</li>
 </ul>
+<figure class="home-photo">
+	<Image
+		src={db1Talk}
+		width={420}
+		height={560}
+		alt="Marlon standing at a dark lectern on a low stage in a modern auditorium, mid-sentence, wearing a headset microphone. On the projection screen behind him: “As novas regras do jogo — Escrever software virou trivial. E agora?”"
+	/>
+	<figcaption>
+		Giving “As novas regras do jogo” at DB1 Global Software, Maringá, September 2026.
+	</figcaption>
+</figure>
+
 <figure class="home-photo">
 	<Image
 		src={summit}

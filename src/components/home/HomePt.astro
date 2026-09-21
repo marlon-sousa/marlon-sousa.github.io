@@ -11,6 +11,7 @@ import { localeUrl } from '../../i18n/config';
 import portrait from '../../assets/marlon-portrait.jpg';
 import climbing from '../../assets/marlon-climbing.jpg';
 import summit from '../../assets/cognition-champions-summit.jpg';
+import db1Talk from '../../assets/db1-new-rules-of-the-game.jpg';
 ---
 
 <h1>Sobre mim</h1>
@@ -128,6 +129,17 @@ import summit from '../../assets/cognition-champions-summit.jpg';
 <h2>Palestras e entrevistas</h2>
 <ul>
 	<li>
+		<strong>“As novas regras do jogo”</strong> — DB1 Global Software, Maringá, setembro de
+		2026. Duas horas com os engenheiros e as lideranças da DB1 sobre o que muda quando o código
+		passa a ser escrito por algo que não lembra nada de uma sessão para a outra: o loop que toda
+		profissão roda entre “está escrito” e “está certo”, quanto do nosso a gente de fato
+		construiu, e o que acontece com os seis trabalhos em volta da cadeira de quem escreve quando é
+		um agente que senta nela. O argumento está escrito, em inglês, na série
+		<a href={localeUrl('/series/is-our-loop-closed/', 'pt')}
+			>The question CTOs are probably not asking: is our loop closed?</a
+		>.
+	</li>
+	<li>
 		<strong>Cognition Champions Summit</strong> — sede da Cognition, São Francisco, junho de 2026.
 		Para o seu primeiro Champions Summit, a Cognition reuniu vinte dos seus principais usuários de
 		Devin no mundo — times que já rodavam o Devin em produção em migrações, ferramental interno e
@@ -199,6 +211,18 @@ import summit from '../../assets/cognition-champions-summit.jpg';
 		<a href="https://www.blindtec.com.br/blog/author/marlonsousa/" target="_blank" rel="noopener noreferrer">arquivo de autor</a>.
 	</li>
 </ul>
+<figure class="home-photo">
+	<Image
+		src={db1Talk}
+		width={420}
+		height={560}
+		alt="Marlon em pé atrás de um púlpito escuro, sobre um palco baixo em um auditório moderno, no meio de uma frase, com microfone headset. Na tela projetada atrás dele: “As novas regras do jogo — Escrever software virou trivial. E agora?”"
+	/>
+	<figcaption>
+		Apresentando “As novas regras do jogo” na DB1 Global Software, Maringá, setembro de 2026.
+	</figcaption>
+</figure>
+
 <figure class="home-photo">
 	<Image
 		src={summit}
