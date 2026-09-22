@@ -48,6 +48,25 @@ export interface Series {
 	 * `complete` — finished; no promise of more.
 	 */
 	status: 'planned' | 'in-progress' | 'complete';
+	/**
+	 * Whether the site may quote how many parts there are. Defaults to true.
+	 *
+	 * Declaring the outline and announcing its length are two different things.
+	 * The outline helps a reader: it shows where an article sits and what is
+	 * still to come. The count mostly helps them decide not to start — "part one
+	 * of fifteen" is a commitment made to a stranger before the second part
+	 * exists, and a long series reads as one somebody else has already abandoned.
+	 *
+	 * Set `false` and the outline still renders in full, unpublished parts and
+	 * all. What disappears is the arithmetic: "All parts of X" rather than "All
+	 * 15 parts of X", and "3 published so far" rather than "3 of 15 parts
+	 * published". Nothing is hidden and nothing is promised.
+	 *
+	 * This is not the same problem as numbering parts in prose. A total here is
+	 * one file, so changing it re-renders every page at once. It is an editorial
+	 * choice about what to say to somebody who has not started reading yet.
+	 */
+	announcesLength?: boolean;
 }
 
 export const series: Series[] = [
@@ -305,7 +324,111 @@ export const series: Series[] = [
 			pt: 'O argumento de que Rust é uma boa escolha para aplicações comuns — ferramentas, serviços, software de desktop — e não só para trabalho de sistemas.',
 		},
 		status: 'planned',
-		parts: [],
+		// Fifteen parts is the plan, not a promise to a stranger. The outline is
+		// declared in full below and renders in full; the site simply does not
+		// quote the number. See `announcesLength`.
+		announcesLength: false,
+		// Part titles and summaries are English only, by the same policy that makes
+		// the articles English only: the Rust audience this is aimed at reads
+		// English, and a Portuguese outline pointing at English articles would
+		// promise something the series is not going to deliver. `Localized` takes a
+		// plain string for exactly this case.
+		//
+		// The first three carry no code. From the fourth onward each part ends at a
+		// tag in the postres repository — `part-04` for the fourth and so on, so the
+		// number in the tag is the number of the part that made it.
+		parts: [
+			{
+				number: 1,
+				title: 'Write like TypeScript, deploy like Go',
+				summary:
+					'Building a bank in a language I had never written, while the corridor explained that Rust needs PhD-level programmers. Why what changed was not safety but relief.',
+			},
+			{
+				number: 2,
+				title: 'Put it next to what you already write',
+				summary:
+					'The things you actually like about TypeScript, Java, Python and Go, and where every one of them lives in Rust. No complaints in this one.',
+			},
+			{
+				number: 3,
+				title: 'The errors you are never going to see again',
+				summary:
+					'The failures that have nowhere left to happen once the types stop evaporating, the ones that stay, and what a strict compiler is worth when a machine is doing the typing.',
+			},
+			{
+				number: 4,
+				title: 'A converter is a small compiler',
+				summary:
+					'An empty directory becomes a project: a library and a binary, the module layout, the manifest, and a build checked on three operating systems from the first day.',
+			},
+			{
+				number: 5,
+				title: 'Arguments, and a log that does not block',
+				summary:
+					'Reading the command line, and why printing is synchronous — what a non-blocking writer does about it, and what that costs.',
+			},
+			{
+				number: 6,
+				title: 'Reading the collection',
+				summary:
+					'JSON with hundreds of optional fields, parsed into types. Where a String lives, where a &str points, and why they are two different things.',
+			},
+			{
+				number: 7,
+				title: 'Saying what went wrong',
+				summary:
+					'An error type the program can name, Result end to end, and the difference between a failure you can explain and one you can only report.',
+			},
+			{
+				number: 8,
+				title: 'Methods and traits',
+				summary:
+					'A string arrives and has to become something the program cannot get wrong. Traits where another language would reach for inheritance.',
+			},
+			{
+				number: 9,
+				title: 'The request and its builder',
+				summary:
+					'A value assembled in stages, the builder written by hand and then derived — and the story of a fork, a rejected pull request, and the better answer the maintainer gave.',
+			},
+			{
+				number: 10,
+				title: 'Bodies',
+				summary:
+					'One thing that is several shapes, each with its own optional parts: pattern matching and destructuring on data that genuinely varies.',
+			},
+			{
+				number: 11,
+				title: 'The output has nowhere to live',
+				summary:
+					'The program understands a request and still cannot produce anything, because nothing can hold the result. A tree with parents in it, and what it costs.',
+			},
+			{
+				number: 12,
+				title: 'Lowering',
+				summary:
+					'Turning one model into another without copying everything and without the compiler refusing the program. Borrowing, lifetimes, and clone as a legitimate first answer.',
+			},
+			{
+				number: 13,
+				title: 'Walking the tree',
+				summary:
+					'Every later step needs to visit every request. Implementing Iterator by hand, and then iterators in general on a structure that is not a list of numbers.',
+			},
+			{
+				number: 14,
+				title: 'Passes, and writing the file',
+				summary:
+					'Inherited settings, composed names, and then the writer. The first time the program produces output, four years after it was started.',
+			},
+			{
+				number: 15,
+				title: 'Shipping',
+				summary:
+					'A tool nobody can install is not a tool. Binaries for three platforms, one command to install it, and the closing measurement.',
+			},
+		],
 	},
 ];
 
@@ -335,6 +458,8 @@ export interface ResolvedSeries {
 	status: Series['status'];
 	/** How many parts the outline declares, translated or not. */
 	plannedParts: number;
+	/** See `Series.announcesLength`. Resolved so templates need no default. */
+	announcesLength: boolean;
 }
 
 export function resolveSeries(entry: Series, locale: Locale): ResolvedSeries {
@@ -345,6 +470,7 @@ export function resolveSeries(entry: Series, locale: Locale): ResolvedSeries {
 		intro: pick(entry.intro, locale),
 		status: entry.status,
 		plannedParts: entry.parts.length,
+		announcesLength: entry.announcesLength ?? true,
 	};
 }
 

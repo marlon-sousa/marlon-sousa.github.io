@@ -37,7 +37,7 @@ const listings = await getSeriesListings(locale);
 							</h2>
 							<p class="meta">
 								{t.n('series.published', parts.length)}
-								{series.plannedParts > parts.length && (
+								{series.announcesLength && series.plannedParts > parts.length && (
 									<> {t('series.ofPlanned', { total: series.plannedParts })}</>
 								)}
 								{` — ${t('series.lastUpdated')} `}

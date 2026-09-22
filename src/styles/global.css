@@ -167,6 +167,53 @@ pre {
 pre > code {
 	all: unset;
 }
+/*
+  Code blocks carry the name of their language, added by
+  plugins/rehype-code-language.mjs. Three consecutive blocks showing the same
+  idea in three languages are otherwise indistinguishable, and worst of all to a
+  reader who cannot see the syntax colouring that is doing the telling.
+
+  The bar sits on the page's own palette rather than on the Shiki theme's, so it
+  reads in both colour schemes and is covered by the contrast check; the block
+  beneath it keeps whatever colours the highlighter chose.
+*/
+.code-figure {
+	margin: 0 0 1.5em;
+}
+.code-figure__bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1em;
+	padding: 0.4em 0.9em;
+	font-size: 0.85em;
+	background-color: rgb(var(--gray-light));
+	color: rgb(var(--gray-dark));
+	border-radius: 8px 8px 0 0;
+}
+.code-figure__lang {
+	font-weight: 700;
+}
+.code-figure__copy {
+	font: inherit;
+	color: inherit;
+	background: none;
+	border: 1px solid rgb(var(--gray));
+	border-radius: 4px;
+	padding: 0.1em 0.7em;
+	cursor: pointer;
+}
+.code-figure__copy:hover {
+	background-color: rgb(var(--surface));
+}
+.code-figure__copy:focus-visible {
+	outline: 3px solid var(--accent-dark);
+	outline-offset: 2px;
+}
+.code-figure pre {
+	margin: 0;
+	border-radius: 0 0 8px 8px;
+}
 blockquote {
 	border-left: 4px solid var(--accent);
 	padding: 0 0 0 20px;

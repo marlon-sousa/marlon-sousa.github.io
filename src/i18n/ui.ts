@@ -82,6 +82,10 @@ const en = {
 	'series.ofPlanned': 'of {total} planned',
 	'series.lastUpdated': 'last updated',
 	'series.progress': '{published} of {total} parts published.',
+	// Used instead of `series.progress` when a series does not announce its
+	// length. Counts what exists; promises nothing about what is coming.
+	'series.progressOpen_one': '{count} part published so far.',
+	'series.progressOpen_other': '{count} parts published so far.',
 	'series.parts': 'Parts',
 	'series.unpublished': 'Not published yet',
 
@@ -92,6 +96,7 @@ const en = {
 	'pager.entry': '{direction} — part {number}: {title}',
 	'pager.unpublished': '{entry} — not published yet',
 	'pager.all': 'All {total} parts of {series}',
+	'pager.allOpen': 'All parts of {series}',
 
 	'tags.title': 'Tags',
 	'tags.description': 'Every topic written about on this site, with the posts under each.',
@@ -191,6 +196,8 @@ const pt: Record<UIKey, string> = {
 	'series.ofPlanned': 'de {total} planejadas',
 	'series.lastUpdated': 'atualizada pela última vez em',
 	'series.progress': '{published} de {total} partes publicadas.',
+	'series.progressOpen_one': '{count} parte publicada até agora.',
+	'series.progressOpen_other': '{count} partes publicadas até agora.',
 	'series.parts': 'Partes',
 	'series.unpublished': 'Ainda não publicada',
 
@@ -201,6 +208,7 @@ const pt: Record<UIKey, string> = {
 	'pager.entry': '{direction} — parte {number}: {title}',
 	'pager.unpublished': '{entry} — ainda não publicada',
 	'pager.all': 'Todas as {total} partes de {series}',
+	'pager.allOpen': 'Todas as partes de {series}',
 
 	'tags.title': 'Temas',
 	'tags.description': 'Todos os temas sobre os quais escrevo neste site, com os artigos de cada um.',

@@ -120,3 +120,39 @@ const pageTitle = nav
 		font-weight: 700;
 	}
 </style>
+
+<script>
+	// Wires up the copy buttons that plugins/rehype-code-language.mjs renders.
+	//
+	// They ship hidden and are revealed here, so a reader without JavaScript is
+	// never offered a control that cannot work — an inert button in the tab order
+	// is a promise the page would not keep.
+	//
+	// The outcome is written into a `role="status"` region rather than only into
+	// the button's own label, because a screen reader is not told that a button
+	// quietly renamed itself after being pressed.
+	const figures = document.querySelectorAll('.code-figure');
+
+	for (const figure of figures) {
+		const button = figure.querySelector<HTMLButtonElement>('[data-code-copy]');
+		const status = figure.querySelector<HTMLElement>('[data-copy-status]');
+		const code = figure.querySelector('pre');
+		if (!button || !code || !navigator.clipboard) continue;
+
+		button.hidden = false;
+		button.addEventListener('click', async () => {
+			try {
+				await navigator.clipboard.writeText(code.textContent ?? '');
+				button.textContent = 'Copied';
+				if (status) status.textContent = 'Copied to the clipboard';
+			} catch {
+				button.textContent = 'Press Ctrl+C';
+				if (status) status.textContent = 'Could not copy. Select the code and copy it yourself.';
+			}
+			window.setTimeout(() => {
+				button.textContent = 'Copy';
+				if (status) status.textContent = '';
+			}, 4000);
+		});
+	}
+</script>

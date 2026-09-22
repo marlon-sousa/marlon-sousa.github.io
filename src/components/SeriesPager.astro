@@ -53,7 +53,11 @@ const nextLabel = nav.next && label(t('pager.next'), nav.next);
 		}
 		<li>
 			<a href={seriesUrl(nav.series.slug, locale)}>
-				{t('pager.all', { total: nav.total, series: nav.series.title })}
+				{
+					nav.series.announcesLength
+						? t('pager.all', { total: nav.total, series: nav.series.title })
+						: t('pager.allOpen', { series: nav.series.title })
+				}
 			</a>
 		</li>
 	</ul>

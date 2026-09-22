@@ -11,6 +11,7 @@ import { defineConfig, fontProviders } from 'astro/config';
 
 import remarkArticleLinks from './plugins/remark-article-links.mjs';
 import rehypeNoFootnoteBackrefs from './plugins/rehype-no-footnote-backrefs.mjs';
+import rehypeCodeLanguage from './plugins/rehype-code-language.mjs';
 
 const BLOG = 'src/content/blog';
 
@@ -78,10 +79,11 @@ export default defineConfig({
 		// Resolves `article:` links in prose to the reader's own language, falling
 		// back to English when a translation does not exist yet. See the plugin.
 		// Drops the "back to reference" links footnotes would otherwise end with;
-		// see that plugin for why.
+		// see that plugin for why. Names the language above every code block, so a
+		// run of the same snippet in three languages can be told apart by ear.
 		processor: unified({
 			remarkPlugins: [remarkArticleLinks],
-			rehypePlugins: [rehypeNoFootnoteBackrefs],
+			rehypePlugins: [rehypeNoFootnoteBackrefs, rehypeCodeLanguage],
 		}),
 	},
 	// The canonical home. marlon-sousa.github.io still answers, and GitHub

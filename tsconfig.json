@@ -1,7 +1,8 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"],
+  "// exclude": "drafts/ holds private working material, including snippet proofs that are *meant* not to compile — a TypeScript file demonstrating an error the article quotes. It is gitignored and is not site code, so the type checker has no business in it.",
+  "exclude": ["dist", "drafts"],
   "compilerOptions": {
     "strictNullChecks": true
   }
