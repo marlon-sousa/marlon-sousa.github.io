@@ -1,5 +1,25 @@
 ## Development
 
+`npm run verify` is the gate: type check, contrast arithmetic, a **forced**
+production build, then axe over every page in both colour schemes, then the i18n
+sweep. It builds with `astro build --force` rather than `astro build`, and that
+is not belt and braces.
+
+Astro caches rendered markdown in `node_modules/.astro` and `.astro/`, and that
+cache survives edits to the remark and rehype plugins in `plugins/`. Change a
+plugin and the next build can hand you the previously rendered HTML, so the page
+you inspect is not the page your code produces. It cost three builds and a
+false conclusion once: a colour fix looked broken when it had simply never run.
+
+So the gate never trusts the cache. Plain `npm run build` is still there and
+still fast, for iterating; anything that decides whether something is fit to
+publish goes through `verify`.
+
+Drafts are absent from a production build, which means **a `draft: true` article
+has never been near the accessibility sweep**. Expect the first run after
+`draft: false` to find things, and flip the flag before you intend to publish
+rather than as the last act.
+
 When starting the dev server, use background mode:
 
 ```

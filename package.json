@@ -9,13 +9,14 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:clean": "astro build --force",
     "check": "astro check",
     "preview": "astro preview",
     "astro": "astro",
     "contrast": "node scripts/contrast.mjs",
     "a11y": "node scripts/a11y.mjs",
     "i18n": "node scripts/i18n.mjs",
-    "verify": "npm run check && npm run contrast && npm run build && npm run a11y && npm run i18n"
+    "verify": "npm run check && npm run contrast && npm run build:clean && npm run a11y && npm run i18n"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.5",

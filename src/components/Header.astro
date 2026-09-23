@@ -46,6 +46,10 @@ interface NavLink {
 const links: NavLink[] = [
 	{ href: localeUrl('/', locale), label: t('nav.home') },
 	{ href: localeUrl('/blog/', locale), label: t('nav.blog'), active: onManifesto ? false : undefined },
+	// The series index lists every series that has something published, so the
+	// menu needs one link rather than a submenu. A submenu would put every
+	// series in the tab order of every page on the site to save one keystroke.
+	{ href: localeUrl('/series/', locale), label: t('nav.series') },
 	{
 		href: postUrl(manifesto.post),
 		label: t('nav.manifesto'),
