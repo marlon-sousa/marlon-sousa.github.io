@@ -65,6 +65,61 @@ const NAMES = {
 	plaintext: 'Plain text',
 };
 
+/**
+ * Token colours the highlighter emits that do not meet 4.5:1 on its own
+ * background, mapped to ones that do.
+ *
+ * `npm run contrast` cannot catch these: it checks this site's palette, and a
+ * theme paints with its own. The axe sweep does catch them, and found exactly
+ * one — github-dark writes comments in #6a737d, which is 3.05:1 where 4.5:1 is
+ * the floor. Every other token in the theme is 5.5:1 or better.
+ *
+ * A comment is not decoration here. It is frequently the line carrying the
+ * point: the compiler error being quoted, the note saying which line does not
+ * compile. It cannot be the one nobody can read. #9198a1 is 5.04:1 and stays
+ * visibly quieter than the 11.5:1 of ordinary code, which is the whole job the
+ * dim colour was doing.
+ *
+ * This lives here rather than in `shikiConfig` because the site sets a custom
+ * markdown `processor`, and that bypasses `shikiConfig` entirely — the setting
+ * is accepted and silently does nothing. Verified by trying it.
+ */
+const COLOR_FIXES = new Map([['#6a737d', '#9198a1']]);
+
+/**
+ * Rewrites unreadable token colours in whatever the highlighter left behind.
+ *
+ * It has to cope with two shapes. Sometimes highlighted code arrives as real
+ * elements carrying a `style` property; sometimes the whole block arrives as a
+ * single `raw` node holding HTML as a string, in which case there are no child
+ * elements to walk and a tree traversal silently finds nothing at all. The
+ * second shape is the one this site actually produces, which took a build and a
+ * search through `dist/` to discover — so both are handled and neither is
+ * assumed.
+ */
+function replaceIn(value) {
+	let fixed = value;
+	for (const [from, to] of COLOR_FIXES) {
+		fixed = fixed.replace(new RegExp(from, 'gi'), to);
+	}
+	return fixed;
+}
+
+function fixColors(node) {
+	const style = node.properties?.style;
+	if (typeof style === 'string') {
+		const fixed = replaceIn(style);
+		if (fixed !== style) node.properties.style = fixed;
+	}
+	for (const child of node.children ?? []) {
+		if (child.type === 'element') fixColors(child);
+		else if ((child.type === 'raw' || child.type === 'text') && typeof child.value === 'string') {
+			const fixed = replaceIn(child.value);
+			if (fixed !== child.value) child.value = fixed;
+		}
+	}
+}
+
 export default function rehypeCodeLanguage() {
 	return (tree) => {
 		visit(tree, 'element', (node, index, parent) => {
@@ -77,6 +132,8 @@ export default function rehypeCodeLanguage() {
 			if (typeof id !== 'string' || id === '') return;
 
 			const name = NAMES[id.toLowerCase()] ?? id;
+
+			fixColors(node);
 
 			node.properties = {
 				...node.properties,

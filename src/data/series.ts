@@ -323,7 +323,7 @@ export const series: Series[] = [
 			en: 'The case that Rust is a good choice for ordinary applications — tools, services, desktop software — and not only for systems work.',
 			pt: 'O argumento de que Rust é uma boa escolha para aplicações comuns — ferramentas, serviços, software de desktop — e não só para trabalho de sistemas.',
 		},
-		status: 'planned',
+		status: 'in-progress',
 		// Fifteen parts is the plan, not a promise to a stranger. The outline is
 		// declared in full below and renders in full; the site simply does not
 		// quote the number. See `announcesLength`.

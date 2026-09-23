@@ -5,7 +5,7 @@ pubDate: 'Sep 23 2026 09:00'
 series: 'rust-beyond-systems'
 seriesPart: 1
 tags: ['rust', 'software engineering', 'ai']
-draft: true
+draft: false
 ---
 
 Let's start in a corridor, because that is where this actually happens.
@@ -281,7 +281,9 @@ has been costing you. Then we open the directory and start.
 
 ## Next time
 
-Enough assertion. I put the two languages side by side and let you judge for
-yourself: the same handful of things you do every single working day, written
-first in TypeScript and then in Rust, with nothing hidden — and nothing to
-complain about either. Just the shape of a Tuesday, twice.
+Enough assertion. In [*Put it next to what you already
+write*](article:put-it-next-to-what-you-already-write) I put the two languages
+side by side and let you judge for yourself: the same handful of things you do
+every single working day, written first in TypeScript and then in Rust, with
+nothing hidden — and nothing to complain about either. Just the shape of a
+Tuesday, twice.

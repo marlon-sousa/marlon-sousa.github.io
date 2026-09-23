@@ -5,7 +5,7 @@ pubDate: 'Sep 23 2026 09:00'
 series: 'rust-beyond-systems'
 seriesPart: 2
 tags: ['rust', 'software engineering']
-draft: true
+draft: false
 ---
 
 [Last time](article:write-like-typescript-deploy-like-go) I told you about a
@@ -557,8 +557,10 @@ they are two types is something you can *feel* rather than something I asserted.
 
 ## Next time
 
-That was everything Rust *has* that you would have missed. Next time, the other
-direction: the specific failures that stop being possible, starting with the most
+That was everything Rust *has* that you would have missed. [*The errors you are
+never going to see again*](article:the-errors-you-are-never-going-to-see-again)
+goes the other direction: the specific failures that stop being possible,
+starting with the most
 expensive line in TypeScript, which is also the most expensive line in Python and
 in Java wearing different clothes. You have met all of them. Usually at three in
 the morning, usually in code that was reviewed and approved by people who knew

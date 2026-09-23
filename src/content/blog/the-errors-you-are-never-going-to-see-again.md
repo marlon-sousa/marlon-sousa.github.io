@@ -5,7 +5,7 @@ pubDate: 'Sep 23 2026 09:00'
 series: 'rust-beyond-systems'
 seriesPart: 3
 tags: ['rust', 'software engineering']
-draft: true
+draft: false
 ---
 
 [Last time](article:put-it-next-to-what-you-already-write) I went through the
