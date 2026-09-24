@@ -286,6 +286,10 @@ export const series: Series[] = [
 			'anybody’s nod. He draws on two projects built that way, and on the years he spent as the person in the ' +
 			'room, on both sides of that arrangement.',
 		status: 'in-progress',
+		// The series grows a station and a chair at a time, so its length is not a
+		// number to quote at somebody who has not started reading. The outline still
+		// renders in full. See `announcesLength`.
+		announcesLength: false,
 		parts: [
 			{
 				number: 1,
@@ -307,6 +311,12 @@ export const series: Series[] = [
 			},
 			{
 				number: 4,
+				title: 'Asking cost an engineer',
+				summary:
+					'The first of the chairs around the loop rather than the stations on it. A product owner who wanted to know whether an idea was even possible had one way to find out, and it cost somebody else’s committed week — so that loop never closed at all.',
+			},
+			{
+				number: 5,
 				title: 'The station nobody draws',
 				summary:
 					'How the loop reaches into the language you chose, and the one check that removes a whole class of mistakes before anybody has to remember them.',

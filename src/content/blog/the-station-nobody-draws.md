@@ -1,9 +1,9 @@
 ---
 title: 'The station nobody draws'
 description: 'The loop does not stop at the process. It reaches into the code itself, into the language you chose — and there is one station on the loop that nobody ever bothers to draw, which can take a whole class of mistake away from the human and the agent at the same time.'
-pubDate: 'Sep 23 2026'
+pubDate: 'Sep 30 2026'
 series: 'is-our-loop-closed'
-seriesPart: 4
+seriesPart: 5
 tags: ['ai engineering', 'ai', 'software engineering', 'rust']
 draft: true
 ---
