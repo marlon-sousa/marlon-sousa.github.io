@@ -27,6 +27,16 @@ function section(path: string): string {
 }
 
 const isActive = active ?? section(String(href ?? '/')) === section(Astro.url.pathname);
+
+// The current page's link is bold, and bold text is wider. Without this the
+// menu shifted by a few pixels every time the reader changed section. The label
+// is set twice in the same grid cell: the visible one, and a bold copy that is
+// never seen and only holds the link at its bold width on every page.
+//
+// The copy is `visibility: hidden`, which also takes it out of the
+// accessibility tree and out of find-in-page; aria-hidden says so explicitly,
+// and Pagefind is told to skip it so search does not index every label twice.
+const label = await Astro.slots.render('default');
 ---
 
 <a
@@ -35,15 +45,24 @@ const isActive = active ?? section(String(href ?? '/')) === section(Astro.url.pa
 	aria-current={isActive ? 'page' : undefined}
 	{...props}
 >
-	<slot />
+	<span class="label" set:html={label} />
+	<span class="reserve" aria-hidden="true" data-pagefind-ignore set:html={label} />
 </a>
 <style>
 	a {
-		display: inline-block;
+		display: inline-grid;
+		justify-items: center;
 		text-decoration: none;
+	}
+	a > span {
+		grid-area: 1 / 1;
 	}
 	a.active {
 		font-weight: bolder;
 		text-decoration: underline;
+	}
+	.reserve {
+		font-weight: bolder;
+		visibility: hidden;
 	}
 </style>

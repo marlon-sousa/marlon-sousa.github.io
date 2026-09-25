@@ -103,11 +103,50 @@ const links: NavLink[] = [
 		color: rgb(var(--black));
 		text-decoration: none;
 	}
+	/*
+	  A grid rather than a flex row, because the language switcher renders
+	  nothing on a page with no translation. A flex row spreading its children
+	  apart has one fewer child to spread there, and the menu jumped to the right
+	  edge on exactly those pages. The grid areas are there whether or not
+	  anything fills them, so the menu is where it is on every page.
+
+	  Narrow: title and switcher share the first row, the menu has the second.
+	  Wide: the menu sits between them, and the two 1fr columns are equal by
+	  definition, so it is centred on the bar without anything being computed.
+	  The breakpoint is the width at which the longest menu (Portuguese, with
+	  the manifesto's language marker) fits between the title and a mirror of
+	  it; scripts/layout.mjs fails if it stops fitting.
+	*/
 	nav {
-		display: flex;
+		display: grid;
+		grid-template-columns: 1fr auto;
+		grid-template-areas:
+			'title switcher'
+			'links links';
 		align-items: center;
-		justify-content: space-between;
-		flex-wrap: wrap;
+		column-gap: 1em;
+	}
+	/* The links carry their own 1em of padding and the title does not, so on its
+	   own row the title needs the same, or it sits against the top edge. */
+	.site-title {
+		grid-area: title;
+		padding-top: 1em;
+	}
+	.internal-links {
+		grid-area: links;
+	}
+	nav > :global(.language-switcher) {
+		grid-area: switcher;
+		justify-self: end;
+	}
+	@media (min-width: 82em) {
+		nav {
+			grid-template-columns: 1fr auto 1fr;
+			grid-template-areas: 'title links switcher';
+		}
+		.site-title {
+			padding-top: 0;
+		}
 	}
 	nav a {
 		padding: 1em 0.5em;
