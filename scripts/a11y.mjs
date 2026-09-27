@@ -66,43 +66,91 @@ const pages = [...(await findPages()), '/404.html'];
 const browser = await chromium.launch();
 let violations = 0;
 
-for (const scheme of ['light', 'dark']) {
-	const context = await browser.newContext({ colorScheme: scheme });
+// The sweep used to walk the whole site in light and then walk it all again in
+// dark: two navigations per page, one after the other, and four minutes of gate.
+// It now loads each page once, checks both schemes on that one load, and runs
+// several pages at a time.
+//
+// Both parts matter and for different reasons. Switching scheme in place with
+// emulateMedia removes half the navigations. Running WORKERS pages at a time
+// removes the waiting, which is most of what was left — axe is not slow so much
+// as serial.
+//
+// The cost of concurrency is that results arrive out of order, and a log that
+// jumps around is a log nobody can follow, least of all by ear. So nothing is
+// printed as it happens: each page's result is kept and the whole list is
+// printed in page order at the end, with a count every so often meanwhile so a
+// long run does not look like a hung one.
+const WORKERS = 4;
+
+async function check(page, path, scheme) {
+	await page.emulateMedia({ colorScheme: scheme });
+	const { violations: found } = await new AxeBuilder({ page })
+		.withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'])
+		// The comment widget is a cross-origin iframe served by giscus.app, and
+		// axe descends into frames by default. Its DOM is not ours: we cannot
+		// fix its heading order or its contrast, and gating our deploy on a
+		// third party's markup means an upstream regression stops us shipping.
+		// Excluded here so the gate keeps testing what this repository controls
+		// — which still includes the wrapper around it, since only the frame
+		// itself is out of scope.
+		.exclude('.giscus')
+		.analyze();
+	return found;
+}
+
+const results = new Array(pages.length);
+let next = 0;
+let done = 0;
+
+async function worker() {
+	const context = await browser.newContext();
 	const page = await context.newPage();
 
-	console.log(`\n${scheme} mode`);
-	for (const path of pages) {
-		await page.goto(origin + path, { waitUntil: 'load' });
-		const { violations: found } = await new AxeBuilder({ page })
-			.withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'best-practice'])
-			// The comment widget is a cross-origin iframe served by giscus.app, and
-			// axe descends into frames by default. Its DOM is not ours: we cannot
-			// fix its heading order or its contrast, and gating our deploy on a
-			// third party's markup means an upstream regression stops us shipping.
-			// Excluded here so the gate keeps testing what this repository controls
-			// — which still includes the wrapper around it, since only the frame
-			// itself is out of scope.
-			.exclude('.giscus')
-			.analyze();
+	for (;;) {
+		const index = next++;
+		if (index >= pages.length) break;
+		const path = pages[index];
 
-		if (found.length === 0) {
-			console.log(`  PASS  ${path}`);
-			continue;
-		}
-		violations += found.length;
-		console.log(`  FAIL  ${path}`);
-		for (const issue of found) {
-			console.log(`        [${issue.impact}] ${issue.id}: ${issue.help}`);
-			for (const node of issue.nodes.slice(0, 3)) {
-				console.log(`          ${node.target.join(' ')}`);
+		await page.goto(origin + path, { waitUntil: 'load' });
+		const issues = [];
+		for (const scheme of ['light', 'dark']) {
+			for (const found of await check(page, path, scheme)) {
+				issues.push({ scheme, found });
 			}
 		}
+		results[index] = issues;
+
+		done += 1;
+		if (done % 10 === 0 || done === pages.length) {
+			console.log(`  ${done}/${pages.length} pages checked`);
+		}
 	}
+
 	await context.close();
 }
 
+console.log(`\nChecking ${pages.length} pages in light and dark, ${WORKERS} at a time.\n`);
+await Promise.all(Array.from({ length: WORKERS }, worker));
 await browser.close();
 server.close();
+
+console.log('');
+for (const [index, path] of pages.entries()) {
+	const issues = results[index];
+	if (issues.length === 0) {
+		console.log(`  PASS  ${path}`);
+		continue;
+	}
+	violations += issues.length;
+	console.log(`  FAIL  ${path}`);
+	for (const { scheme, found } of issues) {
+		console.log(`        [${found.impact}] ${found.id} (${scheme}): ${found.help}`);
+		for (const node of found.nodes.slice(0, 3)) {
+			console.log(`          ${node.target.join(' ')}`);
+		}
+	}
+}
 
 console.log(
 	violations === 0

@@ -87,7 +87,6 @@ const origin = `http://127.0.0.1:${server.address().port}`;
 // one with JavaScript, so it has no single menu to compare against the others.
 const pages = await findPages();
 const browser = await chromium.launch();
-const page = await browser.newPage();
 
 // Everything is measured in one pass inside the page, so a check reads as a
 // comparison of numbers rather than a sequence of round trips.
@@ -155,12 +154,28 @@ const px = (n) => `${Math.round(n)}px`;
 
 let failures = 0;
 
-for (const width of WIDTHS) {
+// Every width is an independent sweep — the reference each page is compared
+// against is the first page at *that* width — so the widths run several at a
+// time rather than one after another. That is where this script's time went: not
+// in measuring, which is one round trip per page, but in doing 399 of them in a
+// queue.
+//
+// Results are collected and printed at the end, in width and page order, because
+// output that arrives in whatever order seven workers happen to finish in is not
+// something anybody can read, and least of all listen to.
+const WORKERS = 4;
+
+const byWidth = new Map();
+let cursor = 0;
+let checked = 0;
+const total = WIDTHS.length * pages.length;
+
+async function sweep(width, page) {
 	await page.setViewportSize({ width, height: 900 });
-	console.log(`\n${width}px`);
 
 	/** The first page seen in each language, which every later one must match. */
 	const reference = new Map();
+	const rows = [];
 
 	for (const path of pages) {
 		await page.goto(origin + path, { waitUntil: 'load' });
@@ -224,6 +239,37 @@ for (const width of WIDTHS) {
 			}
 		}
 
+		rows.push({ path, problems });
+
+		checked += 1;
+		if (checked % 50 === 0 || checked === total) {
+			console.log(`  ${checked}/${total} measurements taken`);
+		}
+	}
+
+	byWidth.set(width, rows);
+}
+
+async function worker() {
+	const page = await browser.newPage();
+	for (;;) {
+		const index = cursor++;
+		if (index >= WIDTHS.length) break;
+		await sweep(WIDTHS[index], page);
+	}
+	await page.close();
+}
+
+console.log(
+	`\nMeasuring ${pages.length} pages at ${WIDTHS.length} widths, ${WORKERS} widths at a time.\n`,
+);
+await Promise.all(Array.from({ length: WORKERS }, worker));
+await browser.close();
+server.close();
+
+for (const width of WIDTHS) {
+	console.log(`\n${width}px`);
+	for (const { path, problems } of byWidth.get(width)) {
 		if (problems.length === 0) {
 			console.log(`  PASS  ${path}`);
 			continue;
@@ -233,9 +279,6 @@ for (const width of WIDTHS) {
 		for (const problem of problems) console.log(`        ${problem}`);
 	}
 }
-
-await browser.close();
-server.close();
 
 console.log(
 	failures === 0
