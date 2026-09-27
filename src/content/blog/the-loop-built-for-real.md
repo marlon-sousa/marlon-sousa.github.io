@@ -26,7 +26,7 @@ Two things before we start, because both of them decide how to read the rest.
 people, and most of what it takes to build one is something somebody has to be
 *given* — a budget, a mandate, a week. If you are on your own, with an agent and a
 project nobody else touches, you hold all of this yourself, and that is a different
-problem with [a series of its own](article:you-are-now-the-whole-team). This one is
+problem with [a series of its own](/series/you-are-now-the-whole-team/). This one is
 not that. Here the question is never whether one person could do all the jobs. It
 is whether the stations exist, or whether your company is still renting somebody's
 memory.
@@ -50,7 +50,7 @@ of its own, as promised.
 Some of these you already have. Check them off. The ones you find yourself
 hesitating over are the ones that were a person.
 
-### The spec: two documents, and only one of them is technical
+## The spec: two documents, and only one of them is technical
 
 **What it was.** A ticket with two lines. A conversation in a corridor. A slide
 from a kickoff meeting nobody could find any more. And that was fine, wasn't it?
@@ -87,7 +87,7 @@ Which is why it lives where the code lives. In the repository, versioned, next t
 the thing it describes, read at the start of every session, so that *what did we
 agree?* has an answer that is not a person.
 
-### The inner loop: the agent runs it alone, and nobody watches
+## The inner loop: the agent runs it alone, and nobody watches
 
 **What it was.** A person. Edit, run, look at the output, edit again. Hours of it.
 And when the code was in a part of the system only the "human gate" understood, the
@@ -121,7 +121,7 @@ inside the inner loop has to be one the agent *cannot choose*. Which takes us to
 checkpoint. And no, not the human kind. We spent a whole article on why that one has
 to go.
 
-### The checkpoint: one command, written before there was code
+## The checkpoint: one command, written before there was code
 
 **What it was.** "It works on my machine." A build that ran, sometimes, on a
 server somebody set up years ago. Tests that were run when someone remembered to.
@@ -175,7 +175,7 @@ reasons that sound excellent at the time. And its definition is protected: the a
 cannot edit the pipeline it is judged by, and neither can the person under deadline
 pressure at eleven at night. Changes to it go round the loop like everything else.
 
-### The second read: a machine first, then a person, holding the spec
+## The second read: a machine first, then a person, holding the spec
 
 **What it was.** Code review, in theory. In practice, one of two things. Either a
 rubber stamp, because the reviewer did not know that part of the code and the
@@ -210,7 +210,7 @@ and checked. *"This will break the nightly export"* is a reason, and it should b
 a test, so that next time nobody has to remember it. *"I don't like it"* is not a
 reason. It is the old world asking to be let back in.
 
-### Merge and deploy: the machine does it, with a short list of exceptions
+## Merge and deploy: the machine does it, with a short list of exceptions
 
 **What it was.** A release window. A deployment on a Thursday, never a Friday. A
 change management form with eleven fields, filled in the day before, approved in a
@@ -234,7 +234,7 @@ by hand, the day before, and starts being generated *from* the loop, because eve
 station already left a record. Approval becomes reading a record rather than
 attending a meeting.
 
-### Monitoring: the letters, and the one letter no machine can read
+## Monitoring: the letters, and the one letter no machine can read
 
 **What it was.** An alert, if you were lucky. A user, if you were not. And then
 the "human gate", at three in the morning, holding the whole system in their head and
