@@ -317,6 +317,12 @@ export const series: Series[] = [
 			},
 			{
 				number: 5,
+				title: 'A lie they told you about agents',
+				summary:
+					'The other half of the product owner’s chair. Agents do not only write code; they read and reason, and that puts feasibility, the hidden rule and a working prototype within a product owner’s own reach — once the organisation assembles what that autonomy needs.',
+			},
+			{
+				number: 6,
 				title: 'The station nobody draws',
 				summary:
 					'How the loop reaches into the language you chose, and the one check that removes a whole class of mistakes before anybody has to remember them.',
