@@ -131,6 +131,16 @@ input {
 table {
 	width: 100%;
 }
+/*
+  A table cell is as wide as its longest word, and `break-word` on the body does
+  not change that — only `anywhere` lets a cell count a long word as breakable
+  when it works out its width. Without it a table that fits a phone in one font
+  pushes the page sideways in another: it did, on the Linux runner.
+*/
+th,
+td {
+	overflow-wrap: anywhere;
+}
 img {
 	max-width: 100%;
 	height: auto;
