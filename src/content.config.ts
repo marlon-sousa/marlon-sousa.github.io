@@ -1,6 +1,7 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { CODE_SPEC } from './data/code';
 import { seriesSlugs } from './data/series';
 
 const blog = defineCollection({
@@ -39,6 +40,13 @@ const blog = defineCollection({
 				series: z.enum(seriesSlugs).optional(),
 				/** 1-based position in the reading order. */
 				seriesPart: z.number().int().positive().optional(),
+
+				/**
+				 * The code an article describes, as `repo@ref` — for the Rust series,
+				 * `postres@part-04`, the tag the part ends at. Rendered under the title
+				 * as a link to that tree. See src/data/code.ts.
+				 */
+				code: z.string().regex(CODE_SPEC).optional(),
 
 				/** Free-form topic labels. Shown on the post; no archive pages yet. */
 				tags: z.array(z.string()).default([]),

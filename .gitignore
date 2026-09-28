@@ -29,3 +29,6 @@ pnpm-debug.log*
 # private working artifacts, not for publication
 specs/
 drafts/
+
+# repositories checked out by the deploy workflow for code includes
+external/

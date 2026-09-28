@@ -7,6 +7,7 @@ import Giscus from '../components/Giscus.astro';
 import SeriesBadge from '../components/SeriesBadge.astro';
 import SeriesPager from '../components/SeriesPager.astro';
 import { tagUrl, type SeriesNav } from '../lib/posts';
+import { codeRef } from '../data/code';
 import { getLocale, type Locale } from '../i18n/config';
 import { useTranslations } from '../i18n/ui';
 
@@ -19,8 +20,10 @@ type Props = CollectionEntry<'blog'>['data'] & {
 	translations?: Partial<Record<Locale, string>>;
 };
 
-const { title, description, pubDate, updatedDate, heroImage, tags, draft, nav, ogImage, translations } =
+const { title, description, pubDate, updatedDate, heroImage, tags, draft, code, nav, ogImage, translations } =
 	Astro.props;
+
+const source = code ? codeRef(code) : undefined;
 
 const locale = getLocale(Astro.url);
 const t = useTranslations(locale);
@@ -80,6 +83,13 @@ const pageTitle = nav
 					</p>
 				)
 			}
+			{
+				source && (
+					<p class="code-link">
+						{t('post.code')} <a href={source.url}>{source.repo}, {source.ref}</a>
+					</p>
+				)
+			}
 		</div>
 		<hr />
 		<div class="prose">
@@ -108,6 +118,11 @@ const pageTitle = nav
 		font-style: italic;
 	}
 	.tags {
+		margin: 0 0 1em 0;
+		font-size: 0.9em;
+		color: rgb(var(--gray));
+	}
+	.code-link {
 		margin: 0 0 1em 0;
 		font-size: 0.9em;
 		color: rgb(var(--gray));

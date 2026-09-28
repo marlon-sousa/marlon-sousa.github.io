@@ -68,6 +68,7 @@ const en = {
 	'post.draftNotice': 'Draft — this is unfinished and is not published on the live site.',
 	'post.lastUpdated': '(last updated on {date})',
 	'post.tagged': 'Tagged:',
+	'post.code': 'The code at the end of this part:',
 	'post.comments': 'Comments',
 	'post.pageTitle': '{series} — part {part}: {title}',
 
@@ -183,6 +184,7 @@ const pt: Record<UIKey, string> = {
 	'post.draftNotice': 'Rascunho — isto está inacabado e não é publicado no site.',
 	'post.lastUpdated': '(atualizado pela última vez em {date})',
 	'post.tagged': 'Temas:',
+	'post.code': 'O código ao fim desta parte:',
 	'post.comments': 'Comentários',
 	'post.pageTitle': '{series} — parte {part}: {title}',
 

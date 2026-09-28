@@ -214,6 +214,15 @@ pre > code {
 	margin: 0;
 	border-radius: 0 0 8px 8px;
 }
+/*
+  Where an included snippet came from: file, tag and lines, added under the block
+  by plugins/remark-code-include.mjs. Pulled up against the block it describes so
+  it reads as that block's footnote rather than as the next paragraph.
+*/
+.code-source {
+	margin: -1.1em 0 1.5em;
+	font-size: 0.85em;
+}
 blockquote {
 	border-left: 4px solid var(--accent);
 	padding: 0 0 0 20px;

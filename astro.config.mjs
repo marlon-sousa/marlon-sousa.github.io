@@ -10,6 +10,7 @@ import { unified } from '@astrojs/markdown-remark';
 import { defineConfig, fontProviders } from 'astro/config';
 
 import remarkArticleLinks from './plugins/remark-article-links.mjs';
+import remarkCodeInclude from './plugins/remark-code-include.mjs';
 import rehypeNoFootnoteBackrefs from './plugins/rehype-no-footnote-backrefs.mjs';
 import rehypeCodeLanguage from './plugins/rehype-code-language.mjs';
 
@@ -78,11 +79,13 @@ export default defineConfig({
 	markdown: {
 		// Resolves `article:` links in prose to the reader's own language, falling
 		// back to English when a translation does not exist yet. See the plugin.
+		// Fills `include="postres@part-04:…"` code blocks from a tagged commit, so
+		// a Rust series snippet is the code that CI built rather than a copy of it.
 		// Drops the "back to reference" links footnotes would otherwise end with;
 		// see that plugin for why. Names the language above every code block, so a
 		// run of the same snippet in three languages can be told apart by ear.
 		processor: unified({
-			remarkPlugins: [remarkArticleLinks],
+			remarkPlugins: [remarkArticleLinks, remarkCodeInclude],
 			rehypePlugins: [rehypeNoFootnoteBackrefs, rehypeCodeLanguage],
 		}),
 	},

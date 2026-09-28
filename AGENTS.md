@@ -15,6 +15,11 @@ So the gate never trusts the cache. Plain `npm run build` is still there and
 still fast, for iterating; anything that decides whether something is fit to
 publish goes through `verify`.
 
+The deploy workflow runs `verify` too, and uploads the `dist/` it built, so a
+site that fails any part of the gate is never published — the live site stays on
+its last good version. That makes a local run a way of finding out sooner, not
+the only thing standing between a push and the public.
+
 Drafts are absent from a production build, which means **a `draft: true` article
 has never been near the accessibility sweep**. Expect the first run after
 `draft: false` to find things, and flip the flag before you intend to publish
@@ -197,6 +202,30 @@ making.
 
 Close the section with one line linking to where the six are counted, so a reader
 arriving cold can find the definition.
+
+### The Rust series closes on what the part was quietly doing
+
+*Rust Beyond Systems Programming* has its own version of that section, headed
+**"What this one was quietly doing"** and placed, the same way, immediately before
+**Next time**. It is a short wrap-up of what a reader would not notice from the
+body, in up to three strands, each under its own `###` subheading so a screen
+reader can jump straight to it, and a strand with nothing specific in it is left
+out:
+
+- **The jobs.** Which of the six roles the part was doing, under the same rule as
+  above — each entry names something specific from the article, the unevenness is
+  said out loud ("no product owner this time"), and the section ends with the line
+  linking to where the six are counted, `article:the-night-that-produced-no-code`.
+  Where the other series did the same thing, say so and link it; that is the
+  bridge between the two.
+- **What Rust solved that would have been a problem elsewhere** — the cost the
+  reader's own language would have charged for the same step.
+- **What the language did that nobody would notice** — the defaults, refusals
+  and conventions that did work in the article without ever being named in it.
+
+It binds a part to the series' argument — Rust as the language that takes a slice
+of the loop off the human and the agent — the way the jobs section binds the other
+series to its own.
 
 ## Editing an article that is already published
 
