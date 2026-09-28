@@ -179,6 +179,12 @@ async function sweep(width, page) {
 
 	for (const path of pages) {
 		await page.goto(origin + path, { waitUntil: 'load' });
+		// The site font is `display: swap`, so a page can be painted in the
+		// fallback first and `load` does not promise the swap has happened. On
+		// Windows it always had; on the Linux runner the deploy uses, some pages
+		// were measured in the wider fallback, and that alone moved the menu and
+		// pushed one article sideways. Measure the page a reader ends up seeing.
+		await page.evaluate(() => document.fonts.ready);
 		const m = await page.evaluate(measure);
 		const problems = [];
 
