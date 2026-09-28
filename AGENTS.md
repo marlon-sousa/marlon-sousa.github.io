@@ -15,10 +15,11 @@ So the gate never trusts the cache. Plain `npm run build` is still there and
 still fast, for iterating; anything that decides whether something is fit to
 publish goes through `verify`.
 
-The deploy workflow runs `verify` too, and uploads the `dist/` it built, so a
-site that fails any part of the gate is never published — the live site stays on
-its last good version. That makes a local run a way of finding out sooner, not
-the only thing standing between a push and the public.
+The deploy workflow runs `verify` too, on Linux and on Windows in parallel, and
+uploads the `dist/` the Linux run built; the deploy waits for both, so a site
+that fails any part of the gate on either system is never published — the live
+site stays on its last good version. That makes a local run a way of finding out
+sooner, not the only thing standing between a push and the public.
 
 Drafts are absent from a production build, which means **a `draft: true` article
 has never been near the accessibility sweep**. Expect the first run after

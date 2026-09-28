@@ -142,8 +142,69 @@ jobs:
         with:
           path: dist
 
+  # The same gate on Windows, in parallel with the build above. It publishes
+  # nothing — the site that goes out is the one built on Linux — but the deploy
+  # waits for it, so a page that only breaks under one operating system's fonts
+  # or paths is caught wherever it breaks. The first Linux run found two such
+  # things that Windows had been hiding; this keeps the reverse from happening.
+  verify-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Mirrors the maintenance decision in `build` without waiting for it: no
+      # gate is needed when the offline page is what will be published. Asking to
+      # bring the site back runs the gate even though the file is still in this
+      # checkout, because `build` removes it before building.
+      - name: Decide whether there is a site to check
+        id: maintenance
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.availability }}" = "take the site down" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.availability }}" = "bring the site back" ]; then
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+          elif [ -f MAINTENANCE.md ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Check out postres for code includes
+        if: steps.maintenance.outputs.enabled == 'false'
+        uses: actions/checkout@v4
+        with:
+          repository: marlon-sousa/postres
+          path: external/postres
+          fetch-depth: 0
+
+      - name: Set up Node
+        if: steps.maintenance.outputs.enabled == 'false'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        if: steps.maintenance.outputs.enabled == 'false'
+        run: npm ci
+
+      # No --with-deps: that installs Linux system packages, and Windows has
+      # nothing to add.
+      - name: Install the browser the checks use
+        if: steps.maintenance.outputs.enabled == 'false'
+        run: npx playwright install chromium
+
+      - name: Verify
+        if: steps.maintenance.outputs.enabled == 'false'
+        run: npm run verify
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CODE_REPO_POSTRES: ${{ github.workspace }}/external/postres
+
   deploy:
-    needs: build
+    needs: [build, verify-windows]
     runs-on: ubuntu-latest
     environment:
       name: github-pages
