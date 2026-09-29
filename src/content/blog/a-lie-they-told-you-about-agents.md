@@ -38,8 +38,9 @@ That is the capability this chair needs, and it is the one hardly anybody is buy
 them for.
 
 I should say where my own confidence comes from, because it is not neutral. Most of
-my hours with an agent have been with Devin, enough that Cognition invited me to
-their champions summit this year, so discount me accordingly. Other agents can do
+my hours with an agent have been with [Devin](https://devin.ai), enough that
+Cognition invited me to [their Champions Summit](/#cognition-champions-summit) this
+year, so discount me accordingly. Other agents can do
 this too. Devin is simply the one I have used enough to vouch for. It indexes the
 repositories it is given, it correlates them — the service that makes a call with
 the one that answers it, the contract with both of its sides — and when you ask it
