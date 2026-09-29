@@ -39,3 +39,19 @@
 	font-size: 0.9em;
 	color: rgb(var(--gray));
 }
+/* The DB1 cut is a vertical phone video. It keeps its own proportions and never
+   grows past the width it was shot at, however wide the column is. */
+.home-video video {
+	display: block;
+	width: 100%;
+	max-width: 360px;
+	height: auto;
+	border-radius: 12px;
+	background: #000;
+}
+.home-video details {
+	margin-top: 0.75rem;
+}
+.home-video summary {
+	cursor: pointer;
+}
