@@ -92,25 +92,34 @@ import db1Talk from '../../assets/db1-new-rules-of-the-game.jpg';
 	</li>
 	<li>
 		<strong><a href="https://www.remessaonline.com.br" target="_blank" rel="noopener noreferrer">Remessa Online</a> — Staff Engineer (nov. 2022 – jul. 2024):</strong> Transferências internacionais de dinheiro, na plataforma
-		que move recursos entre países para pessoas físicas e empresas. Além de atuar na plataforma,
-		construí produtos de enablement para outros times de engenharia e assessorei a alta liderança
-		sobre necessidades de engenharia e sobre onde estavam de fato as maiores oportunidades de
-		melhoria.
+		que move recursos entre países para pessoas físicas e empresas, construída em microsserviços
+		JavaScript e TypeScript. O trabalho era o clássico de um staff engineer: code review, estratégia
+		técnica e mentoria. Desenhei o sistema de autenticação multifator que a empresa usa e o construí
+		em Java com um time sob a minha liderança, construí produtos de enablement para outros times de
+		engenharia e assessorei a alta liderança sobre necessidades de engenharia e sobre onde estavam
+		de fato as maiores oportunidades de melhoria.
 	</li>
 	<li>
 		<strong><a href="https://www.ebanx.com" target="_blank" rel="noopener noreferrer">EBANX</a> — Senior Engineer, e Chief Engineer no Compass (ago. 2019 – out. 2022):</strong> Em uma passagem anterior
 		pelo EBANX, liderei a engenharia do Compass, a operação bancária da empresa nas Ilhas Turks e
 		Caicos, licenciada lá como Compass Trust Ltd. Montei o sistema bancário inteiro: contas, gestão
 		de cartões, extratos, o autorizador de cartão de crédito, back office, atendimento ao cliente e
-		processamento de arquivos. Tudo em Rust, tudo em Kubernetes. No auge, o cartão Compass atendia
+		processamento de arquivos. Tudo em Rust, tudo em Kubernetes: serviços assíncronos em Tokio,
+		conversando por gRPC, com RabbitMQ entre eles. No auge, o cartão Compass atendia
 		perto de dez mil pessoas que viviam nas ilhas ou vinham delas, muitas das quais não se qualificavam para um
 		cartão de um banco comercial estabelecido.
 	</li>
 	<li>
-		<strong><a href="https://www.itau.com.br" target="_blank" rel="noopener noreferrer">Itaú Unibanco</a> — Plataforma de Internet Banking (mar. 2011 – jul. 2019):</strong> Desenvolvimento e evolução do
-		framework por trás do internet banking do maior banco privado do Brasil, junto com a manutenção
-		do sistema central de internet banking e o desenho de camadas de interoperabilidade entre
-		sistemas. Também assessorei os times de front-end de mobile e internet banking em acessibilidade.
+		<strong><a href="https://www.itau.com.br" target="_blank" rel="noopener noreferrer">Itaú Unibanco</a> — Plataforma de Internet Banking (mar. 2011 – jul. 2019):</strong> O internet banking do maior
+		banco privado do Brasil rodava sobre um framework próprio: uma linguagem de domínio específico
+		na qual os desenvolvedores escreviam as páginas, o interpretador dela em C++, o sistema de
+		login, os adaptadores de dados que as páginas consultavam para obter dados dinâmicos e as
+		camadas de log e de feature toggle. Fui um dos principais arquitetos e mantenedores desse
+		framework. Quando ele deu lugar a Spring e Java, desenhei, escrevi e mantive a camada de
+		convivência que permitiu aos dois compartilhar login, sessões e log enquanto as transações
+		migravam uma a uma — uma migração arriscada que aconteceu sem nenhum incidente do lado C++.
+		Também gerenciei times que construíam transações de internet banking e assessorei os times de
+		front-end de mobile e internet banking em acessibilidade.
 	</li>
 	<li>
 		<strong><a href="https://www.accenture.com/br-pt" target="_blank" rel="noopener noreferrer">Accenture</a> — Senior Software Developer, depois Analyst Programmer (2008–2011):</strong>
