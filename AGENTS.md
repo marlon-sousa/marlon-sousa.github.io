@@ -34,6 +34,20 @@ astro dev --background
 
 Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
 
+Three things about the dev server that each cost time once:
+
+- **Call the project's own Astro**, `./node_modules/.bin/astro`. `npx astro` has been
+  seen to resolve a stale copy from the npx cache, which then fails with *"Tsconfig not
+  found astro/tsconfigs/strict"*.
+- **Adding an article file, or changing a plugin, leaves the server stale.** The
+  `article:` link index is built at startup, and the content cache keeps the last
+  render — including a *failed* one, served as an empty page with status 200. Stop the
+  server, delete `node_modules/.astro` and `.astro/data-store.json`, and start again.
+- **After clearing that cache, the first sync takes longer than `--background` waits**
+  (about 30 seconds), and background mode reports that the server failed to start.
+  Start it once in the foreground, or wait and start `--background` again once the
+  cache is warm.
+
 ## Languages
 
 The site is published in English and Brazilian Portuguese. English is the default
@@ -204,14 +218,21 @@ making.
 Close the section with one line linking to where the six are counted, so a reader
 arriving cold can find the definition.
 
-### The Rust series closes on what the part was quietly doing
+### The Rust series closes with "Wrapping it up"
 
 *Rust Beyond Systems Programming* has its own version of that section, headed
-**"What this one was quietly doing"** and placed, the same way, immediately before
-**Next time**. It is a short wrap-up of what a reader would not notice from the
-body, in up to three strands, each under its own `###` subheading so a screen
-reader can jump straight to it, and a strand with nothing specific in it is left
-out:
+**"Wrapping it up"** and placed, the same way, immediately before **Next time**.
+(Part 4, already published, still carries the earlier heading, *"What this one was
+quietly doing"*; parts from the fifth onward use the new one.)
+
+It opens with one or two sentences on what the part just did, then a **numbered
+list of the Rust ideas the reader met** — one short line each, in plain words
+(*"a struct is a named bundle of data: each field is written `name: Type`"*). This
+is a tutorial, and the list is what a reader keeps.
+
+Then up to three strands, each under its own `###` subheading so a screen reader can
+jump straight to it. A strand with nothing specific in it is left out, and so is a
+strand filled with the wrong kind of thing:
 
 - **The jobs.** Which of the six roles the part was doing, under the same rule as
   above — each entry names something specific from the article, the unevenness is
@@ -220,13 +241,35 @@ out:
   Where the other series did the same thing, say so and link it; that is the
   bridge between the two.
 - **What Rust solved that would have been a problem elsewhere** — the cost the
-  reader's own language would have charged for the same step.
-- **What the language did that nobody would notice** — the defaults, refusals
-  and conventions that did work in the article without ever being named in it.
+  reader's own language would have charged for the same step. It must genuinely
+  compare languages: one Rust API against another Rust API does not belong here.
+- **What the language did** — what the *language* contributed, as distinct from
+  what a library or Cargo did. clap writing a help screen is clap; Rust letting clap
+  ship a compile-time code writer is the language.
 
 It binds a part to the series' argument — Rust as the language that takes a slice
 of the loop off the human and the agent — the way the jobs section binds the other
 series to its own.
+
+### Working on the Rust series
+
+The code for each part of *Rust Beyond Systems Programming* lives in
+`marlon-sousa/postres` (cloned beside this repository), and each part ends at a tag.
+
+- **Write the code on a `wip/part-NN` branch**, never on a branch named `part-NN`: the
+  tag created at publish takes that name, and a branch and a tag with the same name make
+  every `git show part-NN:…` ambiguous. Stack each part's branch on the previous one.
+- **Snippets come from the code**, through `include="postres@wip/part-NN:path#anchor"`
+  while drafting and `postres@part-NN` once published — the plugin refuses anything else
+  in a published article. Anything *hand-written* in an article — an intermediate
+  version, a snippet from another language, a quote from the standard library — is
+  compiled or run first under `drafts/rust/proofs/` (gitignored), which has its own
+  README.
+- **`cargo add` puts new lines inside existing `ANCHOR` comments** in `Cargo.toml`, so
+  an anchor silently grows to include the new dependency. Check the anchors by hand
+  after every `cargo add`.
+- **Anchors in Markdown** are written `<!-- ANCHOR: name -->`; the plugin accepts a
+  closing `-->` or `*/` after the name.
 
 ## Editing an article that is already published
 

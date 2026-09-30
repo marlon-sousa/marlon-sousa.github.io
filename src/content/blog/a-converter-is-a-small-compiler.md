@@ -2,6 +2,7 @@
 title: 'A converter is a small compiler'
 description: 'An empty directory becomes a Rust project: why a file-to-file converter is shaped like a compiler, a library and a binary in one package, modules and who can see them, a manifest with no dependencies in it, two lines that let the build refuse undocumented and unsafe code, and CI on three operating systems from the very first commit.'
 pubDate: 'Sep 28 2026 14:00'
+updatedDate: 'Sep 30 2026'
 series: 'rust-beyond-systems'
 seriesPart: 4
 code: 'postres@part-04'
@@ -561,9 +562,7 @@ whole team*.
 
 ## Next time
 
-The program learns to listen. We read the command line — where the collection is
-and where the output should go — with a crate that turns a struct into an argument
-parser, and work out a sensible output name when nobody gives one. Then we make
-the program say what it is doing, which raises a question most of us have never
-asked: why is printing a line slow, and what does a program do about it when it
-cannot afford to wait?
+[Next time](article:arguments-without-writing-a-parser) the program learns to listen.
+We read the command line — where the collection is and where the output should go —
+with a crate that turns a struct into an argument parser, and we do not write a line
+of that parser ourselves: a macro writes it for us.

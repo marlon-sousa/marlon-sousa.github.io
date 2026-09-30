@@ -340,7 +340,7 @@ export const series: Series[] = [
 			pt: 'O argumento de que Rust é uma boa escolha para aplicações comuns — ferramentas, serviços, software de desktop — e não só para trabalho de sistemas.',
 		},
 		status: 'in-progress',
-		// Fifteen parts is the plan, not a promise to a stranger. The outline is
+		// Nineteen parts is the plan, not a promise to a stranger. The outline is
 		// declared in full below and renders in full; the site simply does not
 		// quote the number. See `announcesLength`.
 		announcesLength: false,
@@ -380,66 +380,90 @@ export const series: Series[] = [
 			},
 			{
 				number: 5,
-				title: 'Arguments, and a log that does not block',
+				title: 'Arguments, without writing a parser',
 				summary:
-					'Reading the command line, and why printing is synchronous — what a non-blocking writer does about it, and what that costs.',
+					'Reading the command line by describing it as a struct, and letting a macro write the parser — the help screen included. What structs, attributes and macros are, and why they make Rust feel high-level.',
 			},
 			{
 				number: 6,
+				title: 'Optional for the user, not for us',
+				summary:
+					'An argument the user may leave out, and a value the program cannot do without. Enums as tagged unions, Option as one of them, match, and a settled Config the rest of the program can trust.',
+			},
+			{
+				number: 7,
+				title: 'Is that name right?',
+				summary:
+					'A default output name that looks right, tests that say otherwise twice, and the fix that was already in the standard library — plus the rule that would have found it first.',
+			},
+			{
+				number: 8,
+				title: 'Now, later, or only in tests',
+				summary:
+					'A block that runs now, a closure that runs later, a function with a name — and how to choose. Tests that become a table. And conditional compilation: code decided before the program runs, and why that is safer.',
+			},
+			{
+				number: 9,
+				title: 'A log that does not block',
+				summary:
+					'Why printing is synchronous, what a non-blocking writer does about it, what that costs when nobody measures — and the one-character mistake the compiler itself recommends.',
+			},
+			{
+				number: 10,
 				title: 'Reading the collection',
 				summary:
 					'JSON with hundreds of optional fields, parsed into types. Where a String lives, where a &str points, and why they are two different things.',
 			},
 			{
-				number: 7,
+				number: 11,
 				title: 'Saying what went wrong',
 				summary:
 					'An error type the program can name, Result end to end, and the difference between a failure you can explain and one you can only report.',
 			},
 			{
-				number: 8,
+				number: 12,
 				title: 'Methods and traits',
 				summary:
 					'A string arrives and has to become something the program cannot get wrong. Traits where another language would reach for inheritance.',
 			},
 			{
-				number: 9,
+				number: 13,
 				title: 'The request and its builder',
 				summary:
 					'A value assembled in stages, the builder written by hand and then derived — and the story of a fork, a rejected pull request, and the better answer the maintainer gave.',
 			},
 			{
-				number: 10,
+				number: 14,
 				title: 'Bodies',
 				summary:
 					'One thing that is several shapes, each with its own optional parts: pattern matching and destructuring on data that genuinely varies.',
 			},
 			{
-				number: 11,
+				number: 15,
 				title: 'The output has nowhere to live',
 				summary:
 					'The program understands a request and still cannot produce anything, because nothing can hold the result. A tree with parents in it, and what it costs.',
 			},
 			{
-				number: 12,
+				number: 16,
 				title: 'Lowering',
 				summary:
 					'Turning one model into another without copying everything and without the compiler refusing the program. Borrowing, lifetimes, and clone as a legitimate first answer.',
 			},
 			{
-				number: 13,
+				number: 17,
 				title: 'Walking the tree',
 				summary:
 					'Every later step needs to visit every request. Implementing Iterator by hand, and then iterators in general on a structure that is not a list of numbers.',
 			},
 			{
-				number: 14,
+				number: 18,
 				title: 'Passes, and writing the file',
 				summary:
 					'Inherited settings, composed names, and then the writer. The first time the program produces output, four years after it was started.',
 			},
 			{
-				number: 15,
+				number: 19,
 				title: 'Shipping',
 				summary:
 					'A tool nobody can install is not a tool. Binaries for three platforms, one command to install it, and the closing measurement.',

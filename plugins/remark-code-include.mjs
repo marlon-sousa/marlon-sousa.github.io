@@ -111,8 +111,11 @@ const ANCHOR_LINE = /\bANCHOR(?:_END)?:\s*[\w-]+/;
  */
 function region(source, anchor, where) {
 	const lines = source.replace(/\r\n/g, '\n').split('\n');
-	const opens = new RegExp(`\\bANCHOR:\\s*${anchor}\\s*$`);
-	const closes = new RegExp(`\\bANCHOR_END:\\s*${anchor}\\s*$`);
+	// A comment syntax that has to be closed — `<!-- … -->` in Markdown, `/* … */`
+	// in CSS — leaves its closer after the name, so that is allowed too.
+	const closer = String.raw`\s*(?:-->|\*/)?\s*$`;
+	const opens = new RegExp(`\\bANCHOR:\\s*${anchor}${closer}`);
+	const closes = new RegExp(`\\bANCHOR_END:\\s*${anchor}${closer}`);
 
 	const start = lines.findIndex((line) => opens.test(line));
 	if (start === -1) throw new Error(`${where}: there is no "ANCHOR: ${anchor}".`);
