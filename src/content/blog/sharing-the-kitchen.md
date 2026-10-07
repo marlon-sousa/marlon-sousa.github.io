@@ -9,7 +9,7 @@ tags: ['rust', 'software engineering']
 draft: false
 ---
 
-[Last time](article:threads-without-the-assembly) we opened up the word everybody uses
+[Last time](article:threads-told-in-a-kitchen) we opened up the word everybody uses
 and nobody explains. A computer is a kitchen, a thread is a cook, and a process is an
 order with its own part of the workbench. The manager plays freeze tag with every cook,
 all day long, and the cooks never notice. A bigger kitchen did nothing for one cook,
