@@ -27,7 +27,8 @@ in a folder called `examples/`.
 to avoid them; new languages have been made to deal with them. They are fast, they are
 slow, they are cool, they have to be avoided... I am feeling threatened, because nobody
 explains to me what all this is about. And no, I do not have time to read a 270-page
-book full of assembly code; this whole thing promised to be a non-systems series..."*
+book full of low-level systems languages; this whole thing promised to be a non-systems
+series..."*
 
 I see, I see. I am still frustrated with all of this too, and while threads are a kind
 of low-level concept, explaining them does not have to be.
