@@ -2,6 +2,7 @@
 title: 'Now, later, or only in tests'
 description: 'Three ways to hand code around — a block that runs now, a closure that runs later, a function with a name — and how to choose. Tests that become a table. And conditional compilation: code decided before the program runs, and why that is safer than deciding it while it runs.'
 pubDate: 'Sep 30 2026 12:00'
+updatedDate: 'Oct 07 2026'
 series: 'rust-beyond-systems'
 seriesPart: 8
 code: 'postres@part-08'
@@ -359,8 +360,10 @@ skip them. That is not systems programming. That is high-level programming, take
 seriously.
 
 postres knows exactly where its output goes, and says so with a `println!`. Easy, and
-it works. Printing is cool... or is it? Next time we find out why printing a line makes
-a program wait, what a program does about it when it cannot afford to, what that costs
-when nobody measures — and a one-character mistake that the compiler itself recommends.
-And yes: next time we finally meet threads and locks, the closest this series has come
-to systems programming so far. We will be using them to print a line of log.
+it works. Printing is cool... or is it? To answer that, we first need the word that
+comes up every time anybody talks about it. So next time we finally meet
+[threads](article:threads-without-the-assembly), the closest this series has come to
+systems programming so far — told in a kitchen, without a line of assembly. Then the
+locks that keep them from ruining the soup. And after that, we use all of it to print a
+line of log: why printing makes a program wait, what that costs when nobody measures,
+and a one-character mistake that the compiler itself recommends.

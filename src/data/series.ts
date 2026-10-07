@@ -404,66 +404,84 @@ export const series: Series[] = [
 			},
 			{
 				number: 9,
-				title: 'A log that does not block',
+				title: 'Threads, without the assembly',
 				summary:
-					'Why printing is synchronous, what a non-blocking writer does about it, what that costs when nobody measures — and the one-character mistake the compiler itself recommends.',
+					'What a thread is, told in a kitchen that cooks for weddings. Why a bigger kitchen alone is no faster, why running a program twice does not help one order, and potatoes peeled three and a half times sooner — measured.',
 			},
 			{
 				number: 10,
+				title: 'Sharing the kitchen',
+				summary:
+					'Threads that share: why they have to agree on who does what, and when. Races, locks and deadlocks, measured — and the one of them Rust will not let you compile.',
+			},
+			{
+				number: 11,
+				title: 'A log that does not block',
+				summary:
+					'Why printing makes a program wait, what a queue saves and what it throws away, and what it loses when the program ends — measured.',
+			},
+			{
+				number: 12,
+				title: 'A one-character mistake',
+				summary:
+					'Three small things that make a log polite, and one character that throws away every log line — recommended by the compiler, refused by a lint.',
+			},
+			{
+				number: 13,
 				title: 'Reading the collection',
 				summary:
 					'JSON with hundreds of optional fields, parsed into types. Where a String lives, where a &str points, and why they are two different things.',
 			},
 			{
-				number: 11,
+				number: 14,
 				title: 'Saying what went wrong',
 				summary:
 					'An error type the program can name, Result end to end, and the difference between a failure you can explain and one you can only report.',
 			},
 			{
-				number: 12,
+				number: 15,
 				title: 'Methods and traits',
 				summary:
 					'A string arrives and has to become something the program cannot get wrong. Traits where another language would reach for inheritance.',
 			},
 			{
-				number: 13,
+				number: 16,
 				title: 'The request and its builder',
 				summary:
 					'A value assembled in stages, the builder written by hand and then derived — and the story of a fork, a rejected pull request, and the better answer the maintainer gave.',
 			},
 			{
-				number: 14,
+				number: 17,
 				title: 'Bodies',
 				summary:
 					'One thing that is several shapes, each with its own optional parts: pattern matching and destructuring on data that genuinely varies.',
 			},
 			{
-				number: 15,
+				number: 18,
 				title: 'The output has nowhere to live',
 				summary:
 					'The program understands a request and still cannot produce anything, because nothing can hold the result. A tree with parents in it, and what it costs.',
 			},
 			{
-				number: 16,
+				number: 19,
 				title: 'Lowering',
 				summary:
 					'Turning one model into another without copying everything and without the compiler refusing the program. Borrowing, lifetimes, and clone as a legitimate first answer.',
 			},
 			{
-				number: 17,
+				number: 20,
 				title: 'Walking the tree',
 				summary:
 					'Every later step needs to visit every request. Implementing Iterator by hand, and then iterators in general on a structure that is not a list of numbers.',
 			},
 			{
-				number: 18,
+				number: 21,
 				title: 'Passes, and writing the file',
 				summary:
 					'Inherited settings, composed names, and then the writer. The first time the program produces output, four years after it was started.',
 			},
 			{
-				number: 19,
+				number: 22,
 				title: 'Shipping',
 				summary:
 					'A tool nobody can install is not a tool. Binaries for three platforms, one command to install it, and the closing measurement.',
