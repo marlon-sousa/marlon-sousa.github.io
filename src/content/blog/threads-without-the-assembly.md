@@ -1,5 +1,5 @@
 ---
-title: 'Threads, without the assembly'
+title: 'Threads, told in a kitchen'
 description: 'What a thread is, told in a kitchen that cooks for weddings. Why a bigger kitchen alone is no faster, why running a program twice does not help one order, and a mountain of potatoes peeled three and a half times sooner — measured.'
 pubDate: 'Oct 07 2026 12:00'
 series: 'rust-beyond-systems'
@@ -17,8 +17,8 @@ simply absent from it. Nothing the user sees changed.
 postres still tells us what it is going to do with a `println!`, and that line looks
 like the most innocent one in the program. Is it? Before we can even ask, we need the
 word that comes up every time anybody talks about it: threads. So this time is all
-about them — what they are, and why anybody wants more than one — without a single line
-of assembly. postres itself does not change; the code for this one lives next to it,
+about them — what they are, and why anybody wants more than one — told in a kitchen.
+postres itself does not change; the code for this one lives next to it,
 in a folder called `examples/`.
 
 ## Threads, threads...

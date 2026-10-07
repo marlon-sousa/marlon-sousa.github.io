@@ -363,7 +363,7 @@ postres knows exactly where its output goes, and says so with a `println!`. Easy
 it works. Printing is cool... or is it? To answer that, we first need the word that
 comes up every time anybody talks about it. So next time we finally meet
 [threads](article:threads-without-the-assembly), the closest this series has come to
-systems programming so far — told in a kitchen, without a line of assembly. Then the
+systems programming so far — told in a kitchen. Then the
 locks that keep them from ruining the soup. And after that, we use all of it to print a
 line of log: why printing makes a program wait, what that costs when nobody measures,
 and a one-character mistake that the compiler itself recommends.

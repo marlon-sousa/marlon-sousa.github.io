@@ -404,7 +404,7 @@ export const series: Series[] = [
 			},
 			{
 				number: 9,
-				title: 'Threads, without the assembly',
+				title: 'Threads, told in a kitchen',
 				summary:
 					'What a thread is, told in a kitchen that cooks for weddings. Why a bigger kitchen alone is no faster, why running a program twice does not help one order, and potatoes peeled three and a half times sooner — measured.',
 			},
