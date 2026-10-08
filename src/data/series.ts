@@ -323,6 +323,24 @@ export const series: Series[] = [
 			},
 			{
 				number: 6,
+				title: 'Nobody decided. Somebody typed.',
+				summary:
+					'The chair where the code gets written. What is left for the architect and the engineer once the agent types? Everything that decided whether the code was right — decisions made at the keyboard, one keystroke at a time, and never written down.',
+			},
+			{
+				number: 7,
+				title: 'Decided before the first line',
+				summary:
+					'The other half of that chair: the decisions the keyboard used to make, made once, in advance, in writing, each with an owner — where code may go, what green means, how big a change may get, the spec — and where they have to live.',
+			},
+			{
+				number: 8,
+				title: 'What an engineer still has to know',
+				summary:
+					'The hours the typing gives back never stay empty. What they should go to — the machine, the craft of specs and gates, research, every other chair on the loop — and why the fundamentals matter more, not less.',
+			},
+			{
+				number: 9,
 				title: 'The station nobody draws',
 				summary:
 					'How the loop reaches into the language you chose, and the one check that removes a whole class of mistakes before anybody has to remember them.',
