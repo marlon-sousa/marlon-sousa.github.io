@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 260" width="720" height="260" role="img" aria-labelledby="t d">
+	<title id="t">Lines added each day across the Itinera repositories, 1 to 14 October 2026</title>
+	<desc id="d">Before the cloud project, on 1, 2 and 5 October: 3,165, 3,690 and 1,370 lines; nothing on 3 and 4 October. From 6 October, when the work moved to the project: 3,636, 8,001, 4,412, 9,941, 31,232, 57,088, 14,377, 19,469 and 41,945 lines.</desc>
+	<!-- Generated. Lines added per day on main, merge commits, lockfiles and images left out; days in local time. -->
+	<style>
+		/* Palette copied from src/styles/global.css (loaded through an img tag, so it carries its own). */
+		:root { --ink: #0f1219; --muted: #586994; --rule: #c8cfdc; --bar: #2337ff; }
+		@media (prefers-color-scheme: dark) { :root { --ink: #f6f7f9; --muted: #9ca9c7; --rule: #3a4357; --bar: #97a4ff; } }
+		text { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+		.day { font-size: 12px; fill: var(--muted); text-anchor: middle; }
+		.value { font-size: 12px; font-weight: 600; fill: var(--ink); text-anchor: middle; font-variant-numeric: tabular-nums; }
+		.note { font-size: 12px; fill: var(--ink); }
+		.base { stroke: var(--rule); stroke-width: 1; }
+		.marker { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 4 3; }
+		.bar { fill: var(--bar); }
+	</style>
+	<line class="base" x1="26" y1="200" x2="702" y2="200"/>
+	<line class="marker" x1="261" y1="24" x2="261" y2="200"/>
+	<text class="note" x="267" y="34">work moves to the project</text>
+	<path class="bar" d="M30,200 v-5.0 a4,4 0 0 1 4,-4 h22.0 a4,4 0 0 1 4,4 v5.0 z"/>
+	<text class="day" x="45" y="216">1</text>
+	<path class="bar" d="M78,200 v-6.5 a4,4 0 0 1 4,-4 h22.0 a4,4 0 0 1 4,4 v6.5 z"/>
+	<text class="day" x="93" y="216">2</text>
+	<text class="value" x="93" y="183.5">3,690</text>
+	
+	<text class="day" x="141" y="216">3</text>
+	
+	<text class="day" x="189" y="216">4</text>
+	<path class="bar" d="M222,200 v-1.9 a1.9408333333333334,1.9408333333333334 0 0 1 1.9408333333333334,-1.9408333333333334 h26.1 a1.9408333333333334,1.9408333333333334 0 0 1 1.9408333333333334,1.9408333333333334 v1.9 z"/>
+	<text class="day" x="237" y="216">5</text>
+	<path class="bar" d="M270,200 v-6.3 a4,4 0 0 1 4,-4 h22.0 a4,4 0 0 1 4,4 v6.3 z"/>
+	<text class="day" x="285" y="216">6</text>
+	<path class="bar" d="M318,200 v-18.7 a4,4 0 0 1 4,-4 h22.0 a4,4 0 0 1 4,4 v18.7 z"/>
+	<text class="day" x="333" y="216">7</text>
+	<path class="bar" d="M366,200 v-8.5 a4,4 0 0 1 4,-4 h22.0 a4,4 0 0 1 4,4 v8.5 z"/>
+	<text class="day" x="381" y="216">8</text>
+	<path class="bar" d="M414,200 v-24.2 a4,4 0 0 1 4,-4 h22.0 a4,4 0 0 1 4,4 v24.2 z"/>
+	<text class="day" x="429" y="216">9</text>
+	<path class="bar" d="M462,200 v-84.5 a4,4 0 0 1 4,-4 h22.0 a4,4 0 0 1 4,4 v84.5 z"/>
+	<text class="day" x="477" y="216">10</text>
+	<path class="bar" d="M510,200 v-157.7 a4,4 0 0 1 4,-4 h22.0 a4,4 0 0 1 4,4 v157.7 z"/>
+	<text class="day" x="525" y="216">11</text>
+	<text class="value" x="525" y="32.3">57,088</text>
+	<path class="bar" d="M558,200 v-36.7 a4,4 0 0 1 4,-4 h22.0 a4,4 0 0 1 4,4 v36.7 z"/>
+	<text class="day" x="573" y="216">12</text>
+	<path class="bar" d="M606,200 v-51.2 a4,4 0 0 1 4,-4 h22.0 a4,4 0 0 1 4,4 v51.2 z"/>
+	<text class="day" x="621" y="216">13</text>
+	<path class="bar" d="M654,200 v-114.8 a4,4 0 0 1 4,-4 h22.0 a4,4 0 0 1 4,4 v114.8 z"/>
+	<text class="day" x="669" y="216">14</text>
+	<text class="value" x="669" y="75.2">41,945</text>
+	<text class="day" x="366" y="234">October 2026</text>
+</svg>

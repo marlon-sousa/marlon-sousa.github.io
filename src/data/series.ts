@@ -348,6 +348,43 @@ export const series: Series[] = [
 		],
 	},
 	{
+		slug: 'itinera-built-together',
+		// English only, like the loop series.
+		title:
+			'Itinera: how a human and agents, working together, built a library, its specification, its tests, a website and a book in 14 days',
+		description:
+			'The story of Itinera, a workflow library built in two weeks by one engineer and a team of agents, and of the way the work was done together: the conversations, the process the agents ran on each other, and the decisions that stayed human.',
+		intro:
+			'For as long as I have written software I have believed that code is easier to understand when you can see what is ' +
+			'going on, and that the way to see it is to keep the business rules apart from the flow that runs them. Itinera is ' +
+			'a library built on that belief: specified once, implemented in several languages, growing in tiers, run by ' +
+			'different executors without changing a step. Most of its code is not the library at all, but the checks around ' +
+			'it: almost four lines for every line it runs. Built alone, it would have needed at least a year of paid work. ' +
+			'It took fourteen days.\n\n' +
+			'This series is about how. Not about agents typing code, which was the cheap part, but about the way the work was ' +
+			'done together: thinking out loud with an agent, asking what it thought, taking its idea when it was better, ' +
+			'pushing back when it was wrong, and a process in which agents reviewed what other agents proposed while one ' +
+			'person decided what they were allowed to decide. The conversations are quoted on both sides, as they happened. ' +
+			'None of it is vibe coding, and the series says why.',
+		status: 'complete',
+		parts: [
+			{ number: 1, title: 'A year, or fourteen days', summary: 'The numbers, why this library, why it never existed, and why it exists now.' },
+			{ number: 2, title: 'What Itinera is', summary: 'The library itself: steps that know nothing, a flow declared in one place, and why that matters more when agents write the code.' },
+			{ number: 3, title: 'This is the best thing I could think of', summary: 'One evening of thinking out loud with an agent, the model that came out of it, and the name the agent found.' },
+			{ number: 4, title: 'I am trying to exercise our own process', summary: 'Designing a spec-first process together, and holding the agent to it the same evening.' },
+			{ number: 5, title: 'A description can be forgotten', summary: 'Rules nobody can bypass, the agent included, and a gate tested by tripping it.' },
+			{ number: 6, title: 'I am lost', summary: 'Candour in both directions, and documents written for a reader who forgets everything.' },
+			{ number: 7, title: 'How it is put together', summary: 'The map before the build: a specification, cases in Gherkin that every language runs, and why Rust, the strictest language, went first.' },
+			{ number: 8, title: 'Agents reviewing agents', summary: 'One agent implements and files spec issues, another evaluates them, and I settle what they argue about.' },
+			{ number: 9, title: 'A project, not a session', summary: 'A coordinator and parallel threads, where the speed came from, and the new problem it brought.' },
+			{ number: 10, title: 'What could make your life easier?', summary: 'Asking the agents what slowed them down, and what came of it: one command for every check, a CI more than three times faster, an environment that sets itself up.' },
+			{ number: 11, title: 'Either you ignored some rule or some rule needs to be written', summary: 'What supervising agents actually means: making sure nothing is caught twice.' },
+			{ number: 12, title: 'Wait, we need to agree before you code', summary: 'Why ergonomics decides whether a library like this lives, and a public API designed in one night of dialogue.' },
+			{ number: 13, title: 'Do these all at once, because I now think you got the idea', summary: 'The book: written in an hour, rewritten as trust grew, and the best review the API ever had.' },
+			{ number: 14, title: 'Thanks for this great work', summary: 'The release, what stayed human, and why the project was run the way the library asks code to be written.' },
+		],
+	},
+	{
 		slug: 'rust-beyond-systems',
 		title: {
 			en: 'Rust Beyond Systems Programming',

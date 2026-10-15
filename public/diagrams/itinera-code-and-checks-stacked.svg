@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 426" width="360" height="426" role="img" aria-labelledby="t d">
+	<title id="t">Lines of library code against lines of the checks around it, in Itinera</title>
+	<desc id="d">One bar for the library, 19,320 lines. Seven bars for what checks it: book examples 34,223; conformance runner 12,697; compile-fail tests and proofs 12,522; conformance cases 5,335; unit tests 4,289; integration and property tests 4,246; library examples 520. In all, 73,832 lines of checks, about 3.8 for every line of the library.</desc>
+	<!-- Generated; wide and narrow cuts carry the same numbers and strings. Code lines only: blanks and comments excluded. -->
+	<style>
+		/* Palette copied from src/styles/global.css: loaded through an img tag, this file
+		   cannot see the page's custom properties, so it carries its own, dark mode included. */
+		:root { --ink: #0f1219; --muted: #586994; --bar: #2337ff; }
+		@media (prefers-color-scheme: dark) { :root { --ink: #f6f7f9; --muted: #9ca9c7; --bar: #97a4ff; } }
+		text { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+		.group { font-size: 13px; font-weight: 700; fill: var(--ink); }
+		.label { font-size: 13px; fill: var(--ink); }
+		.value { font-size: 13px; font-weight: 600; fill: var(--ink); font-variant-numeric: tabular-nums; }
+		.bar { fill: var(--bar); }
+	</style>
+	<text class="group" x="0" y="20">The library</text>
+	<text class="label" x="0" y="44">Library code</text>
+	<path class="bar" d="M0,52 h159.7 a4,4 0 0 1 4,4 v6 a4,4 0 0 1 -4,4 h-159.7 z"/>
+	<text class="value" x="169.7" y="64">19,320</text>
+	<text class="group" x="0" y="92">What checks it</text>
+	<text class="label" x="0" y="116">Book examples, run on every change</text>
+	<path class="bar" d="M0,124 h286.0 a4,4 0 0 1 4,4 v6 a4,4 0 0 1 -4,4 h-286.0 z"/>
+	<text class="value" x="296.0" y="136">34,223</text>
+	<text class="label" x="0" y="162">Conformance runner</text>
+	<path class="bar" d="M0,170 h103.6 a4,4 0 0 1 4,4 v6 a4,4 0 0 1 -4,4 h-103.6 z"/>
+	<text class="value" x="113.6" y="182">12,697</text>
+	<text class="label" x="0" y="208">Compile-fail tests and proofs</text>
+	<path class="bar" d="M0,216 h102.1 a4,4 0 0 1 4,4 v6 a4,4 0 0 1 -4,4 h-102.1 z"/>
+	<text class="value" x="112.1" y="228">12,522</text>
+	<text class="label" x="0" y="254">Conformance cases, shared by every language</text>
+	<path class="bar" d="M0,262 h41.2 a4,4 0 0 1 4,4 v6 a4,4 0 0 1 -4,4 h-41.2 z"/>
+	<text class="value" x="51.2" y="274">5,335</text>
+	<text class="label" x="0" y="300">Unit tests</text>
+	<path class="bar" d="M0,308 h32.3 a4,4 0 0 1 4,4 v6 a4,4 0 0 1 -4,4 h-32.3 z"/>
+	<text class="value" x="42.3" y="320">4,289</text>
+	<text class="label" x="0" y="346">Integration and property tests</text>
+	<path class="bar" d="M0,354 h32.0 a4,4 0 0 1 4,4 v6 a4,4 0 0 1 -4,4 h-32.0 z"/>
+	<text class="value" x="42.0" y="366">4,246</text>
+	<text class="label" x="0" y="392">Library examples</text>
+	<path class="bar" d="M0,400 h2.2 a2.2031966805949215,2.2031966805949215 0 0 1 2.2031966805949215,2.2031966805949215 v9.593606638810158 a2.2031966805949215,2.2031966805949215 0 0 1 -2.2031966805949215,2.2031966805949215 h-2.2 z"/>
+	<text class="value" x="10.4" y="412">520</text>
+</svg>
