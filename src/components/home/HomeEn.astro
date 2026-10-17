@@ -8,6 +8,7 @@
 import { Image } from 'astro:assets';
 import { SITE_EMAIL } from '../../consts';
 import { localeUrl } from '../../i18n/config';
+import { seriesUrl } from '../../data/series';
 import portrait from '../../assets/marlon-portrait.jpg';
 import climbing from '../../assets/marlon-climbing.jpg';
 import summit from '../../assets/cognition-champions-summit.jpg';
@@ -68,6 +69,18 @@ import db1Talk from '../../assets/db1-new-rules-of-the-game.jpg';
 	/>
 	<figcaption>Climbing, 2017.</figcaption>
 </figure>
+
+<h2>What I'm Building Now</h2>
+<p>
+	I am the main contributor of{' '}
+	<a href="https://itinera-dev.org/" target="_blank" rel="noopener noreferrer">Itinera</a>, a
+	workflow framework that keeps business rules apart from the flow control that runs them: steps
+	that never know which workflow runs them, and a flow declared in one place. It is defined by a
+	language-neutral specification and a conformance suite, with a Rust implementation in beta and
+	TypeScript under way, and it was built in fourteen days by one engineer working together with a
+	team of AI agents. The way that work was done is the subject of the series{' '}
+	<a href={seriesUrl('itinera-built-together', 'en')}>Itinera built together</a>.
+</p>
 
 <h2>Professional Experience</h2>
 <ul>
@@ -340,7 +353,8 @@ import db1Talk from '../../assets/db1-new-rules-of-the-game.jpg';
 		fast feedback loops, and gates the agent can check itself against. This includes Model Context
 		Protocol servers such as <code>screen-readers-mcp</code>, which let agents drive screen readers
 		to run automated functional tests, bringing real coverage to software that has historically
-		been checked by hand, if at all.
+		been checked by hand, if at all. Itinera is where I put all of this to work at once: its
+		specification, conformance suite and checks are what let agents write most of it.
 	</li>
 	<li>
 		<strong>Banking Development:</strong> Core banking, card authorisation, ledgers, and payments —
@@ -355,7 +369,8 @@ import db1Talk from '../../assets/db1-new-rules-of-the-game.jpg';
 	<li>
 		<strong>Open Source Development:</strong> Building in public, mostly assistive technology:
 		NVDA add-ons, screen reader ergonomics, and tools the accessibility community can pick up and
-		use without asking anyone's permission.
+		use without asking anyone's permission. Beyond accessibility, I lead Itinera, in its own{' '}
+		<a href="https://github.com/itinera-dev" target="_blank" rel="noopener noreferrer">GitHub organization</a>.
 	</li>
 </ul>
 
@@ -369,6 +384,7 @@ import db1Talk from '../../assets/db1-new-rules-of-the-game.jpg';
 <h2>Explore the Site</h2>
 <ul>
 	<li>Read my articles and article series on the <a href={localeUrl('/blog/', 'en')}>Blog</a>.</li>
+	<li>Follow how Itinera was built, in the <a href={seriesUrl('itinera-built-together', 'en')}>Itinera built together</a> series.</li>
 	<li>Discover my open-source projects on the <a href={localeUrl('/projects/', 'en')}>Projects</a> page.</li>
 	<li>Download the latest add-on builds on the <a href={localeUrl('/releases/', 'en')}>Releases</a> page.</li>
 	<li>Search all content using the <a href={localeUrl('/search/', 'en')}>Search</a> page.</li>

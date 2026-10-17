@@ -8,6 +8,7 @@
 import { Image } from 'astro:assets';
 import { SITE_EMAIL } from '../../consts';
 import { localeUrl } from '../../i18n/config';
+import { seriesUrl } from '../../data/series';
 import portrait from '../../assets/marlon-portrait.jpg';
 import climbing from '../../assets/marlon-climbing.jpg';
 import summit from '../../assets/cognition-champions-summit.jpg';
@@ -68,6 +69,19 @@ import db1Talk from '../../assets/db1-new-rules-of-the-game.jpg';
 	/>
 	<figcaption>Escalada, 2017.</figcaption>
 </figure>
+
+<h2>O que estou construindo agora</h2>
+<p>
+	Sou o principal contribuidor do{' '}
+	<a href="https://itinera-dev.org/" target="_blank" rel="noopener noreferrer">Itinera</a>, um
+	framework de workflows que mantém as regras de negócio separadas do controle de fluxo que as
+	executa: passos que nunca sabem qual workflow os executa, e um fluxo declarado em um só lugar. Ele
+	é definido por uma especificação neutra em relação a linguagens e por uma suíte de conformidade,
+	com uma implementação em Rust em beta e a de TypeScript a caminho, e foi construído em catorze dias
+	por um engenheiro trabalhando junto com uma equipe de agentes de IA. O jeito como esse trabalho foi
+	feito é o assunto da série{' '}
+	<a href={seriesUrl('itinera-built-together', 'pt')}>Itinera built together (em inglês)</a>.
+</p>
 
 <h2>Experiência profissional</h2>
 <ul>
@@ -341,7 +355,9 @@ import db1Talk from '../../assets/db1-new-rules-of-the-game.jpg';
 		antes, ciclos de feedback rápidos e validações que o próprio agente consiga conferir. Aí entram
 		servidores Model Context Protocol como o <code>screen-readers-mcp</code>, que permitem a agentes
 		dirigir leitores de tela para rodar testes funcionais automatizados, trazendo cobertura de
-		verdade para software que historicamente foi conferido à mão — quando era conferido.
+		verdade para software que historicamente foi conferido à mão — quando era conferido. O Itinera é
+		onde coloco tudo isso para funcionar ao mesmo tempo: sua especificação, sua suíte de
+		conformidade e suas validações são o que permite que agentes escrevam a maior parte dele.
 	</li>
 	<li>
 		<strong>Desenvolvimento bancário:</strong> Core banking, autorização de cartões, livros-razão e
@@ -357,7 +373,9 @@ import db1Talk from '../../assets/db1-new-rules-of-the-game.jpg';
 	<li>
 		<strong>Desenvolvimento de código aberto:</strong> Construir em público, principalmente
 		tecnologia assistiva: complementos para o NVDA, ergonomia de leitores de tela e ferramentas que a
-		comunidade de acessibilidade possa pegar e usar sem pedir permissão a ninguém.
+		comunidade de acessibilidade possa pegar e usar sem pedir permissão a ninguém. Fora da
+		acessibilidade, lidero o Itinera, em uma{' '}
+		<a href="https://github.com/itinera-dev" target="_blank" rel="noopener noreferrer">organização própria no GitHub</a>.
 	</li>
 </ul>
 
@@ -371,6 +389,7 @@ import db1Talk from '../../assets/db1-new-rules-of-the-game.jpg';
 <h2>Navegue pelo site</h2>
 <ul>
 	<li>Leia meus artigos e séries de artigos no <a href={localeUrl('/blog/', 'pt')}>Blog</a>.</li>
+	<li>Acompanhe como o Itinera foi construído na série <a href={seriesUrl('itinera-built-together', 'pt')}>Itinera built together (em inglês)</a>.</li>
 	<li>Conheça meus projetos de código aberto na página de <a href={localeUrl('/projects/', 'pt')}>Projetos</a>.</li>
 	<li>Baixe as versões mais recentes dos complementos na página de <a href={localeUrl('/releases/', 'pt')}>Versões</a>.</li>
 	<li>Busque em todo o conteúdo pela página de <a href={localeUrl('/search/', 'pt')}>Busca</a>.</li>
