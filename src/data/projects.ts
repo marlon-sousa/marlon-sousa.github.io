@@ -12,8 +12,14 @@ import type { Localized } from '../i18n/localized';
 export interface Project {
 	/** Display name. */
 	name: string;
-	/** Repository name under github.com/marlon-sousa. */
+	/** Repository name, under github.com/marlon-sousa unless `owner` says otherwise. */
 	repo: string;
+	/** GitHub user or organization the repository belongs to. Defaults to GITHUB_USER. */
+	owner?: string;
+	/** The project's own website, when it has one. */
+	site?: string;
+	/** Slug of a series in src/data/series.ts that tells the story of the project. */
+	series?: string;
 	/** What the project does, in one or two sentences. */
 	description: Localized;
 	/** Last known release tag, used if the GitHub API cannot be reached. */
@@ -29,6 +35,17 @@ export const projects: Project[] = [
 		description: {
 			en: 'An accessible terminal for screen reader users. Its default mode is conversational: you type a command in an edit field and the result lands in a reviewable buffer where each command is a heading, so you navigate your session history the way you navigate a web page. Short output is read automatically, longer output is announced, and a single keystroke switches to full terminal emulation for ncurses programs such as nano. Written in Rust with Tauri 2, Windows first. In active development.',
 			pt: 'Um terminal acessível para quem usa leitor de tela. Seu modo padrão é conversacional: você digita um comando em um campo de edição e o resultado cai em um buffer revisável onde cada comando é um cabeçalho, de modo que você navega o histórico da sessão do jeito que navega uma página web. Saída curta é lida automaticamente, saída longa é anunciada, e uma única tecla alterna para emulação completa de terminal para programas ncurses como o nano. Escrito em Rust com Tauri 2, Windows primeiro. Em desenvolvimento ativo.',
+		},
+	},
+	{
+		name: 'Itinera',
+		owner: 'itinera-dev',
+		repo: 'itinera-rs',
+		site: 'https://itinera-dev.org/',
+		series: 'itinera-built-together',
+		description: {
+			en: 'A workflow framework that keeps business rules separate from flow control. Steps are business units that never know which workflow runs them; a workflow declares, in one place, the order of its steps and the policies that decide what happens after each outcome; and every executor reports a standard stream of events. It is defined by a language-neutral specification and a conformance suite every implementation must pass, with the Rust implementation in beta and TypeScript under way. Itinera lives in its own GitHub organization, and I am its main contributor.',
+			pt: 'Um framework de workflows que mantém as regras de negócio separadas do controle de fluxo. Passos são unidades de negócio que nunca sabem qual workflow os executa; um workflow declara, em um só lugar, a ordem dos seus passos e as políticas que decidem o que acontece depois de cada resultado; e todo executor reporta um fluxo padronizado de eventos. É definido por uma especificação neutra em relação a linguagens e por uma suíte de conformidade que toda implementação precisa passar, com a implementação em Rust em beta e a de TypeScript a caminho. O Itinera vive em uma organização própria no GitHub, e eu sou o seu principal contribuidor.',
 		},
 	},
 	{
@@ -78,5 +95,5 @@ export const projects: Project[] = [
 ];
 
 export function repoUrl(project: Project): string {
-	return `https://github.com/${GITHUB_USER}/${project.repo}`;
+	return `https://github.com/${project.owner ?? GITHUB_USER}/${project.repo}`;
 }

@@ -8,7 +8,7 @@
 // Set GITHUB_TOKEN in the environment to raise the API rate limit. GitHub
 // Actions provides one automatically; locally it is optional.
 
-import { projects, repoUrl, type Project } from './projects';
+import { GITHUB_USER, projects, repoUrl, type Project } from './projects';
 
 export interface Release {
 	project: Project;
@@ -36,7 +36,7 @@ async function fetchLatestRelease(project: Project): Promise<Release | null> {
 
 	try {
 		const response = await fetch(
-			`https://api.github.com/repos/marlon-sousa/${project.repo}/releases/latest`,
+			`https://api.github.com/repos/${project.owner ?? GITHUB_USER}/${project.repo}/releases/latest`,
 			{ headers, signal: AbortSignal.timeout(API_TIMEOUT_MS) },
 		);
 

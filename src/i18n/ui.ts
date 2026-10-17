@@ -112,10 +112,13 @@ const en = {
 	'tag.partOf': 'part {part} of {series}',
 
 	'projects.title': 'Projects',
-	'projects.description': 'NVDA add-ons and accessibility tools developed by Marlon Sousa',
+	'projects.description':
+		'NVDA add-ons, accessibility tools and the Itinera workflow framework, developed by Marlon Sousa',
 	'projects.intro':
-		'Open-source tools I have built: an accessible terminal, NVDA add-ons that sharpen everyday screen reader workflows, and infrastructure for testing accessible software automatically.',
+		'Open-source tools I have built: an accessible terminal, a workflow framework, NVDA add-ons that sharpen everyday screen reader workflows, and infrastructure for testing accessible software automatically.',
 	'projects.view': 'View {repo} on GitHub',
+	'projects.site': 'Visit the {name} website',
+	'projects.series': 'Read how {name} was built',
 
 	'releases.title': 'Releases',
 	'releases.heading': 'Latest Releases',
@@ -227,10 +230,13 @@ const pt: Record<UIKey, string> = {
 
 	'projects.title': 'Projetos',
 	'projects.description':
-		'Complementos para o NVDA e ferramentas de acessibilidade desenvolvidos por Marlon Sousa',
+		'Complementos para o NVDA, ferramentas de acessibilidade e o framework de workflows Itinera, desenvolvidos por Marlon Sousa',
 	'projects.intro':
-		'Ferramentas de código aberto que construí: um terminal acessível, complementos que afiam o trabalho diário com leitores de tela, e infraestrutura para testar software acessível automaticamente.',
+		'Ferramentas de código aberto que construí: um terminal acessível, um framework de workflows, complementos que afiam o trabalho diário com leitores de tela, e infraestrutura para testar software acessível automaticamente.',
 	'projects.view': 'Ver {repo} no GitHub',
+	'projects.site': 'Visitar o site do {name}',
+	// The series is written in English only, so the link says so before it is followed.
+	'projects.series': 'Ler como o {name} foi construído (em inglês)',
 
 	'releases.title': 'Versões',
 	'releases.heading': 'Últimas versões',
