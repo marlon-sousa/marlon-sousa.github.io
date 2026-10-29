@@ -2,6 +2,7 @@
 title: 'A one-character mistake'
 description: 'Three small things in a logging setup — standard error, colours only on a terminal, and a level picked by counting -v — and then one character that throws away every log line, which the compiler itself recommends, and the lint that refuses it.'
 pubDate: 'Oct 07 2026 12:00'
+updatedDate: 'Oct 29 2026 12:00'
 series: 'rust-beyond-systems'
 seriesPart: 12
 code: 'postres@part-12'
@@ -89,7 +90,7 @@ question marks. The compiler holds it to two rules a ternary also has. Every bra
 must give back the same type — a `LevelFilter`, here, in all four. And there must be
 an `else`, because a value cannot come from a branch that might not run.
 
-(There is a tool made for exactly this kind of choice, and it gets its own part later.
+(There is a tool made for exactly this kind of choice, and [we will meet it soon](article:reading-the-collection).
 For four plain cases, an `if` reads just fine.)
 
 No `-v`, then, and only warnings and errors get through, so a run that goes well
@@ -280,9 +281,8 @@ without either of us writing anything more than that one line.
 
 ## Next time
 
-postres opens a file for the first time. The collection is JSON that follows a
-published schema with hundreds of optional fields, and we turn it into Rust types
-without writing a parser, with a crate that reads a struct the way clap did. And
-because we will be holding text read from a file, we finally answer the question these
-articles kept stepping around: why Rust has more than one kind of string, where a
-`String` lives, and where a `&str` points.
+[We read a file at last](article:flattening-and-back): a Postman collection. It is JSON, but JSON is only the format:
+what the collection *means* is written in a schema of its own, on top of it. So we look
+at what serialization is, why reading a file like this is two jobs rather than one, and
+why it takes two crates, serde and `serde_json`, to turn it into Rust types without
+writing a parser.

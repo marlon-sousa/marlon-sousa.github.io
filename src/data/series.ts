@@ -395,7 +395,7 @@ export const series: Series[] = [
 			pt: 'O argumento de que Rust é uma boa escolha para aplicações comuns — ferramentas, serviços, software de desktop — e não só para trabalho de sistemas.',
 		},
 		status: 'in-progress',
-		// Nineteen parts is the plan, not a promise to a stranger. The outline is
+		// The part count is the plan, not a promise to a stranger. The outline is
 		// declared in full below and renders in full; the site simply does not
 		// quote the number. See `announcesLength`.
 		announcesLength: false,
@@ -483,60 +483,72 @@ export const series: Series[] = [
 			},
 			{
 				number: 13,
-				title: 'Reading the collection',
+				title: 'Flattening, and back',
 				summary:
-					'JSON with hundreds of optional fields, parsed into types. Where a String lives, where a &str points, and why they are two different things.',
+					'What serialization is, and why a collection is two things at once: JSON, the format, and the schema, what it means. serde in the middle, serde_json for the format, the code a derive writes compared with what Jackson does by reflection — and the same struct read from TOML.',
 			},
 			{
 				number: 14,
+				title: 'Reading the collection',
+				summary:
+					'postres reads a collection at last. Seven fields of our own grow into enums for data with several shapes until it gets tedious, and a crate somebody already wrote takes over — at a price paid in error messages.',
+			},
+			{
+				number: 15,
+				title: 'Where a String lives',
+				summary:
+					'The stack, the heap, and two kinds of text: a String that owns its letters and a &str that only looks at them. Measured, with the compiler explaining every handover — and why a struct cannot contain itself.',
+			},
+			{
+				number: 16,
 				title: 'Saying what went wrong',
 				summary:
 					'An error type the program can name, Result end to end, and the difference between a failure you can explain and one you can only report.',
 			},
 			{
-				number: 15,
+				number: 17,
 				title: 'Methods and traits',
 				summary:
 					'A string arrives and has to become something the program cannot get wrong. Traits where another language would reach for inheritance.',
 			},
 			{
-				number: 16,
+				number: 18,
 				title: 'The request and its builder',
 				summary:
 					'A value assembled in stages, the builder written by hand and then derived — and the story of a fork, a rejected pull request, and the better answer the maintainer gave.',
 			},
 			{
-				number: 17,
+				number: 19,
 				title: 'Bodies',
 				summary:
 					'One thing that is several shapes, each with its own optional parts: pattern matching and destructuring on data that genuinely varies.',
 			},
 			{
-				number: 18,
+				number: 20,
 				title: 'The output has nowhere to live',
 				summary:
 					'The program understands a request and still cannot produce anything, because nothing can hold the result. A tree with parents in it, and what it costs.',
 			},
 			{
-				number: 19,
+				number: 21,
 				title: 'Lowering',
 				summary:
 					'Turning one model into another without copying everything and without the compiler refusing the program. Borrowing, lifetimes, and clone as a legitimate first answer.',
 			},
 			{
-				number: 20,
+				number: 22,
 				title: 'Walking the tree',
 				summary:
 					'Every later step needs to visit every request. Implementing Iterator by hand, and then iterators in general on a structure that is not a list of numbers.',
 			},
 			{
-				number: 21,
+				number: 23,
 				title: 'Passes, and writing the file',
 				summary:
 					'Inherited settings, composed names, and then the writer. The first time the program produces output, four years after it was started.',
 			},
 			{
-				number: 22,
+				number: 24,
 				title: 'Shipping',
 				summary:
 					'A tool nobody can install is not a tool. Binaries for three platforms, one command to install it, and the closing measurement.',
