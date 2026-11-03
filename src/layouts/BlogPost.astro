@@ -29,7 +29,10 @@ const locale = getLocale(Astro.url);
 const t = useTranslations(locale);
 
 // The browser tab, the bookmark and the shared link all show this rather than
-// the <h1>, so a part of a series names its series and its position. No total:
+// the <h1>, so a part of a series names its series and its position. The
+// article's own title comes first: a search result is cut off at about sixty
+// characters, and with the series first every part of a long-named series was
+// listed under the same truncated words. No total:
 // the outline is one click away on the series page, and a count in every tab
 // title ages badly — it changes for every article whenever a part is added.
 const pageTitle = nav
@@ -43,6 +46,7 @@ const pageTitle = nav
 	image={heroImage}
 	ogImage={ogImage}
 	translations={translations}
+	article={{ headline: title, description, published: pubDate, modified: updatedDate }}
 >
 	<article>
 		{

@@ -38,7 +38,7 @@ const en = {
 	'notFound.tryThese': 'Somewhere to go from here:',
 
 	'site.description':
-		'Marlon Brandão de Sousa — software engineer working in payments and financial systems, ' +
+		'Marlon Brandão de Sousa (Marlon Sousa) — software engineer working in payments and financial systems, ' +
 		'blind developer, and digital accessibility advocate. Blog, open-source projects, and NVDA add-ons.',
 	'site.homeTitle': 'Marlon Brandão de Sousa — payments, banking, AI engineering',
 	/** Every page but the home page and an article suffixes the site name. */
@@ -70,7 +70,7 @@ const en = {
 	'post.tagged': 'Tagged:',
 	'post.code': 'The code at the end of this part:',
 	'post.comments': 'Comments',
-	'post.pageTitle': '{series} — part {part}: {title}',
+	'post.pageTitle': '{title} — {series}, part {part}',
 
 	'series.badge': 'Part {part} in {series}',
 	'series.eyebrow': '{series} — part {part}',
@@ -161,7 +161,7 @@ const pt: Record<UIKey, string> = {
 	'notFound.tryThese': 'Para onde ir a partir daqui:',
 
 	'site.description':
-		'Marlon Brandão de Sousa — engenheiro de software que trabalha com pagamentos e sistemas ' +
+		'Marlon Brandão de Sousa (Marlon Sousa) — engenheiro de software que trabalha com pagamentos e sistemas ' +
 		'financeiros, desenvolvedor cego e defensor da acessibilidade digital. Blog, projetos de ' +
 		'código aberto e complementos para o NVDA.',
 	'site.homeTitle': 'Marlon Brandão de Sousa — pagamentos, bancos, engenharia com IA',
@@ -189,7 +189,7 @@ const pt: Record<UIKey, string> = {
 	'post.tagged': 'Temas:',
 	'post.code': 'O código ao fim desta parte:',
 	'post.comments': 'Comentários',
-	'post.pageTitle': '{series} — parte {part}: {title}',
+	'post.pageTitle': '{title} — {series}, parte {part}',
 
 	'series.badge': 'Parte {part} de {series}',
 	'series.eyebrow': '{series} — parte {part}',

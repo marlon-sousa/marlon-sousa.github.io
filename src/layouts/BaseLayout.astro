@@ -5,6 +5,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { alternatesFor, getLocale, localeMeta, type Locale } from '../i18n/config';
 import { useTranslations } from '../i18n/ui';
+import type { ArticleFacts } from '../lib/structured-data';
 
 interface Props {
 	title: string;
@@ -28,6 +29,8 @@ interface Props {
 	 * article needs to pass one; see the same prop on BaseHead.
 	 */
 	translations?: Partial<Record<Locale, string>>;
+	/** Passed by an article only; see the same prop on BaseHead. */
+	article?: ArticleFacts;
 }
 
 const {
@@ -38,6 +41,7 @@ const {
 	width = 'prose',
 	searchable = true,
 	translations,
+	article,
 } = Astro.props;
 
 // Read from the URL rather than taken as a prop: the locale is already written
@@ -60,6 +64,7 @@ const pageTranslations = translations ?? alternatesFor(Astro.url.pathname);
 			image={image}
 			ogImage={ogImage}
 			translations={pageTranslations}
+			article={article}
 		/>
 	</head>
 	<!-- The ignore attribute belongs on body, not main: anywhere narrower and
