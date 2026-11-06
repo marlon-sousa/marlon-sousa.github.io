@@ -443,7 +443,7 @@ export const series: Series[] = [
 				number: 6,
 				title: 'Optional for the user, not for us',
 				summary:
-					'An argument the user may leave out, and a value the program cannot do without. Enums as tagged unions, Option as one of them, match, and a settled Config the rest of the program can trust.',
+					'An argument the user may leave out, and a value the program cannot do without. Enums as tagged unions, Option as one of them, and a settled Config the rest of the program can trust.',
 			},
 			{
 				number: 7,

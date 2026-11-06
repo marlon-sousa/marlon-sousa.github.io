@@ -222,8 +222,7 @@ arriving cold can find the definition.
 
 *Rust Beyond Systems Programming* has its own version of that section, headed
 **"Wrapping it up"** and placed, the same way, immediately before **Next time**.
-(Part 4, already published, still carries the earlier heading, *"What this one was
-quietly doing"*; parts from the fifth onward use the new one.)
+Every part with code has one, from the fourth onward.
 
 It opens with one or two sentences on what the part just did, then a **numbered
 list of the Rust ideas the reader met** — one short line each, in plain words

@@ -2,6 +2,7 @@
 title: 'A log that does not block'
 description: 'Why printing a line makes a program wait, what a non-blocking writer does about it, what that costs when you actually measure it — four lines in five, silently — and what happens to the lines still waiting when the program exits.'
 pubDate: 'Oct 07 2026 12:00'
+updatedDate: 'Nov 06 2026'
 series: 'rust-beyond-systems'
 seriesPart: 11
 code: 'postres@part-11'
@@ -79,6 +80,16 @@ promises to build with 1.85 — the `rust-version` line we put in the manifest [
 the project was born](article:a-converter-is-a-small-compiler). Cargo read that
 promise and kept it, all by itself.
 
+A log also needs a way to ask for more of it, so `Args` grows a third field:
+
+```rust include="postres@part-11:src/main.rs#args"
+```
+
+`verbose: u8`, with `action = clap::ArgAction::Count`. `ArgAction` is an enum from
+clap, and `Count` is one of its variants: instead of reading a value after the flag,
+count how many times the flag was typed. None is zero, `-v` is one, `-vv` is two. How
+that count becomes a level is one of the small things we come back to next time.
+
 Here is how postres puts the three crates together:
 
 ```rust include="postres@part-11:src/main.rs#logging"
@@ -121,7 +132,7 @@ the colours and the level are two of three small things we come back to next tim
 
 And at the bottom, `guard`, alone, with no semicolon: the last line of the function's
 block, so it is what the function gives back. The same rule as the blocks we met
-when we were looking for a default name.
+[when we were looking for a default name](article:is-that-name-right).
 
 So what happens now, when postres logs a line? Follow it. The thread doing the work
 calls `info!`. The line is formatted, put on the queue — that is all `writer` ever does —
@@ -342,7 +353,7 @@ So, the moment of truth. A run that goes well:
 postres -f exports.json/users.json
 ```
 
-Silence. Just as asked. Now let it talk:
+Silence: with no `-v`, an `info!` line is not let through. Now let it talk:
 
 ```text
 $ postres -f exports.json/users.json -v
@@ -378,24 +389,26 @@ saves a quarter to a third of the time, lines thrown away when it is full, and l
 lost at exit whatever you choose, if more is waiting than the helper can write in a
 second. On the way, these are the Rust ideas we met:
 
-1. **`Type::default()`** is the conventional name for a type's sensible starting
+1. **Integers are named by sign and size**: `u8` is unsigned and eight bits, zero to
+   255; `i32` is Java's `int`. And clap's **`ArgAction::Count`** turns a repeated
+   flag into a number.
+2. **`Type::default()`** is the conventional name for a type's sensible starting
    value.
-2. **A builder chain**: each call changes one setting and hands the builder back, and
+3. **A builder chain**: each call changes one setting and hands the builder back, and
    a last call builds the thing.
-3. **A tuple** holds a few values together, in order, with no names; `let (a, b) = …`
+4. **A tuple** holds a few values together, in order, with no names; `let (a, b) = …`
    takes it apart.
-4. **A function gives back its last line** when that line has no semicolon — the same
+5. **A function gives back its last line** when that line has no semicolon — the same
    rule as a block.
-5. **`Option`** can say "maybe none": the flood's `start_logging` gives back `None`
+6. **`Option`** can say "maybe none": the flood's `start_logging` gives back `None`
    when there is no queue, and `Some(guard)` when there is.
-6. **Dropping a value can finish a job**: dropping the `WorkerGuard`, at the end of
+7. **Dropping a value can finish a job**: dropping the `WorkerGuard`, at the end of
    its block, writes out the queue and stops its thread, with no `finally` and no
    `defer` — within the one second it is willing to wait.
 
 ### The jobs
 
-Building software alone with an agent means doing six jobs that used to belong to six
-people. How many did this one do? Two:
+How many of the six jobs did this one do? Three:
 
 - **QA** — the usual story about non-blocking logging, measured instead of repeated: it
   drops four lines in five by default. Waiting instead of dropping, measured too: still
@@ -405,7 +418,10 @@ people. How many did this one do? Two:
 - **Architect** — `.lossy(false)`, because a converter's log must not lie; and the
   reason the one-second limit will never bite postres, written down rather than hoped.
 
-No product owner, no reviewer, no project manager. And nothing for the platform
+- **Product owner** — a `-v` the user can repeat for more detail, rather than a level
+  name to remember and spell.
+
+No reviewer, no project manager. And nothing for the platform
 engineer, which is worth saying out loud: the promise to build with Rust 1.85 reached
 into dependency resolution and picked an older `time` without anybody lifting a finger.
 
@@ -428,7 +444,8 @@ value is enough to keep a promise.
 
 ## Next time
 
-Three small things we skipped in that logging setup — why standard error, why colours
+[Three small things](article:a-one-character-mistake) we skipped in that logging
+setup — why standard error, why colours
 only on a terminal, and how `-v` picks the level — and then the underscore's sting.
 That same closing brace that makes the guard so easy to use makes one mistake very easy
 to make: one character long, it throws away every log line, and the compiler itself

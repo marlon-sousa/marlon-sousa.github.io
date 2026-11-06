@@ -511,8 +511,7 @@ ideas we met:
 
 ### The jobs
 
-Building software alone with an agent means doing six jobs that used to belong to six
-people. How many did this one do? Three:
+How many of the six jobs did this one do? Three:
 
 - **Architect** — one lock on everything against a sack each and a lock on the soup
   alone: the same cooks and the same kind of lock, five times apart, decided by what is shared
@@ -555,6 +554,7 @@ says so.
 
 Back to postres, and to its `println!`. Printing turns out to be one of those shared
 things: every thread in a program writes to the same standard output, and there is only
-one ladle. Next time, why printing a line makes a program wait, a crate with somebody in
+one ladle. [Next time](article:a-log-that-does-not-block), why printing a line makes
+a program wait, a crate with somebody in
 it whose only job is to listen for shouts, what it costs when you actually measure it —
 four lines in five — and what happens to the lines still waiting when the program ends.

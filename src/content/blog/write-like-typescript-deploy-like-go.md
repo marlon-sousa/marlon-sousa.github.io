@@ -76,7 +76,7 @@ Not one.
 
 ## "Ah, but you were already a Rust expert"
 
-I really was not. Compass was my first serious Rust, in any sense of the word
+I really was not. That bank was my first serious Rust, in any sense of the word
 serious. We had worked out that it had to be Rust, so I had to learn Rust, so I
 learned it.
 
@@ -125,7 +125,7 @@ looking for it, and absent in the only one that counted.
 
 Right. That is the lesson. I should be more careful.
 
-Ooops, calm down.
+Not so fast.
 
 I *was* careful. That is the part I need you to hear, because if the moral of this
 story is "Marlon should concentrate harder" then it is a useless story. I was not
@@ -273,7 +273,7 @@ change this argument rather than decorate it, and by a lot. But it needs the res
 of the argument standing up first, so I am going to leave it alone until I can do
 it properly.
 
-Two short articles first, because I have just asked you to take a great deal on
+Two articles first, because I have just asked you to take a great deal on
 trust. One puts this language next to the one you already write, feature by
 feature, so you can see the shape of an ordinary working day in it. The other
 shows you which specific things stop going wrong, and what leaving them possible
@@ -284,6 +284,6 @@ has been costing you. Then we open the directory and start.
 Enough assertion. In [*Put it next to what you already
 write*](article:put-it-next-to-what-you-already-write) I put the two languages
 side by side and let you judge for yourself: the same handful of things you do
-every single working day, written first in TypeScript and then in Rust, with
-nothing hidden — and nothing to complain about either. Just the shape of a
+every single working day, written first in the language you already use —
+TypeScript, Python, Go or Java — and then in Rust, with nothing hidden — and nothing to complain about either. Just the shape of a
 Tuesday, twice.

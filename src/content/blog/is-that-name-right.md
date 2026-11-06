@@ -29,7 +29,7 @@ PathBuf::from(source_file.to_string_lossy().replace(".json", ".http"))
 
 One run showed us one way it breaks. How many more are there? We could run postres
 by hand with every name we can think of, and look at each answer, and do it all over
-again every time the code changes. Ooops, calm down. That is what tests are for.
+again every time the code changes. No. That is what tests are for.
 
 So, before fixing anything, let's say what a right default name is, case by case:
 
@@ -285,8 +285,8 @@ test result: FAILED. 3 passed; 2 failed; 0 ignored; 0 measured; 0 filtered out
 ```
 
 The directory test passes. Three out of five green. (And now that it is right, notice
-that `\.json$` — "`.json` at the very end" — says the same thing with no lookahead at
-all. The plain `regex` crate could have done that.)
+that `\.json$` — "`.json` at the very end" — says what we actually meant, with no
+lookahead at all. The plain `regex` crate could have done that.)
 
 But two are still red, and they are the same two as at the very beginning.
 `users.JSON` still comes back as `users.JSON`. Plain `users` still comes back as
@@ -452,8 +452,7 @@ right, with the tests saying so each time. On the way, these are the Rust ideas 
 
 ### The jobs
 
-Building software alone with an agent means doing six jobs that used to belong to six
-people. How many did this one do? Three:
+How many of the six jobs did this one do? Three:
 
 - **QA** — the biggest one by far. Five promises written down before touching the
   code, and run four times: one out of five, two, three, then five. Every wrong turn
@@ -493,5 +492,6 @@ The name is right, and the tests prove it. But three things in this article dese
 closer look. We handed code around three different ways — a block, a closure, a
 function — and chose between them by instinct. Our five tests say the same thing five
 times. And the tests live in the same file as the program, yet never end up in it.
-Next time: when to use which, how to turn tests into a table, and why deciding things
-*before* the program runs is safer than it sounds.
+[Next time](article:now-later-or-only-in-tests): when to use which, how to turn tests
+into a table, and why deciding things *before* the program runs is safer than it
+sounds.
