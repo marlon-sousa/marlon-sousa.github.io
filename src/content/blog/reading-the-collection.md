@@ -453,8 +453,7 @@ by hand why we wanted one. These are the Rust ideas we met:
 
 ### The jobs
 
-Building software alone with an agent means doing six jobs that used to belong to six
-people. How many did this one do? Five:
+How many of the six jobs did this one do? Five:
 
 - **Product owner** — postres converts v2.1 collections, says so when it is handed
   another version, and accepts requests written as a bare URL.
@@ -464,7 +463,6 @@ people. How many did this one do? Five:
   went into the manifest.
 - **QA** — the same broken collections put through the new reader, which is how the
   `line: 0, column: 0` turned up before any user saw it.
-
 - **Reviewer** — the four-branch `if` that chose the log level, rewritten as four arms
   of a `match`: the same behaviour, read at a glance, and checked for every count of `-v`.
 

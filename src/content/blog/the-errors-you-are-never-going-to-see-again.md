@@ -247,8 +247,8 @@ of this list is that everybody thinks their own is the only one on it:
 **Not one of those has anywhere to happen in safe Rust.** Not "happens less". Has
 nowhere to happen.
 
-And before we go through them: **this is not the list.** It is six that came to
-mind, chosen because you have met all six. It is not a catalogue and I am not
+And before we go through them: **this is not the list.** It is seven that came
+to mind, chosen because you have met all seven. It is not a catalogue and I am not
 going to pretend it is one. We have not gone anywhere near threads, which is a
 larger and stranger story than this one and deserves its own article rather than
 a bullet. Nothing here about a value used after you gave it away, about a resource
@@ -468,7 +468,8 @@ I am delighted to hand the job over. To either of them.
 
 ## Next time
 
-We stop talking about languages and open an empty directory. Why a converter is a
+We stop talking about languages and [open an empty
+directory](article:a-converter-is-a-small-compiler). Why a converter is a
 small compiler, why this one gets a library *and* a binary rather than just a
 binary, where the modules go, what actually lives in that `Cargo.toml`, and why the
 build runs on three operating systems from the first day rather than from the day
