@@ -66,6 +66,8 @@ const en = {
 	'blog.seriesPart': 'part {part}',
 
 	'post.draftNotice': 'Draft — this is unfinished and is not published on the live site.',
+	// `{author}` becomes a link to the About page, so the name stays one element.
+	'post.byline': 'By {author}',
 	'post.lastUpdated': '(last updated on {date})',
 	'post.tagged': 'Tagged:',
 	'post.code': 'The code at the end of this part:',
@@ -185,6 +187,7 @@ const pt: Record<UIKey, string> = {
 	'blog.seriesPart': 'parte {part}',
 
 	'post.draftNotice': 'Rascunho — isto está inacabado e não é publicado no site.',
+	'post.byline': 'Por {author}',
 	'post.lastUpdated': '(atualizado pela última vez em {date})',
 	'post.tagged': 'Temas:',
 	'post.code': 'O código ao fim desta parte:',
