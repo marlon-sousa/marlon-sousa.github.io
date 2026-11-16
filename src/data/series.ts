@@ -385,6 +385,36 @@ export const series: Series[] = [
 		],
 	},
 	{
+		slug: 'gherkin-glass-built-in-use',
+		// English only, like the Itinera series it grew out of.
+		title: 'Gherkin Glass, built while in use',
+		description:
+			'How a small Rust tool that turns Gherkin feature files into an accessible site was usable two days after its first commit, how most of its architecture was then rebuilt while people were already using it, and what a serious, mature agentic development cycle looks like, traps included.',
+		intro:
+			'Itinera taught me how to work with a team of agents. Gherkin Glass was the first thing I built with what it taught ' +
+			'me, and I built it fast: a tool that turns a folder of Gherkin feature files into a website anyone can read, with ' +
+			'or without a screen reader. Its first version was complete on the evening of the day it started. Its first alpha ' +
+			'went out three days later. In between, most of its architecture was rebuilt, while the tool was already in use ' +
+			'and people were already telling me what was wrong with it.\n\n' +
+			'This series is about that week. Not to show how fast it went, although it did, and not to confess, although the ' +
+			'mistakes are all here. It is about what a serious, mature agentic development cycle can look like, which traps ' +
+			'it still walks into, how you notice, and what you write down so you never walk into them again. The first part ' +
+			'gives every headline; each part after it tells one of them in depth. The conversations are quoted as they ' +
+			'happened, typos included.',
+		status: 'complete',
+		parts: [
+			{ number: 1, title: 'Available in two days to be used', summary: 'Every headline of the week: what a mature agentic cycle looked like, the traps it met, and how it got out of them.' },
+			{ number: 2, title: 'Why not gherkin glass?', summary: 'What the tool is, who it is for, and the first evening of decisions about what it would promise.' },
+			{ number: 3, title: 'One question at once, please', summary: 'A day of agreeing nineteen issues one decision at a time, and a night in which parallel threads built the whole first version.' },
+			{ number: 4, title: 'Why on earth are we leaking adapters', summary: 'The first trap: rules that lived in my head and in older projects, but not in anything a reviewer checks.' },
+			{ number: 5, title: 'What is your thinking level?', summary: 'The second trap: agents designing at an effort level nobody had chosen, and nothing on the surface to show it.' },
+			{ number: 6, title: 'So we could refactor just the way we wanted', summary: 'Every page pinned byte for byte, a fresh thread, my own bet on the design, and two redesigns built while the tool stayed usable.' },
+			{ number: 7, title: 'A friend tried to build the project', summary: 'Feedback from real people while the rebuild was still going, and the first alpha.' },
+			{ number: 8, title: 'What a outline is?', summary: 'Testing the pages by ear, redesigning what a sighted design missed, and the second alpha.' },
+			{ number: 9, title: 'What traps we could avoid', summary: 'The cycle in one view, the traps it met, the rule each one left behind, and what stayed human.' },
+		],
+	},
+	{
 		slug: 'rust-beyond-systems',
 		title: {
 			en: 'Rust Beyond Systems Programming',
