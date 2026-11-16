@@ -45,6 +45,9 @@ const PROTOCOL = 'article:';
  */
 const showDrafts = process.env.NODE_ENV !== 'production';
 
+/** True for a source that this build will not emit a page for. */
+const isHidden = (source) => !showDrafts && /^draft:\s*true\s*$/m.test(source);
+
 // English is unprefixed, so an English id is already most of its URL. Kept in
 // step with src/i18n/config.ts by hand: this file runs inside the Markdown
 // pipeline, before anything in src/ has been compiled, and cannot import it.
@@ -76,9 +79,6 @@ const IN_ENGLISH = {
  */
 function readArticles() {
 	const urls = new Map();
-
-	/** True for a file that this build will not emit a page for. */
-	const isHidden = (source) => !showDrafts && /^draft:\s*true\s*$/m.test(source);
 
 	for (const entry of readdirSync(CONTENT, { withFileTypes: true })) {
 		if (entry.isDirectory()) continue;
@@ -133,12 +133,19 @@ export default function remarkArticleLinks() {
 		);
 		const locale = localeOf(file.path ?? '', locales);
 
+		// A draft is rendered by the content collection but never emitted, so its
+		// links cannot dangle for any reader. Checking them would stop a series
+		// being held back as drafts that link to one another; a published article
+		// linking to a draft is still an error, below.
+		const sourceIsHidden = !showDrafts && file.path && isHidden(readFileSync(file.path, 'utf8'));
+
 		visitLinks(tree, (node) => {
 			if (typeof node.url !== 'string' || !node.url.startsWith(PROTOCOL)) return;
 
 			const id = node.url.slice(PROTOCOL.length).replace(/^\/+|\/+$/g, '');
 			const found = articles.get(id);
 			if (!found) {
+				if (sourceIsHidden) return;
 				const known = [...articles.keys()].sort().join(', ');
 				throw new Error(
 					`${file.path ?? 'an article'} links to "${PROTOCOL}${id}", which is not a published ` +
