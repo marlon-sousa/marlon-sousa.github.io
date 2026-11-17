@@ -22,11 +22,11 @@ It started the night before, at 23:19, while I was going through the stack:
 
 > did you build a command line parser by hand in 27 instead of using clap?
 
-It had, in a way. The thread that built the command line used `lexopt`, a small crate
+It had, in a way. The thread that built the command line used [lexopt](https://github.com/blyxxyz/lexopt), a small crate
 that splits arguments into flags and values, and wrote the grammar of `ghg build`
-by hand on top of it. Its reason was recorded on the issue: clap writes its own
+by hand on top of it. Its reason was recorded on the issue: [clap](https://github.com/clap-rs/clap) writes its own
 help and error messages in English, and every sentence the tool prints was meant to
-come from the Fluent catalogue.
+come from the [Fluent](https://github.com/projectfluent/fluent-rs) catalogue.
 
 The agent that answered me checked the branch, and then did something I value: it
 judged the reason instead of defending it. "That reason is weaker than it sounds."
@@ -82,8 +82,9 @@ really a library:
 
 > right. And this makes sense because, if you think about it, this is not exactly a lib, right? It is abinary, and we just deliver it as a lib to follow rust standards. I wounder how the community in general dealth with this
 
-The agent downloaded the latest releases of four well-known Rust tools, just, fd,
-ripgrep and bat, and read how each was laid out. just was the closest: a library
+The agent downloaded the latest releases of four well-known Rust tools, [just](https://github.com/casey/just),
+[fd](https://github.com/sharkdp/fd), [ripgrep](https://github.com/BurntSushi/ripgrep) and
+[bat](https://github.com/sharkdp/bat), and read how each was laid out. just was the closest: a library
 whose front door exports one entry point, `run`, with everything else private to
 the crate. fd has no library at all, and tests its binary as a process.
 
@@ -124,7 +125,8 @@ Then I asked a question I already knew the answer to:
 
 > While you are here: did you get either acter or itinera-rs, not sure, guides to use test tables whenever tests can be parametrized?
 
-itinera-rs has that rule. acter does not. The agent quoted it, and offered to do
+[itinera-rs](https://github.com/itinera-dev/itinera-rs) has that rule.
+[acter](https://github.com/marlon-sousa/acter) does not. The agent quoted it, and offered to do
 something with it later. I wanted it in now:
 
 > no, I want it in 45.

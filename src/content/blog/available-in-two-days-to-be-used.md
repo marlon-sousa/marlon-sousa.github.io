@@ -1,6 +1,6 @@
 ---
 title: 'Available in two days to be used'
-description: 'Gherkin Glass went from an empty repository to a complete first version in one day, and was rebuilt over the next two while people were already using it. Every headline of that week: the cycle that made it possible, the two traps it walked into, what caught them, and the net that made the rebuild safe.'
+description: 'Gherkin Glass, a command that turns a folder of Gherkin feature files into a website a product owner can navigate, went from an empty repository to a complete first version in one day, and was rebuilt over the next two while people were already using it. Every headline of that week: the cycle that made it possible, the two traps it walked into, what caught them, and the net that made the rebuild safe.'
 pubDate: 'Nov 17 2026 12:00'
 series: 'gherkin-glass-built-in-use'
 seriesPart: 1
@@ -18,6 +18,7 @@ A Tuesday morning, an empty repository, and a tool I wanted to exist.
 - **On Friday morning** the first alpha was released, with binaries for five
   platforms and a public site showing what the tool makes.
 - **The Monday after**, the second alpha.
+- **Today**, 1.0.0, released with this series.
 
 In between, most of the architecture was taken apart and put back together. Twice.
 And the tool never stopped working while that happened.
@@ -40,15 +41,28 @@ each a short run of steps: `Given a book "Dune" on the shelf`, `When Ana borrows
 it`, `Then the shelf is empty`. Tools run those steps as tests, but the files are
 written to be read by people: product owners, testers, developers.
 
-Reading them is harder than it should be. They sit in a repository, spread across
-folders, opened one at a time in an editor. Itinera's conformance suite alone has
-more than three hundred scenarios. Gherkin Glass turns a folder of feature files
-into a static website: a page per feature and per folder, a heading and a stable
-link for every rule and scenario, tags, search, and pages built from the first day
-for a screen reader and a keyboard. It is one command, `ghg`, written in Rust.
+I believe in Gherkin and in behaviour-driven development, and more so now that
+agents write so much of the code. A specification that is also the tests cannot
+drift away from what the software does, and clear documentation that cannot drift
+is worth more every year.
 
-I use a screen reader. That is not a detail of this story; it is the reason half of
-the decisions in it went the way they did.
+Reading a suite of them is harder than it should be, though. They sit in a
+repository, spread across folders, opened one at a time in an editor, with tables
+drawn in `|` characters and outlines whose runs you have to work out in your head.
+[Itinera's conformance suite](https://github.com/itinera-dev/conformance) alone
+has more than three hundred scenarios. I needed to move through a suite like that
+and see each case as a product owner sees it: what it says, and how it is expected
+to run. And I needed a command I could run anywhere, including in CI.
+
+[Gherkin Glass](https://github.com/marlon-sousa/gherkin-glass) is that command,
+`ghg`, written in Rust. It turns a folder of feature files into a static website
+you can navigate: a page per feature and per folder, a heading and a stable link
+for every rule and scenario, tables shown as tables, outlines shown as the runs
+they produce, tags, step sentences, search, and a site built from just the files a
+pull request changed. Accessibility is one of its pillars, checked on every page
+from the first day, and as a screen reader user I made many of its decisions by
+ear. But it is not why the tool exists. The tool exists because I wanted to read
+feature files that way, and none of the viewers I tried was made for it.
 
 ## Headline: usable on the second day
 
@@ -88,7 +102,7 @@ learned on [Itinera](article:a-year-or-fourteen-days), and it went like this.
    comments into the body, so a thread building it reads only the body.
 3. **Behaviour before code.** What the tool promises is written in a document,
    `docs/BEHAVIOUR.md`, rule by rule, and every rule comes with a fixture and a
-   test. It holds 220 rules today.
+   test. It held 220 rules by the second alpha.
 4. **An independent reviewer before any pull request.** Not the author checking its
    own work, but another agent, given the change and not the reasoning behind it.
 5. **One stack.** Every pull request sat on the one before it, small enough to read
@@ -102,13 +116,14 @@ caught in hours rather than months.
 ## Headline: a rule in your head is not a rule
 
 On the second morning I read the code and did not like what I saw. The command line
-was parsed by hand instead of with clap. The library exported its adapters to the
+was parsed by hand instead of with [clap](https://github.com/clap-rs/clap). The library exported its adapters to the
 world. The policies were scattered. There were two regex crates where one was
 expected. Errors were called problems and lived among the entities.
 
 None of those broke a test. All of them broke rules I hold. And none of those rules
 was written anywhere a reviewer would read. I had brought them from two earlier
-projects, acter and itinera-rs, in my head. I had even asked, on the first day, for
+projects, [acter](https://github.com/marlon-sousa/acter) and
+[itinera-rs](https://github.com/itinera-dev/itinera-rs), in my head. I had even asked, on the first day, for
 the agents to take acter's architecture as the model. They took its shape, but not
 the check I believe acter has against exactly this.
 
@@ -233,7 +248,7 @@ The six are counted in [*The night that produced no code*](article:the-night-tha
 
 ## Next time
 
-The tool itself, before any of the process: what problem it solves, who it is for,
-and the first decisions about what it would promise, including the evening an agent
+The tool itself, before any of the process: why I needed it, who it is for, and the
+first decisions about what it would promise, including the evening an agent
 told me that the tool's own name was the wrong title for its front page. That is
 [*Why not gherkin glass?*](article:why-not-gherkin-glass)

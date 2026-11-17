@@ -113,7 +113,8 @@ The first thing it said at high effort was this:
 > answer names only what I've read.
 
 It came back with three ways to keep each kind of node typed in one tree, with
-their costs, citing the design of rowan, the tree behind rust-analyzer, by file and
+their costs, citing the design of [rowan](https://github.com/rust-analyzer/rowan), the tree behind
+[rust-analyzer](https://github.com/rust-lang/rust-analyzer), by file and
 line. A good answer. It still missed the one I had in mind:
 
 > bad response. What about trait objects, with a getType() resolving to a known enum?
@@ -176,7 +177,7 @@ Those were real problems too, which made the search feel finished.
 
 **I had a working assumption from the last project.** On Itinera, every thread ran
 at high effort, and I never had to think about it. I carried that assumption into
-a new project without checking it, exactly as I had carried acter's rules in my
+a new project without checking it, exactly as I had carried [acter](https://github.com/marlon-sousa/acter)'s rules in my
 head. It is the same trap as the last part, one floor down: not a rule, but a
 setting.
 

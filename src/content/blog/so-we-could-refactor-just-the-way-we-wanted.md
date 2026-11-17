@@ -60,6 +60,12 @@ that I trusted the agents more. That I did not need to. A redesign could move ev
 file, rename every type, replace every policy, and if a single byte of a single page
 changed, the build said so before any human looked.
 
+It is the same belief that made me build Gherkin Glass in the first place: a
+specification that is also the tests cannot drift from what the code does. The
+tool's own behaviour document is not written in Gherkin, but it works the same
+way. Every rule is a sentence a person can read, and every rule is held by a test.
+That is what turned a risky rewrite into an ordinary week.
+
 ## Something is wrong
 
 Then GitHub went quiet. The new pull request showed zero checks. I asked what was
@@ -212,7 +218,7 @@ whole stack.
 
 In the meantime, one thread I had asked for that morning came back with something
 useful. The browser check, which serves every fixture's site and the example suite
-and drives them with axe-core and the keyboard, had taken six and a half minutes. It
+and drives them with [axe-core](https://github.com/dequelabs/axe-core) and the keyboard, had taken six and a half minutes. It
 now took about a minute and three quarters.
 
 At 17:29 the stack was open: nine layers, one of them split in three, eleven pull

@@ -1,6 +1,6 @@
 ---
 title: 'Why not gherkin glass?'
-description: 'What Gherkin Glass is and who it is for, told through the first afternoon of decisions about what it would promise: pages a screen reader can use, addresses that never change, a voice that follows the feature file, sites that are served, and the evening an agent argued that the tool''s own name was the wrong title for its front page.'
+description: 'Why I needed Gherkin Glass: a suite of feature files I could navigate and read as a product owner, from one command, which no viewer I tried was made for. Then the first afternoon of decisions about what it would promise: addresses that never change, pages a screen reader can use, a voice that follows the feature file, sites that are served, and the evening an agent argued that the tool''s own name was the wrong title for its front page.'
 pubDate: 'Nov 17 2026 12:01'
 series: 'gherkin-glass-built-in-use'
 seriesPart: 2
@@ -12,16 +12,29 @@ draft: true
 week: a complete first version on the first day, two redesigns while the tool was
 in use, two traps a mature process still walked into, and the net that made the
 rebuild safe. Before any of the process, though, you should know what was being
-built and why it mattered to me. This part is the tool, told through the first
-decisions about what it would promise, because those promises are what every later
-part had to keep.
+built and why I needed it. This part is the tool: why I believe in the format it
+reads, what I could not do without it, and the first decisions about what it would
+promise, because those promises are what every later part had to keep.
+
+## Why Gherkin at all
+
+I believe in Gherkin and in behaviour-driven development. A feature file says what
+the software must do in sentences a product owner can read, and the same sentences
+run as tests. That second half is what matters most to me: documentation that is
+the tests cannot quietly drift away from what the code does, because the day it
+does, a test fails.
+
+With agents writing more and more of the code, I think that matters more each
+year, not less. An agent can produce a lot of code in an evening. What tells you,
+and the next agent, what that code is supposed to do has to be clear, has to be
+read by people, and has to break when it stops being true. Gherkin is all three.
 
 ## Three hundred scenarios in an editor
 
-Itinera's conformance suite is written in Gherkin. More than three hundred
-scenarios, spread over folders, describing what every implementation of the library
-must do, in any language. It is the most important document of that project, and
-it is a pain to read.
+[Itinera's conformance suite](https://github.com/itinera-dev/conformance) is
+written in Gherkin. More than three hundred scenarios, spread over folders,
+describing what every implementation of the library must do, in any language. It
+is the most important document of that project, and it is hard to read as a whole.
 
 Not because Gherkin is hard. A scenario is a few lines of plain language:
 
@@ -32,34 +45,53 @@ Scenario: A member borrows a book
   Then the shelf no longer holds "Dune"
 ```
 
-The pain is everything around it. The files sit in a repository. You open them one
-at a time in an editor. With a screen reader, which is how I read everything, an
-editor gives you a line at a time and no structure at all. There is no heading to
-jump to, no list of scenarios, no way to ask "where else is this step used?" A
-product owner who does not live in a repository will never read them at all.
+The difficulty is everything around it. The files sit in a repository, and you open
+them one at a time in an editor. A table is a block of lines with `|` between the
+cells. An outline is a template with placeholders in angle brackets, and the
+scenarios it actually runs are something you assemble in your head from the tables
+underneath. There is no overview of the suite, no list of what a tag covers, no way
+to ask "where else is this step used?" A product owner who does not live in a
+repository will rarely read them at all.
 
-What I wanted was simple to say. Point a command at a folder of feature files and
-get a website: a page per feature and per folder, a heading for every rule and
-scenario, so a screen reader can jump between them, a link to every one of them
-that keeps working, tags, search, and a page of every step sentence with where it
-is used. Later, on the fifth day, I put the deeper reason into words:
+What I wanted was to read a suite the way a product owner would. Point a command at
+a folder of feature files and get a website I can move through: a page per feature
+and per folder, a heading for every rule and scenario, a link to every one of them
+that keeps working, tables shown as tables, each outline shown with the runs it
+produces, a page for every tag, a page of every step sentence with where it is
+used, and search. And it had to be a command line tool, something I could run on my
+own machine and in CI alike.
+
+Before writing anything, we looked at what already existed, and tried
+several viewers on a real suite of 66 features and 380 scenarios. Some are good
+tools built around other needs: one is a single-page app, another is centred on
+test results, others feed a larger documentation system or are no longer
+maintained. None of them gave me that particular combination, a static site of
+linkable pages built by one command, so we built our own. The project's
+[first design note](https://github.com/marlon-sousa/gherkin-glass/blob/main/docs/design/0001-rust-and-the-gherkin-crate.md)
+records what was tried and why.
+
+Later, on the fifth day, I put one more reason into words:
 
 > One of the main goals for gherkin glass is facilitate me to look for new proposals. Think on itinera-s conformance, on a new tier. I want to run a diff of a given pr and see only what changed. Not the diffs, but ratter the files. So I want to generate a site with only files changed.
 
-That is the second alpha's `--only` flag, and it comes much later. The first version
-had to make the whole suite readable first.
+That is the second alpha's `--only` flag: a site built from a list of changed
+files, so the feature files a pull request touches can be read as pages rather than
+as a diff. It comes much later. The first version had to make the whole suite
+readable first.
 
 ## What a page promises
 
 The first afternoon was spent on promises. Not features: promises, the things a
 reader would come to rely on and that the code would never be allowed to break. A
-handful of them shaped everything after.
+handful of them shaped everything after. Accessibility is one of them, a pillar of
+the project from the first page, though not the reason it exists.
 
 ### Accessibility is behaviour
 
 The project's agent manual says it in one line, in the third of its rules:
 "A page that fails the accessibility check is a failing test, never a warning to
-skip." Every page is checked in a real browser with axe-core, against WCAG 2.2 at
+skip." Every page is checked in a real browser with
+[axe-core](https://github.com/dequelabs/axe-core), against WCAG 2.2 at
 levels A and AA, in the light and the dark theme, and driven with the keyboard
 alone. Colours in the pages reach a contrast of 7:1, well past what the standard
 asks. Colour and highlighting never carry meaning on their own.
@@ -69,7 +101,7 @@ cover, I wrote:
 
 > Agree. nvda is not included here, as you cannot use it on cloud. The rest you can.
 
-NVDA is my screen reader. Listening to the pages stayed my job, and every pull
+[NVDA](https://github.com/nvaccess/nvda) is my screen reader. Listening to the pages stayed my job, and every pull
 request that changed what a page says carries a manual checklist for it. You will
 see in a later part how much that job found.
 
@@ -102,7 +134,8 @@ want. Not "trust me", but what it checked and how.
 
 Gherkin can be written in 77 languages. A `# language: pt` line turns `Feature:`
 into `Funcionalidade:`. Our own words, "Collapse all", "From the background:",
-stay English for now, ready to be translated later through Fluent. So a
+stayed English through the alphas, ready to be translated later through
+[Fluent](https://github.com/projectfluent/fluent-rs). So a
 Portuguese feature's page has Portuguese content and a few English words of ours.
 
 The agent proposed marking our English words with `lang="en"`, so a screen reader
@@ -218,20 +251,23 @@ Every one of them was built that night. How that happened is the next part.
 
 ## What we learned
 
-1. Decide the promises before the features: what a reader will rely on is what the code is never allowed to break.
-2. Accessibility written as behaviour, with a failing test, holds; accessibility written as intent drifts.
-3. Some checks only a person can do, and a project should name them and keep them.
-4. Ask an agent how it checked, not only what it thinks; the good answers name a source or a test.
-5. When an agent tells you the cost of your decision, put the cost where your users will meet it, not only where your team will read it.
-6. An agent that disagrees with a reason is worth more than one that agrees.
+1. Documentation that is also the tests cannot drift, and with agents writing the code, that matters more each year.
+2. Know what you need before you build: here, a suite you can navigate and read as a product owner, from one command.
+3. Look at what exists first, and say briefly and fairly why it does not fit your need.
+4. Decide the promises before the features: what a reader will rely on is what the code is never allowed to break.
+5. Accessibility written as behaviour, with a failing test, holds; accessibility written as intent drifts.
+6. Some checks only a person can do, and a project should name them and keep them.
+7. Ask an agent how it checked, not only what it thinks; the good answers name a source or a test.
+8. When an agent tells you the cost of your decision, put the cost where your users will meet it, not only where your team will read it.
+9. An agent that disagrees with a reason is worth more than one that agrees.
 
 ## Which jobs this one was doing
 
 Two, and the absences are honest: nothing was built yet for a project manager, a
 platform engineer or QA to work on, and no change existed to review.
 
-- **Product owner** — the promises: accessibility as behaviour, addresses that never
-  change, a voice that follows the feature file, reload as the reason for `--watch`,
+- **Product owner** — a suite I could navigate as a product owner, from one command,
+  and the promises: addresses that never change, accessibility as behaviour, a voice that follows the feature file, reload as the reason for `--watch`,
   and "Feature files" taken over the tool's own name.
 - **Architect** — dropping disk support for served sites, over the agent's
   recommendation, and naming the command `ghg` to match the ignore file.

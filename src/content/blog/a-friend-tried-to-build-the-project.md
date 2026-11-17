@@ -84,8 +84,8 @@ should get an alpha by accident.
 
 The project's site needed a front page, and we agreed it would be the README itself,
 processed by the site's build, with marks for the parts that belong only on GitHub
-or only on the site. The release pull request was generated the way itinera-rs does
-it, with the changelog written by git-cliff from the commit messages.
+or only on the site. The release pull request was generated the way [itinera-rs](https://github.com/itinera-dev/itinera-rs) does
+it, with the changelog written by [git-cliff](https://github.com/orhun/git-cliff) from the commit messages.
 
 The agents prepared everything up to the tag. The tag itself is mine. A cloud session
 cannot push one, and I would not want it to: a tag is the one act in this whole cycle
@@ -101,7 +101,7 @@ Less than three days after the first commit.
 The alpha's first outside review was not done by a person. That afternoon I brought
 in an independent agent, given a browser it could drive, to review the published
 example site as a product owner would. It worked in Chromium
-through Playwright, at a laptop's width and a phone's, in the light and the dark
+through [Playwright](https://github.com/microsoft/playwright), at a laptop's width and a phone's, in the light and the dark
 theme, and wrote a report I pasted into the project:
 
 > Reviewed: https://marlon-sousa.com/gherkin-glass/v0.1.0-alpha.1/ (release

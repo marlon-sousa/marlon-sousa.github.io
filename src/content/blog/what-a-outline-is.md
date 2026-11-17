@@ -20,7 +20,7 @@ same person, and the only one in the project who could do the job.
 ## Which command do I run?
 
 On the fourth day, a few hours after the alpha, I wanted to read the example
-suite the way a reader would, with NVDA, from a local server. My first question was
+suite the way a reader would, with [NVDA](https://github.com/nvaccess/nvda), from a local server. My first question was
 not about the pages at all:
 
 > which cargo command should I do to serve the samples?
@@ -158,7 +158,8 @@ had the rules that hold them.
 
 ## Nothing checks meaning
 
-Every page in that example suite had passed axe-core in both colour schemes, the
+Every page in that example suite had passed
+[axe-core](https://github.com/dequelabs/axe-core) in both colour schemes, the
 keyboard check, the contrast check and a byte-for-byte comparison, every day, all
 week. The headings were in order. The lists were real lists. The buttons had names.
 
@@ -194,9 +195,9 @@ The fewer moving hands on a stack, the fewer surprises.
 
 I tagged `0.1.0-alpha.2` on Monday, a little before one in the afternoon. One
 release job waited fifteen minutes for a macOS machine that never came, and
-re-running the failed job fixed it. The plan from here is simple: other people read
-the alphas and tell me what they find, and the first stable version after that is
-1.0.0.
+re-running the failed job fixed it. After that, other people read the alphas and
+told me what they found, and what they found went into 1.0.0, the version this
+series went out with.
 
 ## What we learned
 

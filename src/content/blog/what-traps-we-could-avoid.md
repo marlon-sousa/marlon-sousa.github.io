@@ -36,7 +36,8 @@ did not is marked. The next project starts from those rules, not from my memory.
 
 ## The cycle in one view
 
-This is the cycle that ran all week, as it stands now, after every correction:
+This is the cycle that ran all week, as it stood at the end of it, after every
+correction:
 
 1. **Agree before code.** An issue is settled with me one decision at a time, each
    question with a recommendation and its reason, and the decisions move into the
@@ -53,8 +54,8 @@ This is the cycle that ran all week, as it stands now, after every correction:
 5. **Design at high effort, code at medium.** Designs are agreed with me, written
    into an issue or a design note, and reviewed. Coding threads build against them.
 6. **Review independently, at high effort.** Before any pull request opens, a
-   separate agent, given the change and never its author's reasoning, goes through a
-   twenty-item checklist, and looks at the pages in a browser when a change can alter
+   separate agent, given the change and never its author's reasoning, goes through the
+   reviewer's checklist, twenty items by the end of the week, and looks at the pages in a browser when a change can alter
    them.
 7. **One stack, many threads.** Work is split along the dependency graph, one thread
    per piece, run in parallel where nothing waits, assembled as one stack I merge from
@@ -133,8 +134,8 @@ What they bought, or rather what the speed bought despite them:
   reader;
 - two redesigns of the core with not one expected page changed;
 - two alphas in seven days, with binaries for five platforms and a public site;
-- 461 commits, about 26,600 lines of Rust, 220 rules of behaviour, each with its
-  fixture and its test.
+- in those seven days, 461 commits, about 26,600 lines of Rust and 220 rules of
+  behaviour, each with its fixture and its test.
 
 **[To fill in before publishing: my own estimate of how long this would have taken
 me without agents, stated as an estimate.]** The week above is measured from git.
@@ -147,6 +148,13 @@ without having studied agentic development seriously. Not because the agents nee
 a typist. Because they needed somebody who knew what to agree before code, what to
 pin before a rewrite, what a reviewer should be asked, and when a thin design means
 the instructions were vague and when it means something else.
+
+And none of it would have been safe without behaviour-driven development, which I
+believed in before this week and believe in more after it. Gherkin Glass exists to
+make feature files readable, because a specification that is also the tests cannot
+drift, and the same idea, applied to the tool itself, is what let me rebuild its
+core twice without a single page changing. The more of the code agents write, the
+more that kind of documentation is worth.
 
 The traps are the evidence, not the exception. They are the ones any experienced
 engineer walks into with a new team: you assume the team knows what you know, and
@@ -180,15 +188,17 @@ is where each of them has to account for the week:
 - **QA** — every page pinned byte for byte, and an agent with a browser measuring the
   layout.
 - **Reviewer** — reading what had passed every check, re-reviewing what was already
-  approved, and a twenty-item checklist that grew from every trap in the table above.
+  approved, and a checklist that grew to twenty items from the traps in the table
+  above.
 
 The six are counted in [*The night that produced no code*](article:the-night-that-produced-no-code).
 
 ## What it enables
 
-There is no next part. There is the repository, which is public: its
+There is no next part. Gherkin Glass is at 1.0.0, released with this series, and
+its repository is public: its
 [agents' manual](https://github.com/marlon-sousa/gherkin-glass/blob/main/AGENTS.md)
-with the reviewer's twenty items, its
+with the reviewer's checklist, its
 [contributing guide](https://github.com/marlon-sousa/gherkin-glass/blob/main/CONTRIBUTING.md),
 its [architecture](https://github.com/marlon-sousa/gherkin-glass/blob/main/docs/ARCHITECTURE.md)
 and [behaviour](https://github.com/marlon-sousa/gherkin-glass/blob/main/docs/BEHAVIOUR.md)
@@ -199,4 +209,5 @@ So the cycle can be copied, traps included. Take the files, change the nouns, an
 look at the table above before your first morning rather than after it. And if you
 want the tool rather than the process, the
 [project's site](https://marlon-sousa.com/gherkin-glass/) shows what it makes of a
-real suite of feature files. Try it with a screen reader.
+real suite of feature files. Point it at your own, browse them as a product owner
+would, and if you use a screen reader, listen to them too.

@@ -90,7 +90,7 @@ one came. That afternoon settled, among many others:
   and the reader's saved choice always wins;
 - that the pages' script is TypeScript, compiled by the build and shipped inside
   the binary;
-- that every sentence the tool prints comes from a Fluent catalogue, ready for
+- that every sentence the tool prints comes from a [Fluent](https://github.com/projectfluent/fluent-rs) catalogue, ready for
   translation later.
 
 A day of decisions reads like a list. What it felt like was a conversation with a
@@ -104,7 +104,7 @@ In the middle of it I stopped the questions:
 
 > ok. Before that, We eed an architecure document, if we havn't yet. Query marlon-sousa/acter for what it suggests (modules, comments, etc) and say me what you think
 
-acter is an earlier project of mine with a set of architecture rules I trust:
+[acter](https://github.com/marlon-sousa/acter) is an earlier project of mine with a set of architecture rules I trust:
 ports and adapters, modules by role, how comments are written. The agent read it,
 proposed the same shape for this project, and wrote `docs/ARCHITECTURE.md`. Every
 thread that evening built against it, and every reviewer checked against it.
@@ -120,7 +120,7 @@ The cloud environment the threads run in does not let them call GitHub's API
 directly; they go through a set of tools instead. GitHub's stacks, which make an
 ordered pile of pull requests something GitHub itself understands and can rebase,
 are only reachable through the REST API. The thread told me it could not declare
-the stack. I knew better, because itinera-rs had done it:
+the stack. I knew better, because [itinera-rs](https://github.com/itinera-dev/itinera-rs) had done it:
 
 > why not? Itinera-rs projects call it some how, from gh rest api
 
