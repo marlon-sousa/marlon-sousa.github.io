@@ -1,11 +1,11 @@
 ---
 title: 'A friend tried to build the project'
 description: 'Feedback from real people while the rebuild was still going on. A friend got pages with no script and no style, the README taught nothing, the first alpha went out the next morning, and an agent playing product owner in a real browser found twelve things wrong with the interface, the same things an outside tester reported on their own.'
-pubDate: 'Nov 17 2026 12:06'
+pubDate: 'Nov 19 2026 12:06'
 series: 'gherkin-glass-built-in-use'
 seriesPart: 7
 tags: ['ai engineering', 'ai', 'software engineering', 'accessibility', 'gherkin-glass']
-draft: true
+draft: false
 ---
 
 [Last time](article:so-we-could-refactor-just-the-way-we-wanted) the core of the

@@ -1,11 +1,11 @@
 ---
 title: 'So we could refactor just the way we wanted'
 description: 'How the heart of Gherkin Glass was rebuilt twice in a day while the tool stayed in use: every page pinned byte for byte, a fresh thread given only the written guidelines, my own bet on the design, an incremental rebuild I designed in a review, and eleven pull requests built in parallel and merged in one evening, without a single page changing.'
-pubDate: 'Nov 17 2026 12:05'
+pubDate: 'Nov 19 2026 12:05'
 series: 'gherkin-glass-built-in-use'
 seriesPart: 6
 tags: ['ai engineering', 'ai', 'software engineering', 'rust', 'testing', 'gherkin-glass']
-draft: true
+draft: false
 ---
 
 [Last time](article:what-is-your-thinking-level) was the second trap: a day of thin

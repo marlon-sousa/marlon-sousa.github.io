@@ -1,11 +1,11 @@
 ---
 title: 'Why not gherkin glass?'
 description: 'Why I needed Gherkin Glass: a suite of feature files I could navigate and read as a product owner, from one command, which no viewer I tried was made for. Then the first afternoon of decisions about what it would promise: addresses that never change, pages a screen reader can use, a voice that follows the feature file, sites that are served, and the evening an agent argued that the tool''s own name was the wrong title for its front page.'
-pubDate: 'Nov 17 2026 12:01'
+pubDate: 'Nov 19 2026 12:01'
 series: 'gherkin-glass-built-in-use'
 seriesPart: 2
 tags: ['ai engineering', 'ai', 'software engineering', 'accessibility', 'gherkin-glass']
-draft: true
+draft: false
 ---
 
 [Last time](article:available-in-two-days-to-be-used) I gave every headline of the

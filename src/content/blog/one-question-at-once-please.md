@@ -1,11 +1,11 @@
 ---
 title: 'One question at once, please'
 description: 'The first day of Gherkin Glass: nineteen issues settled one decision at a time, decisions moved into issue bodies, an independent reviewer required before any pull request, and a night in which a coordinator and a thread per issue built the whole first version as one stack of 25 pull requests, while waits on CI quietly died.'
-pubDate: 'Nov 17 2026 12:02'
+pubDate: 'Nov 19 2026 12:02'
 series: 'gherkin-glass-built-in-use'
 seriesPart: 3
 tags: ['ai engineering', 'ai', 'software engineering', 'gherkin-glass']
-draft: true
+draft: false
 ---
 
 [Last time](article:why-not-gherkin-glass) was the tool itself: a website made from

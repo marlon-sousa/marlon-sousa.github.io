@@ -1,11 +1,11 @@
 ---
 title: 'What a outline is?'
 description: 'Testing the pages by ear. An evening with a screen reader and the example suite turned up what no checker could: an outline nobody had explained, a heading that said Example over a scenario, examples that could mean two different things, and a disabled button that only looked disabled to assistive technology. How the pages were redesigned around a listener, and how the second alpha went out.'
-pubDate: 'Nov 17 2026 12:07'
+pubDate: 'Nov 19 2026 12:07'
 series: 'gherkin-glass-built-in-use'
 seriesPart: 8
 tags: ['ai engineering', 'ai', 'software engineering', 'accessibility', 'nvda', 'gherkin-glass']
-draft: true
+draft: false
 ---
 
 [Last time](article:a-friend-tried-to-build-the-project) the first people used the

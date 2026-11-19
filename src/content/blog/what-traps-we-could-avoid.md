@@ -1,11 +1,11 @@
 ---
 title: 'What traps we could avoid'
 description: 'The week of Gherkin Glass in one view: the agentic development cycle that made a usable tool in two days, every trap it still walked into, the rule each trap left behind in the repository, what it cost against what it bought, and the parts that stayed human.'
-pubDate: 'Nov 17 2026 12:08'
+pubDate: 'Nov 19 2026 12:08'
 series: 'gherkin-glass-built-in-use'
 seriesPart: 9
 tags: ['ai engineering', 'ai', 'software engineering', 'accessibility', 'gherkin-glass']
-draft: true
+draft: false
 ---
 
 [Last time](article:what-a-outline-is) I listened to the pages with a screen reader

@@ -1,11 +1,11 @@
 ---
 title: 'Why on earth are we leaking adapters'
 description: 'The first trap of the week. Reading the code of a first version that passed every check, I found a hand-made argument parser, a library exporting its adapters, scattered policies and errors living among the entities. Every reviewer had done its job. The rules they needed lived only in my head and in two older projects, so the first fix was a document.'
-pubDate: 'Nov 17 2026 12:03'
+pubDate: 'Nov 19 2026 12:03'
 series: 'gherkin-glass-built-in-use'
 seriesPart: 4
 tags: ['ai engineering', 'ai', 'software engineering', 'rust', 'gherkin-glass']
-draft: true
+draft: false
 ---
 
 [Last time](article:one-question-at-once-please) the process worked as designed:

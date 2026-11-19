@@ -1,11 +1,11 @@
 ---
 title: 'Available in two days to be used'
 description: 'Gherkin Glass, a command that turns a folder of Gherkin feature files into a website a product owner can navigate, went from an empty repository to a complete first version in one day, and was rebuilt over the next two while people were already using it. Every headline of that week: the cycle that made it possible, the two traps it walked into, what caught them, and the net that made the rebuild safe.'
-pubDate: 'Nov 17 2026 12:00'
+pubDate: 'Nov 19 2026 12:00'
 series: 'gherkin-glass-built-in-use'
 seriesPart: 1
 tags: ['ai engineering', 'ai', 'software engineering', 'accessibility', 'gherkin-glass']
-draft: true
+draft: false
 ---
 
 A Tuesday morning, an empty repository, and a tool I wanted to exist.

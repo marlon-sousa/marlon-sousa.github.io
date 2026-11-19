@@ -1,11 +1,11 @@
 ---
 title: 'What is your thinking level?'
 description: 'The second trap of the week. Designs came back thin, names said nothing, and answers missed the point, while every test and every review passed. In the middle of a review I guessed why, asked, and was right: every thread had been running at medium effort, a default nobody had chosen. How it showed, how I found it, and the rule that came out of it.'
-pubDate: 'Nov 17 2026 12:04'
+pubDate: 'Nov 19 2026 12:04'
 series: 'gherkin-glass-built-in-use'
 seriesPart: 5
 tags: ['ai engineering', 'ai', 'software engineering', 'gherkin-glass']
-draft: true
+draft: false
 ---
 
 [Last time](article:why-on-earth-are-we-leaking-adapters) the reviewers had done
