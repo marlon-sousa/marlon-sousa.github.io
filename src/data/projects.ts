@@ -49,6 +49,16 @@ export const projects: Project[] = [
 		},
 	},
 	{
+		name: 'Gherkin Glass',
+		repo: 'gherkin-glass',
+		site: 'https://marlon-sousa.github.io/gherkin-glass/',
+		series: 'gherkin-glass-built-in-use',
+		description: {
+			en: 'Turns a folder of Gherkin feature files into a static website that a product owner can navigate and read: a page for every feature, folder and tag, a folder tree, search across features, rules, scenarios, backgrounds and examples, and the steps written in plain language, with no testing framework to install. Built for screen readers first, every page passes an accessibility check in both colour schemes and fits a phone. Written in Rust, installed with cargo or as a binary for five platforms, at 1.0.0.',
+			pt: 'Transforma uma pasta de arquivos de funcionalidades em Gherkin em um site estático que um product owner consegue navegar e ler: uma página para cada funcionalidade, pasta e tag, uma árvore de pastas, busca em funcionalidades, regras, cenários, contextos e exemplos, e os passos escritos em linguagem simples, sem nenhum framework de testes para instalar. Feito primeiro para leitores de tela, toda página passa por uma verificação de acessibilidade nos dois esquemas de cores e cabe em um celular. Escrito em Rust, instalado pelo cargo ou como binário para cinco plataformas, na versão 1.0.0.',
+		},
+	},
+	{
 		name: 'EnhancedFindDialog for NVDA',
 		repo: 'EnhancedFindDialog',
 		description: {
