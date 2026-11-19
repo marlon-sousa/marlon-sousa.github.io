@@ -232,7 +232,7 @@ is not a process with an agent in it; it is a process with a typist.
 By the evening, the promises had become nineteen agreed issues, plus one for the
 architecture and one for `ghg serve`:
 
-- reading the input, with a `.ghgignore` file and every non-feature file ignored by
+- reading the input, with a `.ghg-ignore` file and every non-feature file ignored by
   default;
 - a page for every feature file, with a heading and an anchor for every block, and
   unnamed scenarios allowed behind a setting;

@@ -137,8 +137,27 @@ What they bought, or rather what the speed bought despite them:
 - in those seven days, 461 commits, about 26,600 lines of Rust and 220 rules of
   behaviour, each with its fixture and its test.
 
-**[To fill in before publishing: my own estimate of how long this would have taken
-me without agents, stated as an estimate.]** The week above is measured from git.
+There are published ways to estimate the same work without agents, and, as with
+[Itinera](article:a-year-or-fourteen-days), none of them is kind.
+
+The most used effort model, [COCOMO II](https://arxiv.org/pdf/1912.04189), works
+from size. Feed it only the Rust above and it answers with about nine person-years.
+It is calibrated on teams inside companies, meetings and all, so take it as a
+ceiling nobody would reach working alone.
+[Published figures](https://successfulsoftware.net/2017/02/10/how-much-code-can-a-coder-code/)
+for what a developer delivers on a small project run from about 20 to 125 lines a
+day. Count everything the agents wrote, about 34,000 lines with the pages' script,
+the stylesheet and the templates, and even the generous end is more than a year of
+working days. The prose, about 55,000 words of behaviour, architecture, README and
+guides, is [usually estimated](https://www.techscribe.co.uk/techw/documentation-project-metrics.htm)
+at three to five hours per finished page: two to six months of writing on its own.
+
+Lines are a poor measure of effort, and the models describe teams, not one person
+who knows exactly what he wants. Discount all of it heavily. It still does not come
+in under six months.
+
+So when I say this would have needed at least six months of paid, full-time work,
+that is my own guess, and the conservative one. The week above is measured from git.
 Weigh the two as different kinds of number.
 
 ## This is what mature looks like

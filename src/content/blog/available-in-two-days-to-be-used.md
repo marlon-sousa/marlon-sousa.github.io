@@ -185,7 +185,7 @@ every construct appears together:
 
 From then on, a refactor that changed a single byte of any page failed `cargo
 test`. Two redesigns went through under that net: a six-layer stack overnight, and
-an eleven-layer stack the next day, built by parallel threads and merged in one
+eleven pull requests the next day, built by parallel threads and merged in one
 evening. A fresh thread, given only the written guidelines and none of the old
 conversation, designed the first one with me. The story is
 [*So we could refactor just the way we wanted*](article:so-we-could-refactor-just-the-way-we-wanted).

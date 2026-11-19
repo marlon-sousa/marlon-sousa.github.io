@@ -80,7 +80,7 @@ one came. That afternoon settled, among many others:
 - that a feature file that cannot be parsed fails the build, with no option to
   carry on, "by now";
 - that files which are not `.feature` files are ignored by default, through a
-  `.ghgignore` file read per folder, and that `.gitignore` is not considered;
+  `.ghg-ignore` file read per folder, and that `.gitignore` is not considered;
 - that Gherkin has no include statement, so every file parses on its own and they
   can be parsed in parallel, which the agent checked against the parser crate's
   keyword list before agreeing;

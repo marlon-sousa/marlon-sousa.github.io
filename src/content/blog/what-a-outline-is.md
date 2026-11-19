@@ -195,7 +195,9 @@ The fewer moving hands on a stack, the fewer surprises.
 
 I tagged `0.1.0-alpha.2` on Monday, a little before one in the afternoon. One
 release job waited fifteen minutes for a macOS machine that never came, and
-re-running the failed job fixed it. After that, other people read the alphas and
+re-running the failed job fixed it. My friend and the outside tester read it as soon
+as it was out: what they had reported was fixed, and they approved the features I
+had added on my own. After that, other people read the alphas and
 told me what they found, and what they found went into 1.0.0, the version this
 series went out with.
 
