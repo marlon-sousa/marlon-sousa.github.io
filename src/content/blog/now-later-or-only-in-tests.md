@@ -314,8 +314,7 @@ up in the program and what never does. On the way, these are the Rust ideas we m
 
 ### The jobs
 
-Building software alone with an agent means doing six jobs that used to belong to six
-people. How many did this one do? Three:
+How many of the six jobs did this one do? Three:
 
 - **Architect** — a way of choosing between a block, a closure and a function, instead
   of reaching for whichever comes first; and the default, moved to where it is only
@@ -349,15 +348,15 @@ error, so it is worth building them all — but it can never hide half a functio
 missing brace. And it is one more case of the principle we met with macros: if it can
 be decided before the program runs, Rust decides it before the program runs.
 
-## Next time
-
-But first, a tally of everything we have used since postres started listening to its
-command line. An argument parser. An optional type. Functional
+And a tally, while we are here, of everything we have used since postres started
+listening to its command line. An argument parser. An optional type. Functional
 methods instead of branches. A test framework, and tables of test cases. Lambdas.
 Build-time switches. Every one of them exists in the languages you already use. Rust
 did not invent any of them. It does them earlier, and stricter, and it will not let you
 skip them. That is not systems programming. That is high-level programming, taken
 seriously.
+
+## Next time
 
 postres knows exactly where its output goes, and says so with a `println!`. Easy, and
 it works. Printing is cool... or is it? To answer that, we first need the word that

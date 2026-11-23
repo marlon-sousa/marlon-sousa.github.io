@@ -475,8 +475,7 @@ Rust ideas we met:
 
 ### The jobs
 
-Building software alone with an agent means doing six jobs that used to belong to six
-people. How many did this one do? Three — and one that it did not do, which shows:
+How many of the six jobs did this one do? Three — and one that it did not do, which shows:
 
 - **Architect** — inputs kept apart from the domain: `Args` is the shape of a
   command line, `Config` is what postres works with, and `Config::new` is the only
@@ -515,6 +514,7 @@ there — into a line that does not compile.
 ## Next time
 
 postres now picks a name for its output, and one run was enough to show that the name
-can be wrong. Next time we ask the question properly: is that name right? We write
+can be wrong. [Next time](article:is-that-name-right) we ask the question properly:
+is that name right? We write
 down what right means, as tests, watch them fail — more than once — and find out
 that the fix was sitting in the standard library all along.

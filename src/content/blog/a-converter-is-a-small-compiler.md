@@ -2,7 +2,7 @@
 title: 'A converter is a small compiler'
 description: 'An empty directory becomes a Rust project: why a file-to-file converter is shaped like a compiler, a library and a binary in one package, modules and who can see them, a manifest with no dependencies in it, two lines that let the build refuse undocumented and unsafe code, and CI on three operating systems from the very first commit.'
 pubDate: 'Sep 28 2026 14:00'
-updatedDate: 'Sep 30 2026'
+updatedDate: 'Nov 06 2026'
 series: 'rust-beyond-systems'
 seriesPart: 4
 code: 'postres@part-04'
@@ -258,13 +258,13 @@ because now it cannot go out of date quietly. We have no examples yet, since the
 is nothing public to show, but the machinery is already running, as we are about
 to see.
 
-And we can go one step further, in the manifest. These three lines are the ones in
+And we can go one step further, in the manifest. These two lints are the lines in
 this whole article I would most like you to steal:
 
 ```toml include="postres@part-04:Cargo.toml#lints"
 ```
 
-The first line forbids `unsafe` code anywhere in the crate. Last time I told you a
+The first forbids `unsafe` code anywhere in the crate. Last time I told you a
 whole list of errors has nowhere to happen *in safe Rust*, and that qualification
 was doing honest work: `unsafe` exists, for the rare code that has to do what the
 compiler cannot check, and inside it the list comes back. postres will never need
@@ -293,7 +293,7 @@ error[E0453]: allow(unsafe_code) incompatible with previous forbid
   |         ^^^^^^^^^^^ overruled by previous forbid
 ```
 
-The second line asks for a warning on anything **public** that has no
+The second asks for a warning on anything **public** that has no
 documentation. A warning is easy to ignore on your own machine, and that is fine,
 you are in the middle of something. But the checks we are about to set up treat
 every warning as an error, so nothing undocumented gets through them. Here is what
@@ -301,15 +301,17 @@ the build said when I deleted the crate's own documentation to find out:
 
 ```text
 error: missing documentation for the crate
- --> src\lib.rs:1:1
-  |
-1 | / mod postman;
-2 | | mod converter;
-3 | | mod restclient;
-4 | | mod error;
-  | |__________^
-  |
-  = note: `-D missing-docs` implied by `-D warnings`
+  --> src\lib.rs:3:1
+   |
+ 3 | / mod postman;
+ 4 | |
+ 5 | | // Lowers the source model into the target model. The only stage that knows both.
+ 6 | | mod converter;
+...  |
+12 | | mod error;
+   | |__________^
+   |
+   = note: `-D missing-docs` implied by `-D warnings`
 ```
 
 Which means the rule from 2022 — document the public functions so that other
@@ -318,7 +320,8 @@ It is a check nobody can forget, whoever is typing.
 
 ## The manifest, and what is not in it
 
-Now the file that holds all of that together. Last time I showed you that a Rust
+Now the file that holds all of that together. In [*Put it next to what you
+already write*](article:put-it-next-to-what-you-already-write) I showed you that a Rust
 project is essentially two files, and that `cargo build`, `cargo test`, `cargo
 fmt`, `cargo clippy` and `cargo doc` came in the box. Here is the first of those
 two files, opened up:
@@ -350,8 +353,8 @@ Then the part I like best:
 ```
 
 That is the whole dependency list. Empty. Not one crate. The 2022 postres
-declared sixteen dependencies in its second commit, before there was a single
-line of code to use them, one of them pointing at my own fork of another crate on GitHub, which is a story for
+declared sixteen dependencies in the commit right after its README, before there
+was a single line of code to use them, one of them pointing at my own fork of another crate on GitHub, which is a story for
 later. This time every dependency arrives in the article where the program first
 needs it, so that you can see exactly what it is for.
 
@@ -420,7 +423,7 @@ Then one more machine, for the promise in the manifest:
 ```
 
 `rust-version` says 1.85. Anybody can write a number in a file. This job
-installs exactly 1.85 and builds with it, so the day somebody uses a feature
+installs exactly 1.85 and checks the code with it, so the day somebody uses a feature
 from a newer release, the promise fails loudly instead of quietly becoming
 untrue.
 
@@ -510,10 +513,29 @@ might not work. The 2022 version of postres had thirty-seven lessons in it and
 no build on any machine but mine. This one has no lessons in it at all, and a
 build on three.
 
-## What this one was quietly doing
+## Wrapping it up
 
-An article about an empty program is easy to read as housekeeping. It was not,
-so here is what was really going on underneath.
+An article about an empty program is easy to read as housekeeping. It was not: an
+empty directory became a project that builds, is checked on three operating
+systems, and refuses code nobody documented. On the way, these are the Rust ideas
+we met:
+
+1. **A crate is what the compiler builds in one go**, a library or an executable;
+   **a package** is what a `Cargo.toml` describes, and it can hold one library and
+   any number of binaries.
+2. **`src/lib.rs` is a library and `src/main.rs` a binary**, by convention, with no
+   configuration to say so.
+3. **A module exists because its parent declares it**, with `mod`. A file nobody
+   declares is not compiled at all.
+4. **Everything is private by default.** `pub` opens an item to everybody, and
+   `pub(crate)` to the rest of the crate only.
+5. **`//!` documents the thing it is inside, and `///` the thing right after it**;
+   examples in documentation are compiled and run as tests.
+6. **Lints can live in the manifest**, under `[lints]`. `forbid` cannot be undone
+   further down; `deny` and `warn` can.
+7. **`edition`** is how the language changes without breaking anybody, and
+   **`rust-version`** is the oldest compiler a crate promises to build with.
+8. **`Cargo.lock`** records the exact version of every crate, and goes into git.
 
 ### The jobs
 
@@ -539,7 +561,7 @@ six people. This article was doing four of them, and mostly the first two:
 No product owner and no QA this time. Nothing was decided about what postres does
 for anybody, and nothing was tested, because nothing exists to test.
 
-### What the language did without anybody noticing
+### What the language did
 
 Look at what that took, and at what it did not:
 

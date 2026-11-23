@@ -2,7 +2,7 @@
 title: 'A one-character mistake'
 description: 'Three small things in a logging setup — standard error, colours only on a terminal, and a level picked by counting -v — and then one character that throws away every log line, which the compiler itself recommends, and the lint that refuses it.'
 pubDate: 'Oct 07 2026 12:00'
-updatedDate: 'Oct 29 2026 12:00'
+updatedDate: 'Nov 06 2026'
 series: 'rust-beyond-systems'
 seriesPart: 12
 code: 'postres@part-12'
@@ -54,16 +54,9 @@ in fact, two from crates our dependencies brought along; the one we want is the
 standard library's, `std::io::IsTerminal`. Traits get a part of
 their own later on; for now, that is why the line is there.
 
-And the level? That needs a new argument. Back to our `Args`, which grows a third
-field:
-
-```rust include="postres@part-12:src/main.rs#args"
-```
-
-`verbose: u8`, with `action = clap::ArgAction::Count`. `ArgAction` is an enum from
-clap, and `Count` is one of its variants: instead of reading a value after the flag,
-count how many times the flag was typed. None is zero, `-v` is one, `-vv` is two. And
-the level comes from that count:
+And the level? [Last time](article:a-log-that-does-not-block) `Args` grew a `-v`
+that counts: none is zero, `-v` is one, `-vv` is two. The level comes from that
+count:
 
 ```rust include="postres@part-12:src/main.rs#level"
 ```
@@ -183,8 +176,8 @@ error: non-binding `let` on an expression with `#[must_use]` type
    = note: `-D clippy::let-underscore-must-use` implied by `-D warnings`
 ```
 
-Let me be plain, because this series makes big claims for the compiler and you
-deserve to see where they stop. The compiler did not catch this one. It nearly
+This is where the compiler's claims stop, and you should see it. The compiler did not
+catch this one. It nearly
 caused it. What caught it was running the thing, and what keeps it caught is a lint
 somebody had to know to switch on. That part of the job stays with us. And once we
 find something like it, the best we can do is turn it into a check, so it stays
@@ -205,22 +198,22 @@ place you can point to. That is the kind that does not come back to bite you.
 
 ## Run it
 
-So, the moment of truth. A run that goes well:
-
-```sh
-postres -f exports.json/users.json
-```
-
-Silence. Just as asked: no `-v`, so only warnings and errors would get through, and
-there are none. Now let it talk:
+Last time's run already showed `-v` at work in a terminal. So this time, the other
+half of the setup: where the line goes when nobody is looking at a terminal.
 
 ```text
-$ postres -f exports.json/users.json -v
-2026-10-06T16:53:26.200654Z  INFO postres: converting source=exports.json/users.json dest=exports.json/users.http
+$ postres -f exports.json/users.json -v 2> log.txt
+$ cat log.txt
+2026-11-06T20:59:08.112091Z  INFO postres: converting source=exports.json/users.json dest=exports.json/users.http
 ```
 
-On standard error, in colour on a terminal, and plain text in a file. And to see the
-lint at work, change `let _guard` to `let _` in `main.rs` and ask clippy:
+Nothing on the screen, because standard error went to the file, and standard output
+stayed free. And in the file, plain text. The same line written to a terminal carries
+the escape codes that colour it — `\x1b[32m INFO\x1b[0m`, and a dozen more like it —
+which is exactly what `is_terminal()` kept out of the file.
+
+And to see the lint at work, change `let _guard` to `let _` in `main.rs` and ask
+clippy:
 
 ```sh
 git clone https://github.com/marlon-sousa/postres.git
@@ -237,26 +230,23 @@ colours only where they help, silence unless asked — and at a mistake one char
 long, which the compiler nearly caused and a single line in the manifest now refuses.
 On the way, these are the Rust ideas we met:
 
-1. **Integers are named by sign and size**: `u8` is unsigned and eight bits, zero to
-   255; `i32` is Java's `int`.
-2. **A trait's methods only exist where the trait is in scope**: `is_terminal()` needs
+1. **A trait's methods only exist where the trait is in scope**: `is_terminal()` needs
    `use std::io::IsTerminal`.
-3. **`if` gives back a value**, so Rust needs no ternary operator; every branch must
+2. **`if` gives back a value**, so Rust needs no ternary operator; every branch must
    give back the same type, and there must be an `else`.
-4. **`_guard` keeps the value to the end of the block; `_` does not keep it at all**,
+3. **`_guard` keeps the value to the end of the block; `_` does not keep it at all**,
    and it is dropped on the same line.
-5. **`#[must_use]`** makes the compiler warn when a value is thrown away, and clippy's
+4. **`#[must_use]`** makes the compiler warn when a value is thrown away, and clippy's
    `let_underscore_must_use` catches the `let _ =` that the warning itself suggests.
-6. **`.init()` installs a global default once**, at a place you can point to; a second
+5. **`.init()` installs a global default once**, at a place you can point to; a second
    call stops the program.
 
 ### The jobs
 
-Building software alone with an agent means doing six jobs that used to belong to six
-people. How many did this one do? Four:
+How many of the six jobs did this one do? Four:
 
-- **Product owner** — one flag, `-v`, and the decision that a run that goes well says
-  nothing at all.
+- **Product owner** — the decision that a run that goes well says nothing at all:
+  warnings and errors by default, more with each `-v`.
 - **Architect** — logs on standard error, so that standard output stays free for what
   the program produces; colours only on a terminal.
 - **QA** — the guard, tried with `_` instead of trusted: a lost log, a complaint that
@@ -281,7 +271,8 @@ without either of us writing anything more than that one line.
 
 ## Next time
 
-[We read a file at last](article:flattening-and-back): a Postman collection. It is JSON, but JSON is only the format:
+[We read the file postres exists for, at last](article:flattening-and-back): a
+Postman collection. It is JSON, but JSON is only the format:
 what the collection *means* is written in a schema of its own, on top of it. So we look
 at what serialization is, why reading a file like this is two jobs rather than one, and
 why it takes two crates, serde and `serde_json`, to turn it into Rust types without

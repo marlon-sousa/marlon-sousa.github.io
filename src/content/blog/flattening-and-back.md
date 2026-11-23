@@ -2,6 +2,7 @@
 title: 'Flattening, and back'
 description: 'What serialization is, and why formats that every language can read won over formats only one can. Why a Postman collection is two things at once — JSON, the format, and the schema, what it means — read three ways, with a look at the code serde writes for us at compile time, and at how other languages do the same job while the program runs.'
 pubDate: 'Oct 29 2026 12:00'
+updatedDate: 'Nov 06 2026'
 series: 'rust-beyond-systems'
 seriesPart: 13
 code: 'postres@part-13'
@@ -15,14 +16,15 @@ with `-v` — and at a mistake one character long: `let _` instead of `let _guar
 throws away every log line, which the compiler itself suggests, and which one line in
 the manifest now refuses.
 
-This time we read a file at last: a Postman collection. Not in postres yet, but in a
+This time we read the file postres exists for, at last: a Postman collection. Not in postres yet, but in a
 small program next to it, because first we need to understand what we are reading. That
 takes a word that comes up whenever programs exchange data, serialization: what it is,
 why reading JSON is only half the job, and why the job takes two crates rather than one.
 
 ## A file, at last
 
-Twelve parts in, and we have never read a file. Shall we fix that?
+postres has been converting nothing since the day it was born, and it has never read
+the file it exists for. Shall we fix that?
 
 The first step is the easy one. The standard library reads a whole file into a string:
 
@@ -481,7 +483,9 @@ cargo run --example serialization
 ```
 
 First the three lines from the JSON tree, with the `null` in the middle. Then the whole
-collection as our types, the way `Debug` prints it. Here is the beginning:
+collection as our types, the way `Debug` prints it. The `#` in `{collection:#?}` asks
+for the same debug output spread over several lines, one field to a line, which for a
+value this big is the only readable way. Here is the beginning:
 
 ```text
 Collection {
@@ -545,8 +549,7 @@ Rust ideas we met:
 
 ### The jobs
 
-Building software alone with an agent means doing six jobs that used to belong to six
-people. How many did this one do? Two:
+How many of the six jobs did this one do? Two:
 
 - **Architect** — the meaning written down as types, instead of read out of a JSON tree
   wherever it is needed; and the new crates kept to `[dev-dependencies]`, so that postres
@@ -563,10 +566,13 @@ team*.
 
 ### What Rust solved that would have been a problem elsewhere
 
-A typo in a field name. Read through a tree of plain objects — JavaScript's
-`JSON.parse`, Python's `json`, or any language's equivalent — `nmae` comes back as
-nothing at all, and the program carries on. Read into types, it is a compile error,
-because the field the code asks for has to exist.
+- **A type that cannot be read is found before the program runs.** Jackson compiled a
+  class it had no way to build, and failed only when that line ran: in a test if you
+  are lucky, in production if you are not. A struct without `Deserialize` does not
+  build, whether or not the line that reads it ever runs.
+- **A doubled field is an error by default.** Jackson, out of the box, quietly kept the
+  second `name`. serde's derive refused it and said which field, with no setting
+  anybody had to know to turn on.
 
 ### What the language did
 
@@ -579,7 +585,8 @@ answered by the build.
 
 ## Next time
 
-postres reads the collection itself. Seven fields found their way around a sample; a
+[postres reads the collection itself](article:reading-the-collection). Seven fields
+found their way around a sample; a
 real collection needs the rest of the hundred and fifty — URLs that are sometimes text
 and sometimes objects, requests that are sometimes just a URL, bodies in five different
 modes. We start writing them down, and find out how long it takes to get bored.

@@ -200,10 +200,11 @@ Now, the cook's recipe:
 
 Let's read it slowly, from the top.
 
-`fn peel(first: u64, last: u64) -> u64` is the function. `fn` says a function starts
-here, and `peel` is its name. Between the brackets, what it needs to be given: two
-numbers, `first` and `last`, where the stretch of potatoes starts and stops. And after
-the arrow, `->`, what it gives back: one more number, the count.
+`fn peel(first: u64, last: u64) -> u64` is the function, written the way we [first
+met one](article:arguments-without-writing-a-parser): `fn`, its name, and between the
+brackets what it needs to be given — two numbers, `first` and `last`, where the
+stretch of potatoes starts and stops. New here is the arrow, `->`, and what comes
+after it: what the function gives back, one more number, the count.
 
 *"The types come after the names. In Java it would be `long peel(long first, long
 last)`."*
@@ -243,8 +244,8 @@ turns out to be prime, `primes += 1` adds one to the count, as in Java. That lin
 reason `primes` needed its `mut`: without it, the compiler would refuse to change it.
 
 And at the very end, `primes`, alone, with no semicolon: the last line of the function
-is what it gives back, the same rule as the blocks we met when we were looking for a
-default name.
+is what it gives back, the same rule as the blocks we met [when we were looking for a
+default name](article:is-that-name-right).
 
 And the peeler itself:
 
@@ -406,8 +407,8 @@ run above, which had the whole kitchen:
 | One cook | 5.9 seconds | 5.4 seconds |
 | Six cooks | 5.9 seconds | 1.5 seconds |
 
-Read it across, then down. One cook gains nothing from a bigger kitchen: the extra
-stoves stay cold. Six cooks gain nothing from one stove: the manager plays freeze tag
+Read it across, then down. One cook gains almost nothing from a bigger kitchen: the
+extra stoves stay cold. Six cooks gain nothing from one stove: the manager plays freeze tag
 with all six at that one stove, and the potatoes come out exactly as fast as with one
 cook. More stoves alone, nothing. More cooks alone, nothing. Both together, and the
 fries come out three and a half times sooner.
@@ -416,8 +417,8 @@ fries come out three and a half times sooner.
 
 There it is. Threads are *cool* because a program with several of them can do several
 things at once, on as many stoves as the machine has. And because a cook waiting for
-something slow — the oven, or for a program a file or an answer from the network — does
-not stop the others from cooking.
+something slow — the oven in a kitchen, a file or the network in a program — does not
+stop the others from cooking.
 
 But look again at how easy we made it for ourselves. We split the mountain into sacks
 before anybody started, and nobody touched anybody else's potatoes until the very end.
@@ -476,20 +477,17 @@ make a program faster. On the way, these are the ideas we met:
 
 ### The jobs
 
-Building software alone with an agent means doing six jobs that used to belong to six
-people. How many did this one do? Three:
+How many of the six jobs did this one do? Two:
 
 - **Architect** — two kinds of "more": another process for another collection, and more
   threads for one big order; and sacks split up front, so that the cooks share nothing.
 - **QA** — "a faster machine is faster" and "more threads are faster", both measured
   instead of believed: one stove or the whole kitchen, one cook or six, and only both
   together paid.
-- **Platform engineer** — nothing to do, which is the point: the CI set up when the
-  project was born builds and lints the new example on three operating systems, because
-  it was told to check every target.
-
-No product owner: nothing the user sees changed. And nothing for the project manager or
-the reviewer.
+No product owner: nothing the user sees changed. Nothing for the project manager or
+the reviewer. And nothing for the platform engineer, which is the point: the CI set up
+when the project was born builds and lints the new example on three operating systems,
+because it was told to check every target.
 
 The six jobs are counted in [*The night that produced no
 code*](article:the-night-that-produced-no-code), in the series *You are now the whole
@@ -521,7 +519,7 @@ not one.
 Ok, I got it. Threads everywhere, then! More cooks, more dishes, faster dinner. These
 language people who keep warning about them are all so boring. Let's go!
 
-Next time, we do. Carol's cooks share one pile of potatoes, one pot of soup and one
+[Next time](article:sharing-the-kitchen), we do. Carol's cooks share one pile of potatoes, one pot of soup and one
 whiteboard, and the kitchen finds three different ways to go wrong: the salt that goes
 in twice, the ladle everybody queues for, and two cooks waiting for each other forever.
 And one of the three, Rust will not even let you compile.

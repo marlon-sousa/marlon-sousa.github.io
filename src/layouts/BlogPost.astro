@@ -8,7 +8,8 @@ import SeriesBadge from '../components/SeriesBadge.astro';
 import SeriesPager from '../components/SeriesPager.astro';
 import { tagUrl, type SeriesNav } from '../lib/posts';
 import { codeRef } from '../data/code';
-import { getLocale, type Locale } from '../i18n/config';
+import { getLocale, localeUrl, type Locale } from '../i18n/config';
+import { SITE_AUTHOR } from '../consts';
 import { useTranslations } from '../i18n/ui';
 
 // The post's own frontmatter, plus its place in a series when it has one.
@@ -60,6 +61,14 @@ const pageTitle = nav
 			{nav && <SeriesBadge nav={nav} />}
 			{draft && <p class="draft-notice">{t('post.draftNotice')}</p>}
 			<h1>{title}</h1>
+			{/* The visible half of the BlogPosting record in BaseHead: a search engine
+			    trusts an author it can also see on the page. The link goes to the About
+			    page, which is the home page, where the same Person is described. */}
+			<p class="byline">
+				{t('post.byline', { author: '{author}' }).split('{author}')[0]}
+				<a href={localeUrl('/', locale)} rel="author">{SITE_AUTHOR}</a>
+				{t('post.byline', { author: '{author}' }).split('{author}')[1]}
+			</p>
 			<p class="date">
 				<FormattedDate date={pubDate} />
 				{
@@ -113,6 +122,10 @@ const pageTitle = nav
 	}
 	.title h1 {
 		margin: 0 0 0.25em 0;
+	}
+	.byline {
+		margin: 0;
+		color: rgb(var(--gray));
 	}
 	.date {
 		margin: 0 0 1em 0;

@@ -1,7 +1,8 @@
 ---
 title: 'Put it next to what you already write'
-description: 'The things you actually like about TypeScript, Java, Python and Go — unions, Optional, streams, lambdas, promises, channels, one command that builds everything — and where every one of them lives in Rust. No complaints in this one. Just the shape of an ordinary working day.'
+description: 'The things you actually like about TypeScript, Java, Python and Go — unions, Optional, streams, lambdas, promises, one command that builds everything — and where every one of them lives in Rust. No complaints in this one. Just the shape of an ordinary working day.'
 pubDate: 'Sep 23 2026 09:00'
+updatedDate: 'Nov 06 2026'
 series: 'rust-beyond-systems'
 seriesPart: 2
 tags: ['rust', 'software engineering']
@@ -36,15 +37,10 @@ I want to head something off, because an article like this usually comes from
 somebody who thinks everything should be rewritten in Rust, and that is not me. I
 can prove it with my own commits.
 
-The MCP server I built this year is **Go**, and I ruled Rust out for it
-deliberately. The job is a router — dial a pipe, pump JSON lines, fan out — which
-is goroutine-and-channel shaped, and Rust's ownership work buys guarantees that
-process simply does not need. The bridge sitting next to it is **Python**, because
-it runs inside NVDA's own embedded interpreter and there was never a choice to be
-made. I wrote all of that down at the time, including a reason for choosing Go
-that I have never seen anybody else write down, in
-[*The server is everywhere, a bridge is
-somewhere*](article:the-server-is-everywhere-a-bridge-is-somewhere).
+The MCP server I built this year is **Go**, and I ruled Rust out for it on
+purpose; the bridge next to it is **Python**, because it runs inside NVDA's own
+interpreter. The reasons are written down in [*The server is everywhere, a bridge
+is somewhere*](article:the-server-is-everywhere-a-bridge-is-somewhere).
 
 So: I like these languages. I choose them. I will choose them again next month.
 This is not an argument that you should stop.
@@ -59,9 +55,9 @@ Let's check it.
 ## The things you already know how to do
 
 Every block below is labelled with the language it is written in, so you can take
-whichever ones you care about and skip the rest. TypeScript comes first, Python
-joins in wherever it says the same thing in a way worth seeing, and Rust is always
-last.
+whichever ones you care about and skip the rest. TypeScript usually comes first,
+Python joins in wherever it says the same thing in a way worth seeing, and Go and
+Java get their turn further down.
 
 ### Reaching for somebody else's code
 
@@ -206,8 +202,8 @@ outcome including the bad ones — which is exactly what `return_exceptions=True
 doing in the Python and what `Vec<Result<…>>` is saying in the Rust. Wanted the
 fail-fast version instead, `Promise.all` or a bare `gather`? That is
 `try_join_all`, one word away. (Both of the Rust ones live in the `futures` crate
-rather than the standard library, which will mean more after the next article,
-when we meet Cargo properly.)
+rather than the standard library, which will mean more once we meet Cargo
+properly.)
 
 None of that is systems programming. That is a Tuesday.
 
@@ -425,10 +421,10 @@ balance has a reader and no writer, which took one word.
 
 Here is the nice part, and the reason I saved this for the end.
 
-That `#[derive(...)]` is the third one you have seen in this article. There was
-`#[derive(Deserialize)]`, which made JSON parse itself into a struct. There was
+That `#[derive(...)]` is the second one you have seen in this article. There was
 `#[derive(thiserror::Error)]`, which built an error type with its messages. Now
-`#[derive(Getters, Setters)]`, which writes accessors.
+`#[derive(Getters, Setters)]`, which writes accessors. And in the next article you
+will meet `#[derive(Deserialize)]`, which makes JSON parse itself into a struct.
 
 They are all the same feature: **a program that reads your struct at compile time
 and writes the code you would otherwise have typed.** Not reflection — nothing is
@@ -498,9 +494,9 @@ Cargo.lock
 That is the project. `cargo build` builds it. `cargo test` runs the tests, which
 live in the same file as the code they test. `cargo fmt` formats, and you did not
 choose a formatter. `cargo clippy` lints, and you did not choose a linter. `cargo
-doc` builds documentation from your comments. The compiler version the project
-needs is a line in that same file, so a colleague cloning it on a Tuesday gets
-your toolchain rather than an argument.
+doc` builds documentation from your comments. The oldest compiler the project
+builds with is a line in that same file, so a colleague cloning it on a Tuesday
+with something older gets a clear refusal rather than an argument.
 
 You will still make real decisions — which async runtime, which of three good
 crates should own your error type — and those arguments are worth having. They are

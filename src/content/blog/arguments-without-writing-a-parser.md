@@ -2,6 +2,7 @@
 title: 'Arguments, without writing a parser'
 description: 'postres learns to listen, and we write no parser to make it happen: the command line described as a struct, a macro that writes the parser from it — help screen and typo suggestions included — and what structs, attributes and macros are, and why they make Rust feel like a high-level language.'
 pubDate: 'Sep 30 2026 12:00'
+updatedDate: 'Nov 06 2026'
 series: 'rust-beyond-systems'
 seriesPart: 5
 code: 'postres@part-05'
@@ -154,8 +155,8 @@ Smart dude, you. You got me. Yes: they are **attributes**. Think of them as stic
 notes, attached to whatever comes right below them.
 
 Some of them are just that: notes. They stay where they are, and the compiler
-reads them later, while it checks the program. We will bump into one of those next
-time, a note that says "complain if somebody throws this away".
+reads them later, while it checks the program. We will bump into one of those later
+on, a note that says "complain if somebody throws this away".
 
 But some notes are... let's say, more enthusiastic. They do not wait. Before the
 compiler even starts, they grab the thing below them and do something with it.
@@ -174,7 +175,7 @@ The `#[command(…)]` and `#[arg(…)]` lines? Instructions for the code writer.
 flags, which short names, what goes into the help.
 
 And `Debug`, next to `Parser` in the same `derive`? Another code writer, this one
-from the standard library. It writes the code that prints a value for debugging,
+built into the compiler. It writes the code that prints a value for debugging,
 field by field, so that `println!("{:?}", args)` works without us writing a
 `toString`. You will see it on almost every struct in Rust.
 
@@ -533,8 +534,8 @@ of time, Rust compiles it ahead of time.
 
 ## Next time
 
-postres printed `None` and `Some("out/requests.http")`. Next time we find out what
-those really are: enums — and not the kind Java has. A type that says "one of
-these, and each one can carry its own data", a `match` that will not let you forget
-a case, and the answer to the question that `-o` leaves us with: what do we do when
-something is optional for the user, and not optional for us?
+postres printed `None` and `Some("out/requests.http")`. [Next
+time](article:optional-for-the-user-not-for-us) we find out what those really are:
+enums — and not the kind Java has. A type that says "one of these, and each one can
+carry its own data", and the answer to the question that `-o` leaves us with: what do
+we do when something is optional for the user, and not optional for us?
