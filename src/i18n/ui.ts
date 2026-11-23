@@ -17,7 +17,6 @@ const en = {
 	'nav.blog': 'Blog',
 	'nav.series': 'Series',
 	'nav.projects': 'Projects',
-	'nav.releases': 'Releases',
 	'nav.news': 'News',
 	'nav.search': 'Search',
 	'nav.manifesto': 'Manifesto',
@@ -117,20 +116,15 @@ const en = {
 	'projects.description':
 		'NVDA add-ons, accessibility tools and the Itinera workflow framework, developed by Marlon Sousa',
 	'projects.intro':
-		'Open-source tools I have built: an accessible terminal, a workflow framework, NVDA add-ons that sharpen everyday screen reader workflows, and infrastructure for testing accessible software automatically.',
+		'Open-source tools I have built: an accessible terminal, a workflow framework, NVDA add-ons that sharpen everyday screen reader workflows, and infrastructure for testing accessible software automatically. Each shows its latest release, read from GitHub when the site is built.',
 	'projects.view': 'View {repo} on GitHub',
 	'projects.site': 'Visit the {name} website',
 	'projects.series': 'Read how {name} was built',
+	'projects.download': 'Download {name} {version}',
+	'moved.releases': 'The latest release of each project is now on {link}, beside the project itself.',
+	'moved.releasesLink': 'the Projects page',
+	'projects.released': 'released {date}',
 
-	'releases.title': 'Releases',
-	'releases.heading': 'Latest Releases',
-	'releases.description': 'Latest software and add-on releases by Marlon Sousa',
-	'releases.intro':
-		'The most recent published release of each project. This page is generated from GitHub when the site is built, so it never falls behind.',
-	'releases.empty':
-		'No releases are available right now. Please check the project repositories directly.',
-	'releases.released': 'Released {date}',
-	'releases.download': 'Download {name} {version}',
 
 	'news.title': 'News',
 	'news.description':
@@ -157,7 +151,6 @@ const pt: Record<UIKey, string> = {
 	'nav.blog': 'Blog',
 	'nav.series': 'Séries',
 	'nav.projects': 'Projetos',
-	'nav.releases': 'Versões',
 	'nav.news': 'Novidades',
 	'nav.search': 'Busca',
 	'nav.manifesto': 'Manifesto',
@@ -247,21 +240,16 @@ const pt: Record<UIKey, string> = {
 	'projects.description':
 		'Complementos para o NVDA, ferramentas de acessibilidade e o framework de workflows Itinera, desenvolvidos por Marlon Sousa',
 	'projects.intro':
-		'Ferramentas de código aberto que construí: um terminal acessível, um framework de workflows, complementos que afiam o trabalho diário com leitores de tela, e infraestrutura para testar software acessível automaticamente.',
+		'Ferramentas de código aberto que construí: um terminal acessível, um framework de workflows, complementos que afiam o trabalho diário com leitores de tela, e infraestrutura para testar software acessível automaticamente. Cada um mostra a sua versão mais recente, lida do GitHub quando o site é construído.',
 	'projects.view': 'Ver {repo} no GitHub',
 	'projects.site': 'Visitar o site do {name}',
 	// The series is written in English only, so the link says so before it is followed.
 	'projects.series': 'Ler como o {name} foi construído (em inglês)',
+	'projects.download': 'Baixar {name} {version}',
+	'moved.releases': 'A versão mais recente de cada projeto agora fica na {link}, junto do próprio projeto.',
+	'moved.releasesLink': 'página de Projetos',
+	'projects.released': 'publicada em {date}',
 
-	'releases.title': 'Versões',
-	'releases.heading': 'Últimas versões',
-	'releases.description': 'Últimas versões de software e complementos publicadas por Marlon Sousa',
-	'releases.intro':
-		'A versão publicada mais recente de cada projeto. Esta página é gerada a partir do GitHub quando o site é construído, então ela nunca fica desatualizada.',
-	'releases.empty':
-		'Nenhuma versão está disponível no momento. Consulte os repositórios dos projetos diretamente.',
-	'releases.released': 'Publicada em {date}',
-	'releases.download': 'Baixar {name} {version}',
 
 	'news.title': 'Novidades',
 	'news.description':

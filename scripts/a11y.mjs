@@ -44,13 +44,22 @@ async function findPages(dir = DIST) {
 	return pages.sort();
 }
 
+// A page kept only to send old links on, such as /releases/, refreshes to its
+// new address the moment it loads, and the page under test would be swapped
+// out from under the check halfway through. Served without that refresh it
+// stays put, and is checked like any other page, which it is for as long as a
+// reader sees it.
+function stayPut(file, body) {
+	if (extname(file) !== '.html') return body;
+	return body.toString('utf8').replace(/<meta http-equiv="refresh"[^>]*>/, '');
+}
+
 const server = createServer(async (req, res) => {
 	try {
 		const path = decodeURIComponent(req.url.split('?')[0]);
 		const file = path.endsWith('/') ? join(DIST, path, 'index.html') : join(DIST, path);
-		const body = await readFile(file);
 		res.writeHead(200, { 'Content-Type': TYPES[extname(file)] ?? 'application/octet-stream' });
-		res.end(body);
+		res.end(stayPut(file, await readFile(file)));
 	} catch {
 		res.writeHead(404).end('not found');
 	}

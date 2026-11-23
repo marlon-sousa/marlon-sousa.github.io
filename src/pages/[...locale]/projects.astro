@@ -1,7 +1,9 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
 import { SITE_TITLE } from '../../consts';
 import { projects, repoUrl } from '../../data/projects';
+import { getLatestReleases } from '../../data/releases';
 import { seriesUrl } from '../../data/series';
 import { localeRoutes } from '../../lib/posts';
 import { pick } from '../../i18n/localized';
@@ -12,6 +14,15 @@ export const getStaticPaths = localeRoutes;
 
 const { locale } = Astro.props as { locale: Locale };
 const t = useTranslations(locale);
+
+// Each project's latest release, fetched from the GitHub API at build time; see
+// src/data/releases.ts. This used to be a Releases page of its own. A project
+// with no release yet simply shows no download line.
+const latest = new Map((await getLatestReleases()).map((release) => [release.project.name, release]));
+
+const [releasedBefore = '', releasedAfter = ''] = t('projects.released', { date: '{date}' }).split(
+	'{date}',
+);
 ---
 
 <BaseLayout
@@ -23,10 +34,24 @@ const t = useTranslations(locale);
 	<p>{t('projects.intro')}</p>
 
 	{
-		projects.map((project) => (
+		projects.map((project) => ({ project, release: latest.get(project.name) })).map(({ project, release }) => (
 			<article class="project-card">
 				<h2>{project.name}</h2>
 				<p>{pick(project.description, locale)}</p>
+				{release && (
+					<p>
+						<a href={release.url} target="_blank" rel="noopener noreferrer">
+							{t('projects.download', { name: project.name, version: release.version })}
+						</a>
+						{release.publishedAt && (
+							<>
+								, {releasedBefore}
+								<FormattedDate date={release.publishedAt} />
+								{releasedAfter}
+							</>
+						)}
+					</p>
+				)}
 				<p>
 					<a href={repoUrl(project)} target="_blank" rel="noopener noreferrer">
 						{t('projects.view', { repo: project.repo })}

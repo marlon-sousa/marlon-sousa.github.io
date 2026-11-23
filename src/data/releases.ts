@@ -1,9 +1,9 @@
 // Fetches the latest GitHub release for each project at build time, so the
-// Releases page stays current without being edited by hand.
+// download line on each Projects card stays current without being edited by hand.
 //
 // Every failure mode degrades instead of breaking the build:
 //   - network down / rate limited -> falls back to `fallbackVersion` from projects.ts
-//   - repo has no releases yet     -> the project is omitted from the page
+//   - repo has no releases yet     -> the project's card shows no download line
 //
 // Set GITHUB_TOKEN in the environment to raise the API rate limit. GitHub
 // Actions provides one automatically; locally it is optional.

@@ -1,4 +1,5 @@
-// Single source of truth for the Projects and Releases pages.
+// Single source of truth for the Projects page, and for the latest release each
+// project card shows.
 //
 // `fallbackVersion` is only used when the GitHub API is unreachable at build
 // time (offline builds, rate limiting). Keeping it roughly current is nice but

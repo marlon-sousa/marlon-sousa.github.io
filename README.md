@@ -48,12 +48,11 @@ frontmatter at build time, so a typo fails the build rather than the page.
 
 ## Adding or updating a project
 
-Edit `src/data/projects.ts`. Both the Projects page and the Releases page read
-from that one list.
+Edit `src/data/projects.ts`. The Projects page reads from that one list.
 
-The Releases page fetches each project's latest release from the GitHub API at
-build time, so version numbers and release notes never need to be edited by
-hand. If the API is unreachable, it falls back to `fallbackVersion` from the
+Each project's card shows its latest release, fetched from the GitHub API at
+build time, so version numbers never need to be edited by hand. (This used to be
+a Releases page of its own; `/releases/` now sends readers to `/projects/`.) If the API is unreachable, it falls back to `fallbackVersion` from the
 same file. Set `GITHUB_TOKEN` in the environment to raise the API rate limit —
 GitHub Actions supplies one automatically.
 

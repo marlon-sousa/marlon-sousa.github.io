@@ -95,6 +95,8 @@ export default defineConfig({
 	integrations: [
 		mdx(),
 		sitemap({
+			// /releases/ only sends old links on to /projects/; it is not a page.
+			filter: (page) => !/\/releases\/$/.test(new URL(page).pathname),
 			serialize(item) {
 				const date = lastmod.get(new URL(item.url).pathname);
 				return date ? { ...item, lastmod: date } : item;

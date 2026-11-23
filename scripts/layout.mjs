@@ -43,11 +43,11 @@ const TYPES = {
 };
 
 // Wide desktop, laptop, tablet, phone, chosen to land on both sides of every
-// layout change rather than to be exhaustive. 1408 is the header's breakpoint
-// (88em): the narrowest width at which the menu shares a row with the title,
+// layout change rather than to be exhaustive. 1312 is the header's breakpoint
+// (82em): the narrowest width at which the menu shares a row with the title,
 // and so the one where it is likeliest to collide with it. Move the breakpoint
 // and this number moves with it.
-const WIDTHS = [1440, 1408, 1280, 1024, 900, 768, 390];
+const WIDTHS = [1440, 1312, 1280, 1024, 900, 768, 390];
 
 // Rounding in the layout engine moves boxes by fractions of a pixel between
 // otherwise identical pages. Anything past this is a real movement.
@@ -68,13 +68,22 @@ async function findPages(dir = DIST) {
 	return pages.sort();
 }
 
+// A page kept only to send old links on, such as /releases/, refreshes to its
+// new address the moment it loads, and the page under test would be swapped
+// out from under the check halfway through. Served without that refresh it
+// stays put, and is checked like any other page, which it is for as long as a
+// reader sees it.
+function stayPut(file, body) {
+	if (extname(file) !== '.html') return body;
+	return body.toString('utf8').replace(/<meta http-equiv="refresh"[^>]*>/, '');
+}
+
 const server = createServer(async (req, res) => {
 	try {
 		const path = decodeURIComponent(req.url.split('?')[0]);
 		const file = path.endsWith('/') ? join(DIST, path, 'index.html') : join(DIST, path);
-		const body = await readFile(file);
 		res.writeHead(200, { 'Content-Type': TYPES[extname(file)] ?? 'application/octet-stream' });
-		res.end(body);
+		res.end(stayPut(file, await readFile(file)));
 	} catch {
 		res.writeHead(404).end('not found');
 	}

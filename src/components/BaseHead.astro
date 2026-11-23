@@ -33,11 +33,17 @@ interface Props {
 	translations?: Partial<Record<Locale, string>>;
 	/** Set by an article, so search engines are told who wrote it and when. */
 	article?: ArticleFacts;
+	/**
+	 * Set on a page that only remains so old links keep working: the path its
+	 * content moved to. The browser is sent there at once, search engines are
+	 * told that is the page to index, and this one asks not to be indexed.
+	 */
+	movedTo?: string;
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const { title, description, image, translations, article, movedTo } = Astro.props;
 
-const { title, description, image, translations, article } = Astro.props;
+const canonicalURL = new URL(movedTo ?? Astro.url.pathname, Astro.site);
 
 const locale = getLocale(Astro.url);
 const t = useTranslations(locale);
@@ -96,6 +102,14 @@ const structuredData = article
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
+{
+	movedTo && (
+		<>
+			<meta http-equiv="refresh" content={`0; url=${movedTo}`} />
+			<meta name="robots" content="noindex" />
+		</>
+	)
+}
 
 <!--
   Which languages this page exists in.
