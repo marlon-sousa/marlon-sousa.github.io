@@ -9,6 +9,7 @@ import { Image } from 'astro:assets';
 import { SITE_EMAIL } from '../../consts';
 import { localeUrl } from '../../i18n/config';
 import { seriesUrl } from '../../data/series';
+import LatestNews from '../LatestNews.astro';
 import portrait from '../../assets/marlon-portrait.jpg';
 import climbing from '../../assets/marlon-climbing.jpg';
 import summit from '../../assets/cognition-champions-summit.jpg';
@@ -91,6 +92,8 @@ import db1Talk from '../../assets/db1-new-rules-of-the-game.jpg';
 	pessoas já usando a ferramenta. Como foi essa semana, armadilhas incluídas, é o assunto da série{' '}
 	<a href={seriesUrl('gherkin-glass-built-in-use', 'pt')}>Gherkin Glass, built while in use (em inglês)</a>.
 </p>
+
+<LatestNews />
 
 <h2>Experiência profissional</h2>
 <ul>
@@ -400,6 +403,7 @@ import db1Talk from '../../assets/db1-new-rules-of-the-game.jpg';
 	<li>Leia meus artigos e séries de artigos no <a href={localeUrl('/blog/', 'pt')}>Blog</a>.</li>
 	<li>Acompanhe como o Itinera foi construído na série <a href={seriesUrl('itinera-built-together', 'pt')}>Itinera built together (em inglês)</a>.</li>
 	<li>Acompanhe como o Gherkin Glass foi construído enquanto já era usado, na série <a href={seriesUrl('gherkin-glass-built-in-use', 'pt')}>Gherkin Glass, built while in use (em inglês)</a>.</li>
+	<li>Acompanhe versões, palestras e outros acontecimentos na página de <a href={localeUrl('/news/', 'pt')}>Novidades</a>.</li>
 	<li>Conheça meus projetos de código aberto na página de <a href={localeUrl('/projects/', 'pt')}>Projetos</a>.</li>
 	<li>Baixe as versões mais recentes dos complementos na página de <a href={localeUrl('/releases/', 'pt')}>Versões</a>.</li>
 	<li>Busque em todo o conteúdo pela página de <a href={localeUrl('/search/', 'pt')}>Busca</a>.</li>

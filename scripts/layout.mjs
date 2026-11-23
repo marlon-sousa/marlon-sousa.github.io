@@ -43,11 +43,11 @@ const TYPES = {
 };
 
 // Wide desktop, laptop, tablet, phone, chosen to land on both sides of every
-// layout change rather than to be exhaustive. 1312 is the header's breakpoint
-// (82em): the narrowest width at which the menu shares a row with the title,
+// layout change rather than to be exhaustive. 1408 is the header's breakpoint
+// (88em): the narrowest width at which the menu shares a row with the title,
 // and so the one where it is likeliest to collide with it. Move the breakpoint
 // and this number moves with it.
-const WIDTHS = [1440, 1312, 1280, 1024, 900, 768, 390];
+const WIDTHS = [1440, 1408, 1280, 1024, 900, 768, 390];
 
 // Rounding in the layout engine moves boxes by fractions of a pixel between
 // otherwise identical pages. Anything past this is a real movement.

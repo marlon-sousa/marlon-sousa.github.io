@@ -1,0 +1,27 @@
+---
+import { getLocale, localeMeta } from '../i18n/config';
+
+interface Props {
+	date: Date;
+}
+
+const { date } = Astro.props;
+const locale = getLocale(Astro.url);
+
+// A news item's date is a calendar day, held as midnight UTC (see the schema in
+// src/content.config.ts). Formatting it in UTC shows that day wherever the site
+// is built; formatting it in the build machine's own zone would show the day
+// before on any machine west of Greenwich.
+const day = date.toISOString().slice(0, 10);
+---
+
+<time datetime={day}>
+	{
+		date.toLocaleDateString(localeMeta[locale].dateLocale, {
+			year: 'numeric',
+			month: 'short',
+			day: 'numeric',
+			timeZone: 'UTC',
+		})
+	}
+</time>

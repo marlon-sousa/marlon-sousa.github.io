@@ -2,6 +2,7 @@ import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 import { CODE_SPEC } from './data/code';
+import { projects } from './data/projects';
 import { seriesSlugs } from './data/series';
 
 const blog = defineCollection({
@@ -68,4 +69,39 @@ const blog = defineCollection({
 			}),
 });
 
-export const collections = { blog };
+const projectNames = projects.map((project) => project.name) as [string, ...string[]];
+
+const news = defineCollection({
+	// Short, dated notes on what happened: a release of one of the projects, a
+	// talk, a new series. Laid out like the blog — an English item directly in
+	// `src/content/news/`, its translation in `pt/` with `translationOf` naming
+	// it — with one rule the blog does not have: every item exists in every
+	// language. An item is a few sentences, so translating it costs minutes, and
+	// it is what keeps the Portuguese side of the site current. src/lib/news.ts
+	// fails the build on an item left untranslated.
+	loader: glob({ base: './src/content/news', pattern: '**/*.{md,mdx}' }),
+	schema: z.object({
+		/** The item's heading: what happened, in one line. */
+		title: z.string(),
+		/**
+		 * The day it happened. A calendar date, not an instant: it is shown as
+		 * the day it was in Brazil, whatever time zone the site is built in.
+		 */
+		date: z.coerce.date(),
+		/**
+		 * The time of day, as `HH:MM`, for ordering items from the same day.
+		 * Never shown. Several releases often go out on one day, and without it
+		 * their order would be whatever the file system returned.
+		 */
+		time: z
+			.string()
+			.regex(/^([01]\d|2[0-3]):[0-5]\d$/)
+			.optional(),
+		/** The project the item is about, by its name in src/data/projects.ts. */
+		project: z.enum(projectNames).optional(),
+		/** The English item this one translates. Set on a translation only. */
+		translationOf: z.string().optional(),
+	}),
+});
+
+export const collections = { blog, news };

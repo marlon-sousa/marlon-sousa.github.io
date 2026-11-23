@@ -1,0 +1,32 @@
+---
+// The newest few news items, by title and date, for the home page. Each links to
+// the item on the news page, and the list ends with a link to all of it.
+import NewsDate from './NewsDate.astro';
+import { getLocale } from '../i18n/config';
+import { useTranslations } from '../i18n/ui';
+import { getNews, newsPageUrl, newsUrl } from '../lib/news';
+
+const COUNT = 3;
+
+const locale = getLocale(Astro.url);
+const t = useTranslations(locale);
+const items = (await getNews(locale)).slice(0, COUNT);
+---
+
+{
+	items.length > 0 && (
+		<>
+			<h2>{t('news.latest')}</h2>
+			<ul class="latest-news">
+				{items.map((item) => (
+					<li>
+						<a href={newsUrl(item)}>{item.data.title}</a>, <NewsDate date={item.data.date} />
+					</li>
+				))}
+			</ul>
+			<p>
+				<a href={newsPageUrl(locale)}>{t('news.all')}</a>
+			</p>
+		</>
+	)
+}

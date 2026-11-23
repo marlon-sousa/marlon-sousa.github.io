@@ -56,6 +56,7 @@ const links: NavLink[] = [
 		active: onManifesto,
 		fallbackFrom: manifesto.fallback ? manifesto.locale : undefined,
 	},
+	{ href: localeUrl('/news/', locale), label: t('nav.news') },
 	{ href: localeUrl('/projects/', locale), label: t('nav.projects') },
 	{ href: localeUrl('/releases/', locale), label: t('nav.releases') },
 	{ href: localeUrl('/search/', locale), label: t('nav.search') },
@@ -139,7 +140,7 @@ const links: NavLink[] = [
 		grid-area: switcher;
 		justify-self: end;
 	}
-	@media (min-width: 82em) {
+	@media (min-width: 88em) {
 		nav {
 			grid-template-columns: 1fr auto 1fr;
 			grid-template-areas: 'title links switcher';

@@ -113,11 +113,15 @@ function readArticles() {
  * The language a source file is written in, from the directory it sits in — the
  * same rule as `postLocale` in src/lib/posts.ts, for the same reason: where a
  * file is is harder to get wrong than a field that can disagree with it.
+ *
+ * Every collection under src/content is laid out the same way — the blog and the
+ * news alike — so the locale, when there is one, is the directory just inside
+ * the collection's own: src/content/<collection>/pt/….
  */
 function localeOf(path, locales) {
 	const parts = path.split(/[\\/]/);
-	const blog = parts.lastIndexOf('blog');
-	const dir = blog === -1 ? undefined : parts[blog + 1];
+	const content = parts.lastIndexOf('content');
+	const dir = content === -1 ? undefined : parts[content + 2];
 	return locales.has(dir) ? dir : DEFAULT_LOCALE;
 }
 

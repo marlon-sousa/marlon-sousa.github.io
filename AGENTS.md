@@ -271,6 +271,32 @@ The code for each part of *Rust Beyond Systems Programming* lives in
 - **Anchors in Markdown** are written `<!-- ANCHOR: name -->`; the plugin accepts a
   closing `-->` or `*/` after the name.
 
+## News
+
+`/news/` (and `/pt/news/`) holds short, dated notes on what happens to the projects
+Marlon maintains, releases mostly, and on talks and other things he takes part in.
+Items are written by hand; nothing is generated from GitHub. Itinera announces its
+own releases on itinera-dev.org, and every one of those announcements is repeated
+here as a short item linking back to it.
+
+- **One file per item** in `src/content/news/`, laid out like the blog: English in
+  the directory itself, the translation in `pt/` under a translated file name, with
+  `translationOf` naming the English file.
+- **Every item exists in both languages.** Unlike an article, an untranslated item
+  is not offered in English: `src/lib/news.ts` fails the build. An item is a few
+  sentences, so this costs minutes, and it keeps the Portuguese side current.
+- **No dots in file names.** The file name is the item's anchor on the news page,
+  and the loader drops dots from it; write `snapfit-0-1-0.md`, not `snapfit-0.1.0.md`.
+  The build refuses a name that would change.
+- **Frontmatter:** `title`, `date` (the calendar day, `2026-11-18`), `time` (`'23:45'`,
+  only to order items of one day, never shown) and `project`, a name from
+  `src/data/projects.ts`, when the item is about one.
+- A link from Portuguese prose to a page that exists only in English says
+  `(em inglês)` inside the link text, as the rest of the site does. `article:` links
+  work in news items and add that marker on their own.
+- The newest three items are listed on the home page, and each language has its own
+  news feed, apart from the article feed.
+
 ## Editing an article that is already published
 
 `updatedDate` in the frontmatter is the record that a live page changed.

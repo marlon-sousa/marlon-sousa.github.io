@@ -18,6 +18,7 @@ const en = {
 	'nav.series': 'Series',
 	'nav.projects': 'Projects',
 	'nav.releases': 'Releases',
+	'nav.news': 'News',
 	'nav.search': 'Search',
 	'nav.manifesto': 'Manifesto',
 	'nav.skip': 'Skip to content',
@@ -53,6 +54,7 @@ const en = {
 	'footer.elsewhere': 'Elsewhere',
 	'footer.email': 'Email',
 	'footer.rss': 'RSS feed',
+	'footer.newsRss': 'News feed',
 
 	'blog.title': 'Blog',
 	'blog.description': 'Articles on accessibility, screen readers, and software development',
@@ -130,6 +132,17 @@ const en = {
 	'releases.released': 'Released {date}',
 	'releases.download': 'Download {name} {version}',
 
+	'news.title': 'News',
+	'news.description':
+		'Releases of the projects Marlon Sousa maintains, talks, and other things happening, newest first.',
+	'news.intro':
+		'Short notes on what happens to the projects I maintain, releases mostly, and on talks and other things I take part in, newest first. Follow them in {feedLink}.',
+	'news.feed': 'the news feed',
+	'news.empty': 'There is no news yet.',
+	'news.latest': 'Latest News',
+	'news.all': 'All the news',
+	'news.feedTitle': 'News',
+
 	'search.title': 'Search',
 	'search.heading': 'Search Content',
 	'search.description': 'Search all articles and pages on this site',
@@ -145,6 +158,7 @@ const pt: Record<UIKey, string> = {
 	'nav.series': 'Séries',
 	'nav.projects': 'Projetos',
 	'nav.releases': 'Versões',
+	'nav.news': 'Novidades',
 	'nav.search': 'Busca',
 	'nav.manifesto': 'Manifesto',
 	'nav.skip': 'Pular para o conteúdo',
@@ -174,6 +188,7 @@ const pt: Record<UIKey, string> = {
 	'footer.elsewhere': 'Em outros lugares',
 	'footer.email': 'E-mail',
 	'footer.rss': 'Feed RSS',
+	'footer.newsRss': 'Feed de novidades',
 
 	'blog.title': 'Blog',
 	'blog.description': 'Artigos sobre acessibilidade, leitores de tela e desenvolvimento de software',
@@ -247,6 +262,17 @@ const pt: Record<UIKey, string> = {
 		'Nenhuma versão está disponível no momento. Consulte os repositórios dos projetos diretamente.',
 	'releases.released': 'Publicada em {date}',
 	'releases.download': 'Baixar {name} {version}',
+
+	'news.title': 'Novidades',
+	'news.description':
+		'Versões dos projetos que Marlon Sousa mantém, palestras e outros acontecimentos, das mais recentes para as mais antigas.',
+	'news.intro':
+		'Notas curtas sobre o que acontece com os projetos que eu mantenho, versões na maior parte, e sobre palestras e outras coisas de que participo, das mais recentes para as mais antigas. Acompanhe pelo {feedLink}.',
+	'news.feed': 'feed de novidades',
+	'news.empty': 'Ainda não há novidades.',
+	'news.latest': 'Últimas novidades',
+	'news.all': 'Todas as novidades',
+	'news.feedTitle': 'Novidades',
 
 	'search.title': 'Busca',
 	'search.heading': 'Buscar no conteúdo',

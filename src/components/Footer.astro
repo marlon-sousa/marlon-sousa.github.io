@@ -63,6 +63,7 @@ if (!manifesto) {
 			{/* The feed for the language being read. A reader who subscribes from a
 			    Portuguese page should not start receiving English articles. */}
 			<li><a href={localeUrl('/rss.xml', locale)}>{t('footer.rss')}</a></li>
+			<li><a href={localeUrl('/news/rss.xml', locale)}>{t('footer.newsRss')}</a></li>
 		</ul>
 	</nav>
 </footer>

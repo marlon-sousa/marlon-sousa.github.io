@@ -1,0 +1,70 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import NewsDate from '../../../components/NewsDate.astro';
+import { SITE_TITLE } from '../../../consts';
+import { getNews, newsSlug } from '../../../lib/news';
+import { localeRoutes } from '../../../lib/posts';
+import { localeUrl, type Locale } from '../../../i18n/config';
+import { useTranslations } from '../../../i18n/ui';
+
+export const getStaticPaths = localeRoutes;
+
+const { locale } = Astro.props as { locale: Locale };
+const t = useTranslations(locale);
+
+// Every item on one page, each whole, newest first. An item is a few sentences,
+// so a page per item would mostly be header and footer; here a reader skims
+// them all by heading, and one item is linked by its anchor.
+const items = await Promise.all(
+	(await getNews(locale)).map(async (item) => ({ item, ...(await render(item)) })),
+);
+
+const [introBefore = '', introAfter = ''] = t('news.intro').split('{feedLink}');
+---
+
+<BaseLayout
+	title={t('site.pageTitle', { page: t('news.title'), site: SITE_TITLE })}
+	description={t('news.description')}
+>
+	<h1>{t('news.title')}</h1>
+	<p>
+		{introBefore}<a href={localeUrl('/news/rss.xml', locale)}>{t('news.feed')}</a>{introAfter}
+	</p>
+
+	{
+		items.length === 0 ? (
+			<p>{t('news.empty')}</p>
+		) : (
+			items.map(({ item, Content }) => (
+				<article class="news-item" aria-labelledby={newsSlug(item)}>
+					<h2 id={newsSlug(item)}>{item.data.title}</h2>
+					<p class="meta">
+						<NewsDate date={item.data.date} />
+						{item.data.project && <> · {item.data.project}</>}
+					</p>
+					<Content />
+				</article>
+			))
+		)
+	}
+</BaseLayout>
+
+<style>
+	.news-item {
+		margin-top: 2.5rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid rgb(var(--gray-light));
+	}
+	.news-item h2 {
+		margin: 0;
+		font-size: 1.563em;
+		/* The heading is a link target: leave room above it for the reader's eye
+		   when the page scrolls to it. */
+		scroll-margin-top: 1.5rem;
+	}
+	.meta {
+		margin: 0.25em 0 1em 0;
+		color: rgb(var(--gray));
+	}
+</style>
