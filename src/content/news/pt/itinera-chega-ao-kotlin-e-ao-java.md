@@ -1,7 +1,7 @@
 ---
 title: 'O Itinera chega ao Kotlin e ao Java'
-date: 2026-11-04
-time: '01:24'
+date: 2026-11-03
+time: '22:23'
 project: 'Itinera'
 translationOf: 'itinera-kotlin-and-java-0-1-0-beta-7'
 ---

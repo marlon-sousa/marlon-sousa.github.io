@@ -67,7 +67,7 @@ export const projects: Project[] = [
 			en: 'Compile-time verified dependency injection for Rust. The wiring is declared once, in a container struct, and the domain stays plain Rust, with no macros or framework traits on its types. A missing dependency or a cycle is a compile error that points at the field causing it, two instances of one type are simply two named fields, and every component is reached through a direct getter, with no lookup at run time. Gherkin Glass is wired with it. On crates.io, with a book of compiled examples.',
 			pt: 'Injeção de dependências verificada em tempo de compilação para Rust. A ligação entre os componentes é declarada uma vez, em uma struct de contêiner, e o domínio continua sendo Rust puro, sem macros nem traits do framework nos seus tipos. Uma dependência faltando ou um ciclo é um erro de compilação que aponta para o campo que o causa, duas instâncias do mesmo tipo são simplesmente dois campos com nome, e cada componente é obtido por um getter direto, sem nenhuma busca em tempo de execução. O Gherkin Glass é montado com ele. No crates.io, com um livro de exemplos compilados.',
 		},
-		fallbackVersion: '0.1.1',
+		fallbackVersion: '0.2.0',
 	},
 	{
 		name: 'compile-outcomes',
@@ -76,7 +76,7 @@ export const projects: Project[] = [
 			en: 'Compiles Rust snippets and hands your tests what the compiler said about each one, as data: whether it compiled, and every error and warning with its message, code and location. It judges nothing, so a plain #[test], a Gherkin scenario or any other framework decides what is right. Made for libraries that must test what they tell people who misuse them, such as the errors of a procedural macro. On crates.io.',
 			pt: 'Compila trechos de Rust e entrega aos seus testes o que o compilador disse sobre cada um, como dados: se compilou, e cada erro e aviso com sua mensagem, código e localização. Não julga nada, então um #[test] simples, um cenário em Gherkin ou qualquer outro framework decide o que está certo. Feito para bibliotecas que precisam testar o que dizem a quem as usa errado, como os erros de uma macro procedural. No crates.io.',
 		},
-		fallbackVersion: '0.1.2',
+		fallbackVersion: '0.1.3',
 	},
 	{
 		name: 'EnhancedFindDialog for NVDA',

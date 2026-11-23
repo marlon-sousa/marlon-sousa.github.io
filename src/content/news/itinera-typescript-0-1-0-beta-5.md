@@ -1,7 +1,7 @@
 ---
 title: 'Itinera arrives in TypeScript'
 date: 2026-10-27
-time: '03:53'
+time: '01:03'
 project: 'Itinera'
 ---
 

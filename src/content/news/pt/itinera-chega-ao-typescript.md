@@ -1,7 +1,7 @@
 ---
 title: 'O Itinera chega ao TypeScript'
 date: 2026-10-27
-time: '03:53'
+time: '01:03'
 project: 'Itinera'
 translationOf: 'itinera-typescript-0-1-0-beta-5'
 ---

@@ -1,7 +1,7 @@
 ---
 title: 'Itinera arrives in Kotlin and Java'
-date: 2026-11-04
-time: '01:24'
+date: 2026-11-03
+time: '22:23'
 project: 'Itinera'
 ---
 

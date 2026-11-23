@@ -1,7 +1,7 @@
 ---
 title: 'Itinera for TypeScript 0.1.0-beta.6 is released'
 date: 2026-10-27
-time: '16:52'
+time: '13:53'
 project: 'Itinera'
 ---
 

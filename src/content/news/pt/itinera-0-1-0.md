@@ -1,7 +1,7 @@
 ---
 title: 'Itinera 0.1.0 é publicado em quatro linguagens'
 date: 2026-11-09
-time: '11:20'
+time: '13:12'
 project: 'Itinera'
 translationOf: 'itinera-0-1-0'
 ---

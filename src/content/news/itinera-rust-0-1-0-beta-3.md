@@ -1,7 +1,7 @@
 ---
 title: 'Itinera for Rust 0.1.0-beta.3 is released'
 date: 2026-10-15
-time: '17:16'
+time: '17:24'
 project: 'Itinera'
 ---
 
